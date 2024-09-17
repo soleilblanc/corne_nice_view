@@ -439,7 +439,7 @@
         //ZMK_COMBO(dqt_sqt, &mt DQT SQT, LM1 LB1, ALL, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
         cb_dqt_sqt {
             bindings = <&mt DQT SQT>;
-            key-positions = <17 20>;
+            key-positions = <17 30>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
