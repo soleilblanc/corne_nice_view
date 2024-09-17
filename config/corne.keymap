@@ -45,17 +45,18 @@
     #define KEYS_L 0 1 2 3 4 5 13 14 15 16 17 18 26 27 28 29 30 31      // left hand
     #define KEYS_R 7 8 9 10 11 12 20 21 22 23 24 25 33 34 35 36 37 38   // right hand
     #define THUMBS 40 41 42 44 45 46                                    // thumbs
+    #define STICK_R 6 19 32 43 47                                       // right joystick
 
     // #define HYP(keycode) &kp LC(LA(LS(LG(keycode))))
     // #define MEH(keycode) &kp LC(LA(LS(keycode)))
 
     // &sk {  // sticky-key config
-    //     release-after-ms = <900>;  // release after 0.6s
-    //     quick-release;             // no double capitalization when rolling keys
+    //     release-after-ms = <900>;    // release after 0.6s
+    //     quick-release;               // no double capitalization when rolling keys
     // };
 
     &sl {  // sticky-layer config
-        ignore-modifiers;          // allow chording sticky mods & layers
+        ignore-modifiers;               // allow chording sticky mods & layers
     };
 
     // &lt {  // layer-tap config
@@ -74,13 +75,6 @@
 / {
     behaviors {
 // ───────────────────────────────────────────────── Default settings ─────────────────────────────────────────────────
-        td0: td0 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD0";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
-        };
-
         mmv {
             acceleration-exponent = <1>;      // 1
             time-to-max-speed-ms = <900>;    // 40
@@ -293,7 +287,7 @@
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-            ignored-key-positions = <KEYS_L KEYS_R 41 42 44 45 46>;
+            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 44 45 46>;
             ignored-layers = <MOUSE>;
         };
 
@@ -647,14 +641,14 @@
             key-positions = <15 17>;
         };
 
-        // ZMK_COMBO(nWord, &num_word, LB3 LB1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_nvWord {
+        // ZMK_COMBO(numWord, &num_word, LB3 LB1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        cb_numWord {
             bindings = <&num_word>;
             key-positions = <28 30>;
         };
 
         // ZMK_COMBO(nvWord, &nav_word, RB1 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_nWord {
+        cb_nvWord {
             bindings = <&nav_word>;
             key-positions = <34 36>;
         };
