@@ -758,10 +758,10 @@
         number_layer {
             display-name = "NUMBER";
             bindings = <
-&trans  &none          &kp N7        &kp N8        &kp N9          &none        &trans  &none     &msc SCRL_LEFT  &kp UP     &msc SCRL_RIGHT  &msc SCRL_DOWN  &none
-&trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &none        &trans  &mkp MB4  &kp LEFT        &kp DOWN   &kp RIGHT        &msc SCRL_UP    &trans
-&trans  &none          &kp N1        &kp N2        &kp N3          &none        &trans  &mkp MB5  &mkp LCLK       &mkp MCLK  &mkp RCLK        &none           &trans
-                       &trans        &trans        &trans          &trans       &trans  &trans    &trans          &trans
+&trans  &none          &kp N7        &kp N8        &kp N9          &kp N0       &trans  &none     &msc SCRL_RIGHT  &kp UP     &msc SCRL_LEFT  &msc SCRL_DOWN  &none
+&trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &none        &trans  &mkp MB4  &kp LEFT         &kp DOWN   &kp RIGHT       &msc SCRL_UP    &trans
+&trans  &none          &kp N1        &kp N2        &kp N3          &none        &trans  &mkp MB5  &mkp LCLK        &mkp MCLK  &mkp RCLK       &none           &trans
+                       &trans        &trans        &trans          &trans       &trans  &trans    &trans           &trans
                                                                                 &trans
             >;
         };
