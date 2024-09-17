@@ -656,7 +656,7 @@
         // ZMK_COMBO(nvWord, &nav_word, RB1 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
         cb_nWord {
             bindings = <&nav_word>;
-            key-positions = <31 33>;
+            key-positions = <34 36>;
         };
 // ───────────────────────────────────────────────── END Combos ─────────────────────────────────────────────────
     };
