@@ -70,25 +70,37 @@
         continue-list = <BSPC DEL DOT KP_DOT COMMA PLUS MINUS STAR FSLH EQUAL CARET PRCNT UP DOWN LEFT RIGHT TAB>;
     };
 
+    &mmv {
+        acceleration-exponent = <1>;        // 1
+        time-to-max-speed-ms = <900>;       // 40
+        delay-ms = <0>;                     // 0
+    };
+
+    &msc {
+        acceleration-exponent = <1>;        // 0
+        time-to-max-speed-ms = <400>;       // 500
+        delay-ms = <0>;                     // 10
+    };
+
 // ───────────────────────────────────────────────── END Global settings ─────────────────────────────────────────────────
 
 / {
     behaviors {
 // ───────────────────────────────────────────────── Default settings ─────────────────────────────────────────────────
-        mmv {
-            acceleration-exponent = <1>;      // 1
-            time-to-max-speed-ms = <900>;    // 40
-            delay-ms = <0>;                   // 0
-        };
+        // mmv {
+        //     acceleration-exponent = <1>;      // 1
+        //     time-to-max-speed-ms = <900>;    // 40
+        //     delay-ms = <0>;                   // 0
+        // };
 
-        msc {
-            acceleration-exponent = <1>;      // 0
-            time-to-max-speed-ms = <400>;      // 500
-            delay-ms = <0>;                   // 10
-        };
+        // msc {
+        //     acceleration-exponent = <1>;      // 0
+        //     time-to-max-speed-ms = <400>;      // 500
+        //     delay-ms = <0>;                   // 10
+        // };
 // ───────────────────────────────────────────────── END Default settings ─────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────── Smart-shift, Caps-word, num-word and other-word ─────────────────────────────────────────────────
+// ───────────────────────────────────────────────── Smart-shift, Caps-word, num-word; Tri-State, Swapper ─────────────────────────────────────────────────
         // tap: sticky-shift | shift + tap/ double-tap: caps-word | hold: shift
         smart_shft: smart_shift {
             compatible = "zmk,behavior-mod-morph";
@@ -101,7 +113,7 @@
             #binding-cells = <0>;
             compatible = "zmk,behavior-caps-word";
             layers = <NAV>;
-            continue-list = <BSPC DEL DOT KP_DOT COMMA PLUS MINUS STAR FSLH EQUAL CARET PRCNT UP DOWN LEFT RIGHT TAB>;
+            continue-list = <SPACE BSPC DEL DOT KP_DOT COMMA PLUS MINUS STAR FSLH EQUAL CARET PRCNT UP DOWN LEFT RIGHT TAB>;
             ignore-numbers;
         };
 
@@ -113,7 +125,30 @@
            mods = <(MOD_LSFT)>;
         };
         */
-// ───────────────────────────────────────────────── END Smart-shift, Caps-word, num-word and other-word ─────────────────────────────────────────────────
+        tri_MOUSE: Tri-State_MOUSE {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
+            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 44 45 46>;
+            ignored-layers = <MOUSE>;
+        };
+
+        tri_MEDIA: Tri-State_MEDIA {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&tog MED>, <&none>, <&tog MED>;
+            ignored-key-positions = <KEYS_L KEYS_R 41 42 45 46>;
+            ignored-layers = <MED PAD>;
+        };
+
+    // cmd_tab swapper
+        swapper_tab: swapper_tab {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+            ignored-key-positions = <0 13>;
+        };
+// ───────────────────────────────────────────────── END Smart-shift, Caps-word, num-word; Tri-State, Swapper ─────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────── Tap Dance ─────────────────────────────────────────────────
     // arrows, arrows with modifier
@@ -203,10 +238,10 @@
         };
 
         //  hold to momentary layer, tap to smart-media
-        mo_sMED: mo_sMED {
+        mo_tMED: mo_tMED {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&mo>, <&smart_media>;
+            bindings = <&mo>, <&tri_MEDIA>;
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
@@ -266,10 +301,10 @@
         };
 
     // Homerow-Mods for Combos
-        hml_sMED: homerow_mod_smartMedia {
+        hml_tMED: hml_Tri-State_MEDIA {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&kp>, <&smart_media>;
+            bindings = <&kp>, <&tri_MEDIA>;
 
             flavor = "balanced";
             tapping-term-ms = <280>;
@@ -281,34 +316,8 @@
 
 
 // ───────────────────────────────────────────────── END Hold-tap ─────────────────────────────────────────────────
-
-// ───────────────────────────────────────────────── Tri-State, Smart Layer, Swapper ─────────────────────────────────────────────────
-        smart_mouse: smart_mouse {
-            compatible = "zmk,behavior-tri-state";
-            #binding-cells = <0>;
-            bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 44 45 46>;
-            ignored-layers = <MOUSE>;
-        };
-
-        smart_media: smart_media {
-            compatible = "zmk,behavior-tri-state";
-            #binding-cells = <0>;
-            bindings = <&tog MED>, <&none>, <&tog MED>;
-            ignored-key-positions = <KEYS_L KEYS_R 41 42 45 46>;
-            ignored-layers = <MED PAD>;
-        };
-
-    // cmd_tab swapper
-        swapper_tab: swapper_tab {
-            compatible = "zmk,behavior-tri-state";
-            #binding-cells = <0>;
-            bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-            ignored-key-positions = <0 13>;
-        };
-// ───────────────────────────────────────────────── END Tri-State, Smart Layer, Swapper ─────────────────────────────────────────────────
-
     };
+
     combos {
 // ───────────────────────────────────────────────── Combos ─────────────────────────────────────────────────
         compatible = "zmk,combos";
@@ -629,15 +638,15 @@
             key-positions = <10 24>;
         };
 
-        // ZMK_COMBO(smart_mouse, &smart_mouse, LT3 LT1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_smart_mouse {
-            bindings = <&smart_mouse>;
+        // ZMK_COMBO(tri_MOUSE, &tri_MOUSE, LT3 LT1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        cb_tri_MOUSE {
+            bindings = <&tri_MOUSE>;
             key-positions = <2 4>;
         };
 
-        // ZMK_COMBO(smart_media, &smart_media, LM3 LM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_smart_media {
-            bindings = <&hml_sMED LA(LSHFT) 0>;
+        // ZMK_COMBO(tri_MEDIA, &tri_MEDIA, LM3 LM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        cb_tri_MEDIA {
+            bindings = <&hml_tMED LA(LSHFT) 0>;
             key-positions = <15 17>;
         };
 
@@ -751,7 +760,7 @@
             bindings = <
 &trans  &none          &kp N7        &kp N8        &kp N9          &none        &trans  &none     &msc SCRL_LEFT  &kp UP     &msc SCRL_RIGHT  &msc SCRL_DOWN  &none
 &trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &none        &trans  &mkp MB4  &kp LEFT        &kp DOWN   &kp RIGHT        &msc SCRL_UP    &trans
-&trans  &none          &kp N1        &kp N2        &kp N3          &none        &trans  &mkp MB5  &mkp MCLK       &mkp LCLK  &mkp RCLK        &none           &trans
+&trans  &none          &kp N1        &kp N2        &kp N3          &none        &trans  &mkp MB5  &mkp LCLK       &mkp MCLK  &mkp RCLK        &none           &trans
                        &trans        &trans        &trans          &trans       &trans  &trans    &trans          &trans
                                                                                 &trans
             >;
@@ -763,7 +772,7 @@
 &trans  &none                         &kp LS(LG(N2))               &none                &kp LS(LG(N4))     &kp LS(LG(N5))       &kp LC(UP)     &kp LC(F2)    &kp F7  &kp F8  &kp F9  &kp F12  &none
 &trans  &hml LCTRL LC(LA(LS(LG(J))))  &hml LALT LC(LA(LS(LG(K))))  &hml LGUI LS(LG(T))  &hmlq LSHFT LG(J)  &kp LG(H)            &kp LC(DOWN)   &kp LC(F3)    &kp F4  &kp F5  &kp F6  &kp F11  &none
 &trans  &kp LG(K)                     &kp LA(LS(LG(V)))            &kp LA(LG(C))        &kp LA(LG(V))      &kp LA(LG(H))        &kp LC(LEFT)   &none         &kp F1  &kp F2  &kp F3  &kp F10  &sk INS
-                                      &kp C_PP                     &trans               &trans             &trans               &kp LC(RIGHT)  &mo_sMED MED  &trans  &trans
+                                      &kp C_PP                     &trans               &trans             &trans               &kp LC(RIGHT)  &mo_tMED MED  &trans  &trans
                                                                                                                                 &trans
             >;
 
