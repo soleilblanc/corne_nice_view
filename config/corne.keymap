@@ -126,7 +126,7 @@
         td_up: td_up {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&kp UP>, <&mt LG(UP) LA(UP_ARROW)>;
+            bindings = <&kp UP>, <&mt LG(UP) LA(UP)>;
             tapping-term-ms = <250>;
         };
 
@@ -721,13 +721,13 @@
             bindings = <
 &kp TAB                     &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                &mmv MOVE_UP     &kp Y          &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P           &mt BSLH MINUS
 &mt LC(LA(LS(LGUI))) GRAVE  &hml LCTRL A  &hml LALT S  &hml LGUI D              &hmlq LSHFT F  &kp G                &mmv MOVE_DOWN   &kp H          &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SQT  &mt LC(LA(LSHFT)) SEMI
-&kp LCTRL                   &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B                &mmv MOVE_LEFT   &kp N          &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH        &kp INS
+&mt LSHFT CAPS              &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B                &mmv MOVE_LEFT   &kp N          &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH        &kp INS
                                           &kp C_MUTE   &mt LGUI ESC             &ltb NAV BSPC  &ltq FUN SPACE       &mmv MOVE_RIGHT  &mosl FUN FUN  &ltb NUM RET   &smart_shft
                                                                                                                     &mkp LCLK
             >;
 
             label = "QWERTY";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DOWN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         colemak_layer {
@@ -766,10 +766,10 @@
         function_layer {
             display-name = "FUNC";
             bindings = <
-&trans  &none                         &kp LS(LG(N2))               &none                &kp LS(LG(N4))     &kp LS(LG(N5))       &kp LC(UP)     &kp LC(F2)    &kp C_BRI_DN  &none     &kp C_BRI_UP   &kp C_VOL_UP  &none
-&trans  &hml LCTRL LC(LA(LS(LG(J))))  &hml LALT LC(LA(LS(LG(K))))  &hml LGUI LS(LG(T))  &hmlq LSHFT LG(J)  &kp LG(H)            &kp LC(DOWN)   &kp LC(F3)    &none         &none     &none          &kp C_VOL_DN  &none
-&trans  &kp LG(K)                     &kp LA(LS(LG(V)))            &kp LA(LG(C))        &kp LA(LG(V))      &kp LA(LG(H))        &kp LC(LEFT)   &none         &kp C_PREV    &kp C_PP  &kp C_NEXT     &kp C_MUTE    &trans
-                                      &kp C_PP                     &trans               &trans             &trans               &kp LC(RIGHT)  &mo_sMED MED  &trans        &trans
+&trans  &none                         &kp LS(LG(N2))               &none                &kp LS(LG(N4))     &kp LS(LG(N5))       &kp LC(UP)     &kp LC(F2)    &kp F7  &kp F8  &kp F9  &kp F12  &none
+&trans  &hml LCTRL LC(LA(LS(LG(J))))  &hml LALT LC(LA(LS(LG(K))))  &hml LGUI LS(LG(T))  &hmlq LSHFT LG(J)  &kp LG(H)            &kp LC(DOWN)   &kp LC(F3)    &kp F4  &kp F5  &kp F6  &kp F11  &none
+&trans  &kp LG(K)                     &kp LA(LS(LG(V)))            &kp LA(LG(C))        &kp LA(LG(V))      &kp LA(LG(H))        &kp LC(LEFT)   &none         &kp F1  &kp F2  &kp F3  &kp F10  &sk INS
+                                      &kp C_PP                     &trans               &trans             &trans               &kp LC(RIGHT)  &mo_sMED MED  &trans  &trans
                                                                                                                                 &trans
             >;
 
@@ -791,10 +791,10 @@
         media_layer {
             display-name = "MEDIA";
             bindings = <
-&kp C_VOL_UP  &kp E      &kp J              &kp UP    &kp L                &kp C        &trans  &none  &kp F7   &kp F8   &kp F9  &kp F12  &none
-&kp C_VOL_DN  &kp R      &mt LA(LEFT) LEFT  &kp DOWN  &mt LA(RIGHT) RIGHT  &kp F        &trans  &none  &kp F4   &kp F5   &kp F6  &kp F11  &sk RCTRL
-&kp C_MUTE    &kp COMMA  &kp DOT            &kp LT    &kp GT               &kp FSLH     &trans  &none  &kp F1   &kp F2   &kp F3  &kp F10  &trans
-                         &kp C_PP           &trans    &mo PAD              &kp SPACE    &trans  &none  &sk INS  &trans
+&kp C_VOL_UP  &kp E      &kp E              &kp UP    &kp R                &kp C        &trans  &none  &none          &none         &none  &none  &none
+&kp C_VOL_DN  &kp R      &mt LA(LEFT) LEFT  &kp DOWN  &mt LA(RIGHT) RIGHT  &kp F        &trans  &none  &none          &none         &none  &none  &sk RCTRL
+&kp C_MUTE    &kp COMMA  &kp DOT            &kp LT    &kp GT               &kp FSLH     &trans  &none  &kp C_BRI_DN   &kp C_BRI_UP  &none  &none  &sk INS
+                         &kp C_PP           &trans    &mo PAD              &kp SPACE    &trans  &none  &trans         &trans
                                                                                         &trans
             >;
 
