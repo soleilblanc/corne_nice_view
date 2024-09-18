@@ -153,12 +153,12 @@ layers:
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
   - {t: '9', s: (}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '0', s: )}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:pan-left$$
-  - $$mdi:arrow-up-bold$$
   - $$mdi:pan-right$$
+  - $$mdi:arrow-up-bold$$
+  - $$mdi:pan-left$$
   - $$mdi:pan-down$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -182,8 +182,8 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - '&mkp MB5'
-  - $$mdi:mouse-scroll-wheel$$
   - $$mdi:mouse-left-click-outline$$
+  - $$mdi:mouse-scroll-wheel$$
   - $$mdi:mouse-right-click-outline$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -222,7 +222,7 @@ layers:
   - F5
   - F6
   - F11
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
   - {t: '$$mdi:transfer$$', type: trans}
   - Gui+ K
   - Alt+Sft+Gui+ V
@@ -241,7 +241,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held}
   - Ctl+ $$mdi:arrow-right-bold$$
-  - {t: '&mo_sMED 6', type: held alternate}
+  - {t: '&mo_tMED 6', type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -258,7 +258,7 @@ layers:
   - I
   - O
   - P
-  - {t: '-', h: \, s: _}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '2', s: '@'}
   - A
@@ -271,7 +271,7 @@ layers:
   - K
   - L
   - {t: '''', s: '"'}
-  - {t: ;, h: 'Ctl+Alt+ $$mdi:apple-keyboard-shift$$', s: ':'}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '1', s: '!'}
   - Z
@@ -294,55 +294,55 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  media:
+  MEDIA:
+  - {t: '[', h: HOME, s: '{'}
+  - {t: Y, h: U}
+  - {t: J, h: E}
+  - {t: '$$mdi:arrow-up-bold$$', h: A}
+  - {t: L, h: R}
+  - Gui+ T
+  - KP 8
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:skip-previous$$
+  - $$mdi:play-pause$$
+  - $$mdi:skip-next$$
   - $$mdi:volume-high$$
-  - E
-  - E
-  - $$mdi:arrow-up-bold$$
-  - R
-  - C
-  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: ']', h: END, s: '}'}
+  - {t: B, h: N}
+  - {t: '$$mdi:arrow-left-bold$$', h: 'Alt+ $$mdi:arrow-left-bold$$'}
+  - {t: '$$mdi:arrow-down-bold$$', h: S}
+  - {t: '$$mdi:arrow-right-bold$$', h: 'Alt+ $$mdi:arrow-right-bold$$'}
+  - {t: F, h: X}
+  - KP 2
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:volume-low$$
-  - R
-  - {t: '$$mdi:arrow-left-bold$$', h: 'Alt+ $$mdi:arrow-left-bold$$'}
-  - $$mdi:arrow-down-bold$$
-  - {t: '$$mdi:arrow-right-bold$$', h: 'Alt+ $$mdi:arrow-right-bold$$'}
-  - F
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
-  - $$mdi:volume-off$$
-  - {t: ',', s: <}
-  - {t: ., s: '>'}
-  - <
-  - '>'
-  - {t: /, s: '?'}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: G, h: ''''}
+  - {t: H, h: ;}
+  - {t: ',', h: <, s: <}
+  - {t: C, h: /}
+  - {t: ., h: '>', s: '>'}
+  - {t: Q, h: Z}
+  - KP 4
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:brightness-7$$
   - $$mdi:brightness-5$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:volume-off$$
   - {t: INS, h: '$$mdi:gesture-tap-hold$$'}
-  - $$mdi:play-pause$$
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - PAD
   - $$mdi:keyboard-space$$
-  - {t: '$$mdi:transfer$$', type: trans}
+  - KP 6
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - KP 5
   PAD:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -401,9 +401,9 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:pan-left$$
-  - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - $$mdi:pan-right$$
+  - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
+  - $$mdi:pan-left$$
   - $$mdi:pan-down$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -572,9 +572,9 @@ combos:
 - p: [10, 24]
   k: {t: ADJUST, h: toggle}
 - p: [2, 4]
-  k: '&smart_mouse'
+  k: '&tri_MOUSE'
 - p: [15, 17]
-  k: {t: '&smart_media', h: 'Alt+ $$mdi:apple-keyboard-shift$$'}
+  k: {t: '&tri_MEDIA', h: 'Alt+ $$mdi:apple-keyboard-shift$$'}
 - p: [28, 30]
   k: '&num_word'
 - p: [34, 36]
