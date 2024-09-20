@@ -842,7 +842,7 @@
             >;
         };
 
-        keypad_layer {
+        clean_layer {
             display-name = "CLEAN";
             bindings = <
 &none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none  &none
