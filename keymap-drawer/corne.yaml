@@ -296,10 +296,10 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   MEDIA:
   - {t: '[', h: HOME, s: '{'}
-  - {t: Y, h: U}
-  - {t: J, h: E}
-  - {t: '$$mdi:arrow-up-bold$$', h: A}
-  - {t: L, h: R}
+  - {t: ']', h: END, s: '}'}
+  - Alt+ $$mdi:arrow-left-bold$$
+  - $$mdi:arrow-up-bold$$
+  - Alt+ $$mdi:arrow-right-bold$$
   - Gui+ T
   - KP 8
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -308,11 +308,11 @@ layers:
   - $$mdi:skip-next$$
   - $$mdi:volume-high$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: ']', h: END, s: '}'}
-  - {t: B, h: N}
-  - {t: '$$mdi:arrow-left-bold$$', h: 'Alt+ $$mdi:arrow-left-bold$$'}
-  - {t: '$$mdi:arrow-down-bold$$', h: S}
-  - {t: '$$mdi:arrow-right-bold$$', h: 'Alt+ $$mdi:arrow-right-bold$$'}
+  - <
+  - '>'
+  - $$mdi:arrow-left-bold$$
+  - $$mdi:arrow-down-bold$$
+  - $$mdi:arrow-right-bold$$
   - {t: F, h: X}
   - KP 2
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -321,11 +321,11 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:volume-low$$
   - {t: '$$mdi:apple-keyboard-control$$', h: '$$mdi:gesture-tap-hold$$'}
-  - {t: G, h: ''''}
-  - {t: H, h: ;}
-  - {t: ',', h: <, s: <}
-  - {t: C, h: /}
-  - {t: ., h: '>', s: '>'}
+  - {t: ',', s: <}
+  - {t: ., s: '>'}
+  - J
+  - C
+  - L
   - {t: Q, h: Z}
   - KP 4
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -490,6 +490,55 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
+  CLEAN:
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
 combos:
 - p: [2, 3]
   k: $$mdi:keyboard-tab$$
@@ -569,6 +618,8 @@ combos:
   k: {t: ARSTGM, h: toggle}
 - p: [4, 18]
   k: {t: GAMING, h: toggle}
+- p: [15, 27]
+  k: {t: CLEAN, h: toggle}
 - p: [10, 24]
   k: {t: ADJUST, h: toggle}
 - p: [2, 4]
