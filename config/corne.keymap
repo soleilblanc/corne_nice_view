@@ -100,7 +100,7 @@
     // MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
     // MAKE_HRM(hml_repeat, &kp, &key_repeat, KEYS_R THUMBS)  // used for HRM-combo
 
-    //     tri_MEDIA: tri_MEDIA {
+    //     tri_MED: tri_MED {
     //         compatible = "zmk,behavior-tri-state";
     //         #binding-cells = <0>;
     //         bindings = <&tog MED>, <&none>, <&tog MED>;
@@ -121,11 +121,11 @@
     //     } \
     // }
 
-    // MAKE_MO_TRI(mo_tMED, &mo, &tri_MEDIA)
+    // MAKE_MO_TRI(mo_tMED, &mo, &tri_MED)
     //     mo_tMED: mo_tMED {
     //         compatible = "zmk,behavior-hold-tap";
     //         #binding-cells = <2>;
-    //         bindings = <&mo>, <&tri_MEDIA>;
+    //         bindings = <&mo>, <&tri_MED>;
     //         flavor = "balanced";
     //         tapping-term-ms = <220>;
     //     }
@@ -158,28 +158,28 @@
         //    mods = <(MOD_LSFT)>;
         // };
 
-        tri_NUMBER: Tri-State_NUMBER {
+        tri_NUM: Tri-State_NUMBER {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog NUM>, <&none>, <&tog NUM>;
-            ignored-key-positions = <KEYS_L KEYS_R THUMBS>;
+            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 45 46 47>;
             ignored-layers = <NUM>;
         };
 
-        tri_MEDIA: Tri-State_MEDIA {
+        tri_MED: Tri-State_MEDIA {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog MED>, <&none>, <&tog MED>;
-            ignored-key-positions = <KEYS_L KEYS_R 40 41 42 44 46>;
+            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 45 46 47>;
             ignored-layers = <MED PAD>;
         };
 
-        tri_KEYPAD: Tri-State_KEYPAD {
+        tri_PAD: Tri-State_KEYPAD {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog PAD>, <&none>, <&tog PAD>;
             ignored-key-positions = <KEYS_L KEYS_R 41 42 44 45 46>;
-            ignored-layers = <MED PAD>;
+            ignored-layers = <PAD>;
         };
 
         tri_MOUSE: Tri-State_MOUSE {
@@ -290,7 +290,7 @@
         mo_tMED: mo_tMED {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&mo>, <&tri_MEDIA>;
+            bindings = <&mo>, <&tri_MED>;
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
@@ -300,7 +300,7 @@
         mo_tPAD: mo_tPAD {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&mo>, <&tri_KEYPAD>;
+            bindings = <&mo>, <&tri_PAD>;
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
@@ -363,7 +363,7 @@
         hml_tMED: hml_Tri-State_MEDIA {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&kp>, <&tri_MEDIA>;
+            bindings = <&kp>, <&tri_MED>;
 
             flavor = "balanced";
             tapping-term-ms = <280>;
@@ -703,14 +703,14 @@
             key-positions = <10 24>;
         };
 
-        // ZMK_COMBO(tri_MOUSE, &tri_MOUSE, LT3 LT1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_tri_MOUSE {
+        // ZMK_COMBO(cb_triMOUSE, &tri_MOUSE, LT3 LT1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        cb_triMOUSE {
             bindings = <&tri_MOUSE>;
             key-positions = <2 4>;
         };
 
-        // ZMK_COMBO(tri_MEDIA, &tri_MEDIA, LM3 LM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_tri_MEDIA {
+        // ZMK_COMBO(cb_triMED, &tri_MED, LM3 LM1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        cb_triMED {
             bindings = <&hml_tMED LA(LSHFT) 0>;
             key-positions = <15 17>;
         };
@@ -816,7 +816,7 @@
 &trans  &kp PG_DN  &td_left  &td_down  &td_right  &kp RET       &mmv MOVE_DOWN   &kp PLUS   &hmrq RSHFT N4  &hmr RGUI N5              &hmr RALT N6  &hmr RCTRL STAR  &mt LC(LA(LSHFT)) EQUAL
 &trans  &sk LCTRL  &sk LALT  &sk LGUI  &sk LSHFT  &kp DEL       &mmv MOVE_LEFT   &kp MINUS  &kp N1          &hmr LC(LA(LSHFT)) N2     &kp N3        &kp FSLH         &trans
                    &trans    &trans    &trans     &trans        &mmv MOVE_RIGHT  &trans     &kp KP_DOT      &trans
-                                                                &mkp LCLK
+                                                                &mkp MCLK
             >;
         };
 
@@ -826,8 +826,8 @@
 &trans  &none          &kp N7        &kp N8        &kp N9          &kp N0           &mmv MOVE_UP     &none     &msc SCRL_RIGHT  &kp UP     &msc SCRL_LEFT  &msc SCRL_DOWN  &none
 &trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &mkp MB4         &mmv MOVE_DOWN   &mkp MB4  &kp LEFT         &kp DOWN   &kp RIGHT       &msc SCRL_UP    &trans
 &trans  &none          &kp N1        &kp N2        &kp N3          &mkp MB5         &mmv MOVE_LEFT   &mkp MB5  &mkp LCLK        &mkp MCLK  &mkp RCLK       &none           &trans
-                       &trans        &mkp LCLK     &mkp MCLK       &mkp RCLK        &mmv MOVE_RIGHT  &kp ESC   &mo_tMED MED     &num_word
-                                                                                    &mkp LCLK
+                       &trans        &trans        &mkp LCLK       &mkp RCLK        &mmv MOVE_RIGHT  &kp ESC   &mo_tMED MED     &tri_NUM
+                                                                                    &mkp MCLK
             >;
         };
 
@@ -859,11 +859,11 @@
         media_layer {
             display-name = "MEDIA";
             bindings = <
-&mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP    &kp LA(RIGHT)  &kp LG(T)       &kp KP_N8  &none  &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
-&kp LT         &kp GT        &kp LEFT      &kp DOWN  &kp RIGHT      &kp F           &kp KP_N2  &none  &none          &none         &none       &kp C_VOL_DN  &sk RCTRL
-&kp COMMA      &kp DOT       &kp J         &kp C     &kp L          &kp Q           &kp KP_N4  &none  &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &sk INS
-                             &trans        &trans    &mo PAD   &kp SPACE       &kp KP_N6  &trans &none          &trans
-                                                                                    &kp KP_N5
+&mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP          &kp LA(RIGHT)  &kp LG(T)     &kp KP_N8  &none  &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
+&kp LT         &kp GT        &kp LEFT      &hml LGUI DOWN  &kp RIGHT      &kp F         &kp KP_N2  &none  &none          &none         &none       &kp C_VOL_DN  &sk RCTRL
+&kp COMMA      &kp DOT       &kp J         &kp C           &kp L          &kp Q         &kp KP_N4  &none  &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &sk INS
+                             &trans        &trans          &mo PAD        &kp SPACE     &kp KP_N6  &trans &trans         &trans
+                                                                                        &kp KP_N5
             >;
         };
 
@@ -883,8 +883,8 @@
             bindings = <
 &none  &msc SCRL_DOWN  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &none           &trans  &none      &msc SCRL_RIGHT  &mmv MOVE_UP    &msc SCRL_LEFT   &msc SCRL_DOWN  &none
 &none  &msc SCRL_UP    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB4        &trans  &mkp MB4   &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_UP    &none
-&none  &none           &none           &none           &none            &mkp MB5        &trans  &mkp MB5   &none            &none           &none            &none           &none
-                       &trans          &mkp LCLK       &mkp MCLK        &mkp RCLK       &trans  &mkp LCLK  &mkp MCLK        &mkp RCLK
+&none  &none           &none           &mkp MCLK       &none            &mkp MB5        &trans  &mkp MB5   &none            &none           &none            &none           &none
+                       &trans          &trans          &mkp LCLK        &mkp RCLK       &trans  &mkp LCLK  &mkp MCLK        &mkp RCLK
                                                                                         &trans
             >;
         };
