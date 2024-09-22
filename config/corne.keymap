@@ -22,7 +22,7 @@
 #define CLE 10
 
 // Define mouse action
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600 1200
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600 //1200
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #define U_MS_U &mmv MOVE_UP
@@ -73,13 +73,13 @@
 
     &mmv {
         acceleration-exponent = <1>;        // 1
-        time-to-max-speed-ms = <500>;       // 40, 900
+        time-to-max-speed-ms = <500>;       // 40 //900
         delay-ms = <0>;                     // 0
     };
 
     &msc {
         acceleration-exponent = <1>;        // 0
-        time-to-max-speed-ms = <40>;        // 500, 400
+        time-to-max-speed-ms = <40>;        // 500 //400
         delay-ms = <0>;                     // 10
     };
 
@@ -304,7 +304,7 @@
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
-        }
+        };
 
     // infused-kim's Homerow-Mods
         hml: homerow_mod_left {
@@ -868,7 +868,7 @@
         };
 
         keypad_layer {
-            display-name = "PAD";
+            display-name = "KEYPAD";
             bindings = <
 &none  &none            &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_N0          &trans  &none   &none  &none   &none  &none  &none
 &none  &kp KP_MULTIPLY  &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_PLUS        &trans  &none   &none  &none   &none  &none  &none
