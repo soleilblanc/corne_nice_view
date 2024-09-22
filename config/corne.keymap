@@ -304,7 +304,7 @@
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
-        };
+        }
 
     // infused-kim's Homerow-Mods
         hml: homerow_mod_left {
