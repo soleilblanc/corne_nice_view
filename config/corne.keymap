@@ -158,12 +158,12 @@
         //    mods = <(MOD_LSFT)>;
         // };
 
-        tri_MOUSE: Tri-State_MOUSE {
+        tri_NUMBER: Tri-State_NUMBER {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
-            bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-            ignored-key-positions = <KEYS_L KEYS_R THUMBS STICK_R>;
-            ignored-layers = <MOUSE>;
+            bindings = <&tog NUM>, <&none>, <&tog NUM>;
+            ignored-key-positions = <KEYS_L KEYS_R THUMBS>;
+            ignored-layers = <NUM>;
         };
 
         tri_MEDIA: Tri-State_MEDIA {
@@ -180,6 +180,14 @@
             bindings = <&tog PAD>, <&none>, <&tog PAD>;
             ignored-key-positions = <KEYS_L KEYS_R 41 42 44 45 46>;
             ignored-layers = <MED PAD>;
+        };
+
+        tri_MOUSE: Tri-State_MOUSE {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
+            ignored-key-positions = <KEYS_L KEYS_R THUMBS STICK_R>;
+            ignored-layers = <MOUSE>;
         };
 
         // cmd_tab swapper
@@ -815,22 +823,22 @@
         number_layer {
             display-name = "NUMBER";
             bindings = <
-&trans  &none          &kp N7        &kp N8        &kp N9          &kp N0       &mmv MOVE_UP     &none     &msc SCRL_RIGHT  &kp UP     &msc SCRL_LEFT  &msc SCRL_DOWN  &none
-&trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &none        &mmv MOVE_DOWN   &mkp MB4  &kp LEFT         &kp DOWN   &kp RIGHT       &msc SCRL_UP    &trans
-&trans  &none          &kp N1        &kp N2        &kp N3          &none        &mmv MOVE_LEFT   &mkp MB5  &mkp LCLK        &mkp MCLK  &mkp RCLK       &none           &trans
-                       &trans        &trans        &trans          &trans       &mmv MOVE_RIGHT  &trans    &mo_tMED MED     &trans
-                                                                                &mkp LCLK
+&trans  &none          &kp N7        &kp N8        &kp N9          &kp N0           &mmv MOVE_UP     &none     &msc SCRL_RIGHT  &kp UP     &msc SCRL_LEFT  &msc SCRL_DOWN  &none
+&trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &mkp MB4         &mmv MOVE_DOWN   &mkp MB4  &kp LEFT         &kp DOWN   &kp RIGHT       &msc SCRL_UP    &trans
+&trans  &none          &kp N1        &kp N2        &kp N3          &mkp MB5         &mmv MOVE_LEFT   &mkp MB5  &mkp LCLK        &mkp MCLK  &mkp RCLK       &none           &trans
+                       &trans        &mkp LCLK     &mkp MCLK       &mkp RCLK        &mmv MOVE_RIGHT  &kp ESC   &mo_tMED MED     &num_word
+                                                                                    &mkp LCLK
             >;
         };
 
         function_layer {
             display-name = "FUNC";
             bindings = <
-&trans  &none                         &kp LS(LG(N2))               &none                &kp LS(LG(N4))     &kp LS(LG(N5))       &kp LC(UP)     &kp LC(F2)    &kp F7  &kp F8  &kp F9  &kp F12  &none
-&trans  &hml LCTRL LC(LA(LS(LG(J))))  &hml LALT LC(LA(LS(LG(K))))  &hml LGUI LS(LG(T))  &hmlq LSHFT LG(J)  &kp LG(H)            &kp LC(DOWN)   &kp LC(F3)    &kp F4  &kp F5  &kp F6  &kp F11  &sk RCTRL
-&trans  &kp LG(K)                     &kp LA(LS(LG(V)))            &kp LA(LG(C))        &kp LA(LG(V))      &kp LA(LG(H))        &kp LC(LEFT)   &none         &kp F1  &kp F2  &kp F3  &kp F10  &sk INS
-                                      &kp C_PP                     &trans               &trans             &trans               &kp LC(RIGHT)  &trans        &trans  &trans
-                                                                                                                                &trans
+&trans  &none                 &kp LS(LG(N2))        &none                 &none              &kp LS(LG(T))      &kp LC(UP)     &kp LC(F2)  &kp F7  &kp F8  &kp F9  &kp F12  &none
+&trans  &hml LCTRL LA(LS(A))  &hml LALT LS(LG(N4))  &hml LGUI LS(LG(N5))  &hmlq LSHFT LG(J)  &kp LG(H)          &kp LC(DOWN)   &kp LC(F3)  &kp F4  &kp F5  &kp F6  &kp F11  &sk RCTRL
+&trans  &kp LG(K)             &kp LA(LS(LG(V)))     &kp LA(LG(C))         &kp LA(LG(V))      &kp LA(LG(H))      &kp LC(LEFT)   &none       &kp F1  &kp F2  &kp F3  &kp F10  &sk INS
+                              &kp C_PP              &trans                &trans             &trans             &kp LC(RIGHT)  &trans      &trans  &trans
+                                                                                                                &trans
             >;
 
             label = "FUNC";
