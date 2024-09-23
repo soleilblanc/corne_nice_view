@@ -242,7 +242,7 @@ layers:
   - {type: held}
   - Ctl+ $$mdi:arrow-right-bold$$
   - {t: '&mo_tMED 6', type: held alternate}
-  - '&tri_MOUSE'
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   GAMING:
@@ -628,5 +628,7 @@ combos:
   k: {t: '&tri_MED', h: 'Alt+ $$mdi:apple-keyboard-shift$$'}
 - p: [28, 30]
   k: '&num_word'
+- p: [8, 10]
+  k: '&tri_MOUSE'
 - p: [34, 36]
   k: '&nav_word'
