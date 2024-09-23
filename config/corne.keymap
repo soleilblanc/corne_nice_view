@@ -718,7 +718,7 @@
         };
 
         // ZMK_COMBO(cb_triMOUSE, &tri_MOUSE, LT3 LT1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_triMOUSE {
+        cb_triMOUSE_L {
             bindings = <&tri_MOUSE>;
             key-positions = <2 4>;
         };
@@ -736,7 +736,7 @@
         };
 
         // ZMK_COMBO(cb_triMOUSE, &tri_MOUSE, LT3 LT1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-        cb_triMOUSE {
+        cb_triMOUSE_R {
             bindings = <&tri_MOUSE>;
             key-positions = <8 10>;
         };
