@@ -22,7 +22,7 @@
 #define CLE 10
 
 // Define mouse action
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600 //1200
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 20    // 10
 
 #define U_MS_U &mmv MOVE_UP
@@ -52,7 +52,7 @@
     // #define MEH(MEHKEY) &kp LC(LA(LS(MEHKEY)))
 
     // &sk {  // sticky-key config
-    //     release-after-ms = <900>;    // release after 0.6s
+    //     release-after-ms = <900>;    // release after 0.9s
     //     quick-release;               // no double capitalization when rolling keys
     // };
 
@@ -66,21 +66,26 @@
     //     quick-tap-ms = <QUICK_TAP_MS>;
     // };
 
+    // &caps_word {  // mods deactivate caps-word, requires PR #1451
+    //     /delete-property/ ignore-modifiers;
+    // };
+
     &num_word {  // num-word, requires PR #1451
         layers = <NUM>;
         continue-list = <BSPC DEL DOT KP_DOT COMMA PLUS MINUS STAR FSLH EQUAL CARET PRCNT UP DOWN LEFT RIGHT TAB>;
     };
 
+    // Config from @caksoylar, defaults in comments
     &mmv {
         acceleration-exponent = <1>;        // 1
-        time-to-max-speed-ms = <500>;       // 40 //900
+        time-to-max-speed-ms = <500>;       // 300
         delay-ms = <0>;                     // 0
     };
 
     &msc {
         acceleration-exponent = <1>;        // 0
-        time-to-max-speed-ms = <40>;        // 500 //400
-        delay-ms = <0>;                     // 10
+        time-to-max-speed-ms = <40>;        // 300
+        delay-ms = <0>;                     // 0
     };
 
 // ───────────────────────────────────────────────── END Global settings ─────────────────────────────────────────────────
@@ -273,7 +278,7 @@
             bindings = <&mo>, <&kp>;
             flavor = "balanced";
             tapping-term-ms = <220>;
-            quick-tap-ms = <200>;
+            quick-tap-ms = <220>;
         };
 
         //  hold to momentary layer, tap to sticky layer
@@ -283,7 +288,6 @@
             bindings = <&mo>, <&sl>;
             flavor = "balanced";
             tapping-term-ms = <220>;
-            // quick-tap-ms = <200>;
         };
 
         //  hold to momentary layer, tap to Tri-Stage_MEDIA
@@ -301,6 +305,16 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&tri_PAD>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            // quick-tap-ms = <200>;
+        };
+
+        //  hold to momentary layer, tap to Tri-Stage_MOUSE
+        mo_tMOUSE: mo_tMOUSE {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&tri_MOUSE>;
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
@@ -721,6 +735,12 @@
             key-positions = <28 30>;
         };
 
+        // ZMK_COMBO(cb_triMOUSE, &tri_MOUSE, LT3 LT1, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
+        cb_triMOUSE {
+            bindings = <&tri_MOUSE>;
+            key-positions = <8 10>;
+        };
+
         // ZMK_COMBO(nvWord, &nav_word, RB1 RB3, ALL, COMBO_TERM_FAST, COMBO_IDLE_FAST)
         cb_nvWord {
             bindings = <&nav_word>;
@@ -787,9 +807,9 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB                     &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                &kp UP     &kp Y          &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P           &mt BSLH MINUS
-&mt LC(LA(LS(LGUI))) GRAVE  &hml LCTRL A  &hml LALT S  &hml LGUI D              &hmlq LSHFT F  &kp G                &kp DOWN   &kp H          &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SQT  &mt LC(LA(LSHFT)) SEMI
-&mt LSHFT CAPS              &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B                &kp LEFT   &kp N          &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH        &kp INS
+&kp TAB                     &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                &kp UP     &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P           &mt BSLH MINUS
+&mt LC(LA(LS(LGUI))) GRAVE  &hml LCTRL A  &hml LALT S  &hml LGUI D              &hmlq LSHFT F  &kp G                &kp DOWN   &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SQT  &mt LC(LA(LSHFT)) SEMI
+&mt LSHFT CAPS              &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B                &kp LEFT   &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH        &kp INS
                                           &kp C_MUTE   &mt LGUI ESC             &ltb NAV BSPC  &ltq FUN SPACE       &kp RIGHT  &mosl FUN FUN  &ltb NUM RET   &smart_shft
                                                                                                                     &kp RET
             >;
@@ -834,10 +854,10 @@
         function_layer {
             display-name = "FUNC";
             bindings = <
-&trans  &none                 &kp LS(LG(N2))        &none                 &none              &kp LS(LG(T))      &kp LC(UP)     &kp LC(F2)    &kp F7      &kp F8  &kp F9  &kp F12  &none
-&trans  &hml LCTRL LA(LS(A))  &hml LALT LS(LG(N4))  &hml LGUI LS(LG(N5))  &hmlq LSHFT LG(J)  &kp LG(H)          &kp LC(DOWN)   &kp LC(F3)    &kp F4      &kp F5  &kp F6  &kp F11  &sk RCTRL
-&trans  &kp LG(K)             &kp LA(LS(LG(V)))     &kp LA(LG(C))         &kp LA(LG(V))      &kp LA(LG(H))      &kp LC(LEFT)   &none         &kp F1      &kp F2  &kp F3  &kp F10  &sk INS
-                              &kp C_PP              &trans                &trans             &trans             &kp LC(RIGHT)  &mo_tMED MED  &tri_MOUSE  &trans
+&trans  &none                 &kp LS(LG(N2))        &none                 &none              &kp LS(LG(T))      &kp LC(UP)     &kp LC(F2)    &kp F7  &kp F8  &kp F9  &kp F12  &none
+&trans  &hml LCTRL LA(LS(A))  &hml LALT LS(LG(N4))  &hml LGUI LS(LG(N5))  &hmlq LSHFT LG(J)  &kp LG(H)          &kp LC(DOWN)   &kp LC(F3)    &kp F4  &kp F5  &kp F6  &kp F11  &sk RCTRL
+&trans  &kp LG(K)             &kp LA(LS(LG(V)))     &kp LA(LG(C))         &kp LA(LG(V))      &kp LA(LG(H))      &kp LC(LEFT)   &none         &kp F1  &kp F2  &kp F3  &kp F10  &sk INS
+                              &kp C_PP              &trans                &trans             &trans             &kp LC(RIGHT)  &mo_tMED MED  &trans  &trans
                                                                                                                 &trans
             >;
 
