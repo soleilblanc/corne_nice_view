@@ -162,7 +162,7 @@
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog NUM>, <&none>, <&tog NUM>;
-            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 45 46 47>;
+            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 45 46 39>;
             ignored-layers = <NUM>;
         };
 
@@ -170,7 +170,7 @@
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog MED>, <&none>, <&tog MED>;
-            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 45 46 47>;
+            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 45 46 39>;
             ignored-layers = <MED PAD>;
         };
 
@@ -826,7 +826,7 @@
 &trans  &none          &kp N7        &kp N8        &kp N9          &kp N0           &mmv MOVE_UP     &none     &msc SCRL_RIGHT  &kp UP     &msc SCRL_LEFT  &msc SCRL_DOWN  &none
 &trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &mkp MB4         &mmv MOVE_DOWN   &mkp MB4  &kp LEFT         &kp DOWN   &kp RIGHT       &msc SCRL_UP    &trans
 &trans  &none          &kp N1        &kp N2        &kp N3          &mkp MB5         &mmv MOVE_LEFT   &mkp MB5  &mkp LCLK        &mkp MCLK  &mkp RCLK       &none           &trans
-                       &trans        &trans        &mkp LCLK       &mkp RCLK        &mmv MOVE_RIGHT  &kp ESC   &mo_tMED MED     &tri_NUM
+                       &trans        &trans        &mkp LCLK       &mkp RCLK        &mmv MOVE_RIGHT  &trans    &mo_tMED MED     &tri_NUM
                                                                                     &mkp MCLK
             >;
         };
