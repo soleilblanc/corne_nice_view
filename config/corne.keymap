@@ -186,7 +186,7 @@
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
-            ignored-key-positions = <KEYS_L KEYS_R THUMBS STICK_R>;
+            ignored-key-positions = <KEYS_L KEYS_R STICK_R 41 42 44 45 46 39>;
             ignored-layers = <MOUSE>;
         };
 
@@ -790,7 +790,7 @@
 &kp TAB                     &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                &kp UP     &kp Y          &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P           &mt BSLH MINUS
 &mt LC(LA(LS(LGUI))) GRAVE  &hml LCTRL A  &hml LALT S  &hml LGUI D              &hmlq LSHFT F  &kp G                &kp DOWN   &kp H          &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SQT  &mt LC(LA(LSHFT)) SEMI
 &mt LSHFT CAPS              &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B                &kp LEFT   &kp N          &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH        &kp INS
-                                          &kp C_MUTE   &mt LGUI ESC             &ltb NAV BSPC  &ltq FUN SPACE       &kp RIGHT  &ltb FUN RET   &mosl NUM NUM  &smart_shft
+                                          &kp C_MUTE   &mt LGUI ESC             &ltb NAV BSPC  &ltq FUN SPACE       &kp RIGHT  &mosl FUN FUN  &ltb NUM RET   &smart_shft
                                                                                                                     &kp RET
             >;
 
@@ -826,7 +826,7 @@
 &trans  &none          &kp N7        &kp N8        &kp N9          &kp N0           &mmv MOVE_UP     &none     &msc SCRL_RIGHT  &kp UP     &msc SCRL_LEFT  &msc SCRL_DOWN  &none
 &trans  &hml LCTRL N0  &hml LALT N4  &hml LGUI N5  &hmlq LSHFT N6  &mkp MB4         &mmv MOVE_DOWN   &mkp MB4  &kp LEFT         &kp DOWN   &kp RIGHT       &msc SCRL_UP    &trans
 &trans  &none          &kp N1        &kp N2        &kp N3          &mkp MB5         &mmv MOVE_LEFT   &mkp MB5  &mkp LCLK        &mkp MCLK  &mkp RCLK       &none           &trans
-                       &trans        &trans        &mkp LCLK       &mkp RCLK        &mmv MOVE_RIGHT  &trans    &mo_tMED MED     &tri_NUM
+                       &trans        &trans        &mkp LCLK       &mkp RCLK        &mmv MOVE_RIGHT  &trans    &trans           &trans
                                                                                     &mkp MCLK
             >;
         };
@@ -834,10 +834,10 @@
         function_layer {
             display-name = "FUNC";
             bindings = <
-&trans  &none                 &kp LS(LG(N2))        &none                 &none              &kp LS(LG(T))      &kp LC(UP)     &kp LC(F2)  &kp F7  &kp F8  &kp F9  &kp F12  &none
-&trans  &hml LCTRL LA(LS(A))  &hml LALT LS(LG(N4))  &hml LGUI LS(LG(N5))  &hmlq LSHFT LG(J)  &kp LG(H)          &kp LC(DOWN)   &kp LC(F3)  &kp F4  &kp F5  &kp F6  &kp F11  &sk RCTRL
-&trans  &kp LG(K)             &kp LA(LS(LG(V)))     &kp LA(LG(C))         &kp LA(LG(V))      &kp LA(LG(H))      &kp LC(LEFT)   &none       &kp F1  &kp F2  &kp F3  &kp F10  &sk INS
-                              &kp C_PP              &trans                &trans             &trans             &kp LC(RIGHT)  &trans      &trans  &trans
+&trans  &none                 &kp LS(LG(N2))        &none                 &none              &kp LS(LG(T))      &kp LC(UP)     &kp LC(F2)    &kp F7      &kp F8  &kp F9  &kp F12  &none
+&trans  &hml LCTRL LA(LS(A))  &hml LALT LS(LG(N4))  &hml LGUI LS(LG(N5))  &hmlq LSHFT LG(J)  &kp LG(H)          &kp LC(DOWN)   &kp LC(F3)    &kp F4      &kp F5  &kp F6  &kp F11  &sk RCTRL
+&trans  &kp LG(K)             &kp LA(LS(LG(V)))     &kp LA(LG(C))         &kp LA(LG(V))      &kp LA(LG(H))      &kp LC(LEFT)   &none         &kp F1      &kp F2  &kp F3  &kp F10  &sk INS
+                              &kp C_PP              &trans                &trans             &trans             &kp LC(RIGHT)  &mo_tMED MED  &tri_MOUSE  &trans
                                                                                                                 &trans
             >;
 
@@ -859,10 +859,10 @@
         media_layer {
             display-name = "MEDIA";
             bindings = <
-&mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP          &kp LA(RIGHT)  &kp LG(T)     &kp KP_N8  &none  &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
-&kp LT         &kp GT        &kp LEFT      &hml LGUI DOWN  &kp RIGHT      &kp F         &kp KP_N2  &none  &none          &none         &none       &kp C_VOL_DN  &sk RCTRL
-&kp COMMA      &kp DOT       &kp J         &kp C           &kp L          &kp Q         &kp KP_N4  &none  &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &sk INS
-                             &trans        &trans          &mo PAD        &kp SPACE     &kp KP_N6  &trans &trans         &trans
+&mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP          &kp LA(RIGHT)  &kp LG(T)     &kp KP_N8  &none   &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
+&kp LT         &kp GT        &kp LEFT      &hml LGUI DOWN  &kp RIGHT      &kp F         &kp KP_N2  &none   &none          &none         &none       &kp C_VOL_DN  &sk RCTRL
+&kp COMMA      &kp DOT       &kp J         &kp C           &kp L          &kp Q         &kp KP_N4  &none   &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &sk INS
+                             &trans        &trans          &mo PAD        &kp SPACE     &kp KP_N6  &trans  &trans         &trans
                                                                                         &kp KP_N5
             >;
         };
@@ -873,7 +873,7 @@
 &none  &none            &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_N0          &trans  &none   &none  &none   &none  &none  &none
 &none  &kp KP_MULTIPLY  &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_PLUS        &trans  &none   &none  &none   &none  &none  &none
 &none  &kp KP_SLASH     &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_MINUS       &trans  &none   &none  &none   &none  &none  &none
-                        &trans     &trans     &kp BSPC   &trans             &trans  &trans  &none  &trans
+                        &trans     &trans     &trans     &trans             &trans  &trans  &none  &trans
                                                                             &trans
             >;
         };
@@ -881,10 +881,10 @@
         mouse_layer {
             display-name = "MOUSE";
             bindings = <
-&none  &msc SCRL_DOWN  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &none           &trans  &none      &msc SCRL_RIGHT  &mmv MOVE_UP    &msc SCRL_LEFT   &msc SCRL_DOWN  &none
-&none  &msc SCRL_UP    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB4        &trans  &mkp MB4   &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_UP    &none
-&none  &none           &none           &mkp MCLK       &none            &mkp MB5        &trans  &mkp MB5   &none            &none           &none            &none           &none
-                       &trans          &trans          &mkp LCLK        &mkp RCLK       &trans  &mkp LCLK  &mkp MCLK        &mkp RCLK
+&none  &msc SCRL_DOWN  &msc SCRL_RIGHT  &mmv MOVE_UP    &msc SCRL_LEFT   &none          &trans  &none      &msc SCRL_RIGHT  &mmv MOVE_UP    &msc SCRL_LEFT   &msc SCRL_DOWN  &none
+&none  &msc SCRL_UP    &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB4       &trans  &mkp MB4   &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_UP    &none
+&none  &none           &none            &mkp MCLK       &none            &mkp MB5       &trans  &mkp MB5   &none            &none           &none            &none           &none
+                       &trans           &trans          &mkp LCLK        &mkp RCLK      &trans  &mkp LCLK  &mkp MCLK        &mkp RCLK
                                                                                         &trans
             >;
         };
@@ -895,7 +895,7 @@
 &none  &bt BT_SEL 0    &bt BT_SEL 1       &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4    &trans  &out OUT_BLE  &out OUT_USB     &none            &none            &none            &none
 &none  &bt BT_CLR      &ext_power EP_ON   &rgb_ug RGB_ON   &rgb_ug RGB_EFF  &bootloader     &trans  &bootloader   &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &none
 &none  &bt BT_CLR_ALL  &ext_power EP_OFF  &rgb_ug RGB_OFF  &rgb_ug RGB_EFR  &sys_reset      &trans  &sys_reset    &rgb_ug RGB_SPD  &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &none
-                       &none              &none            &none            &none           &trans  &none         &none            &none
+                       &none              &to DEF          &none            &none           &trans  &none         &none            &none
                                                                                             &trans
             >;
         };
@@ -903,10 +903,10 @@
         clean_layer {
             display-name = "CLEAN";
             bindings = <
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none        &none  &none  &none  &none  &none  &none  &none
-              &none  &none  &none  &none        &none  &none  &none  &none
+&none  &none  &none  &none    &none  &none      &none  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none  &none      &none  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none    &none  &none      &none  &none  &none  &none  &none  &none  &none
+              &none  &none    &none  &none      &none  &none  &none  &none
                                                 &none
             >;
         };
