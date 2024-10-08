@@ -140,12 +140,22 @@
 
 / {
     behaviors {
+        // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
         sls: sticky_layer_slow {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
             bindings = <&mo>;
-            release-after-ms = <1000>;
-            ignore-modifiers;
+            release-after-ms = <2000>;                  // 1000
+            ignore-modifiers;                           // allow chording sticky mods & layers
+        };
+
+        // new sticky-key config, delay duration, no quick-release, ignore-modifiers
+        sks: sticky_key_slow {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <2000>;                  // 1000
+            ignore-modifiers;                           // allow chording sticky mods & layers
         };
 
 // ───────────────────────────────────────────────── Smart-shift, Caps-word, num-word; Tri-State, Swapper ─────────────────────────────────────────────────
