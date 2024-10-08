@@ -3,10 +3,15 @@ manifest:
     - name: urob
       url-base: https://github.com/urob
   projects:
+# urob's zmk fork with mouse PR & many extra features
     - name: zmk
       remote: urob
       revision: main
       import: app/west.yml
+# Urob's zmk helpers that contain key position defines      
+    - name: zmk-helpers
+      remote: urob
+      revision: main
   self:
     path: config
 
