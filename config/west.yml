@@ -1,4 +1,8 @@
 manifest:
+  defaults:
+    remote: urob
+    revision: v0.2 # Pin everything to v0.2
+
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -6,6 +10,8 @@ manifest:
       # See:
       # - https://zmk.dev/docs/features/modules
       # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
+    - name: urob
+      url-base: https://github.com/urob
   projects:
     - name: eyelash_corne
       url: https://github.com/a741725193/zmk-new_corne
@@ -14,5 +20,14 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+
+    # ZMK modules
+    - name: zmk-auto-layer
+      path: modules/zmk/auto-layer
+    - name: zmk-tri-state
+      path: modules/zmk/tri-state
+    # - name: zmk-leader-key
+    #   path: modules/zmk/leader-key
+
   self:
     path: config
