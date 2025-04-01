@@ -2,42 +2,47 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <behaviors/num_word.dtsi> // Requires auto-layer module.
 
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
+// ───────────────────────────────────────────────── Global settings ─────────────────────────────────────────────────
+    // Define layer numbers
+    #define DEF 0
+    #define COL 1
+    #define NAV 2
+    #define NUM 3
+    #define HOT 4
 
-&mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
+    // Mouse Tweaking
+    #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
+    #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
 
-&msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
+    &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
-&msc {
-    acceleration-exponent = <1>;      // 0
-    time-to-max-speed-ms = <100>;       // 300
-    delay-ms = <0>;                   // 0
-};
+    &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
-&mmv {
-    time-to-max-speed-ms = <500>;
-    acceleration-exponent = <1>;
-    trigger-period-ms = <16>;
-};
+    &msc {
+        acceleration-exponent = <1>;      // 0
+        time-to-max-speed-ms = <100>;       // 300
+        delay-ms = <0>;                   // 0
+    };
+
+    &mmv {
+        time-to-max-speed-ms = <500>;
+        acceleration-exponent = <1>;
+        trigger-period-ms = <16>;
+    };
+// ───────────────────────────────────────────────── END Global settings ─────────────────────────────────────────────────
 
 / {
     behaviors {
-        td0: td0 {
-            compatible = "zmk,behavior-tap-dance";
-            display-name = "Shift/Caps Lock Tap Dance";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
-        };
 
         // cmd_tab swapper
-        swapper_tab: swapper_tab {
+        sw_tab: swapper_tab {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
@@ -45,28 +50,48 @@
         };
 
         // cmd_grave swapper
-        swapper_grave: swapper_grave {
+        sw_grave: swapper_grave {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&kt LGUI>, <&kp GRAVE>, <&kt LGUI>;
             ignored-key-positions = <0 13>;
         };
 
+        smart_swap: smart_swapper {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mt LCTRL ESC>, <&sw_grave>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        smart_shft: smart_shift {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&sk LSHFT>, <&caps_word>;
+            mods = <(MOD_LSFT)>;
+        };
     };
 
-    rgb_encoder: rgb_encoder {
+// ───────────────────────────────────────────────── Encoder ─────────────────────────────────────────────────
+    rgb_enc: rgb_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
     };
 
-    scroll_encoder: scroll_encoder {
+    vol_enc: volume_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LA(LS(C_VOL_UP))>, <&kp LA(LS(C_VOL_DN))>;
+    };
+
+    scrl_enc: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-
         tap-ms = <100>;
     };
+// ───────────────────────────────────────────────── END Encoder ─────────────────────────────────────────────────
 
     keymap {
         compatible = "zmk,keymap";
@@ -74,13 +99,23 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&td0       &kp A  &kp S  &kp D     &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp SPACE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &kp LGUI  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &kp RALT
+&mt INS TAB     &kp Q  &kp W  &kp E         &kp R         &kp T                                  &kp UP                &kp Y          &kp U  &kp I      &kp O    &kp P     &kp BSPC
+&smart_swap     &kp A  &kp S  &kp D         &kp F         &kp G                        &kp LEFT  &kp ENTER  &kp RIGHT  &kp H          &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+&mt LSHFT CAPS  &kp Z  &kp X  &kp C         &kp V         &kp B          &kp C_MUTE              &kp DOWN              &kp N          &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+                              &mt LGUI ESC  &lt NAV BSPC  &lt NUM SPACE                                                &lt NUM ENTER  &mo 2  &smart_shft
             >;
+            sensor-bindings = <&vol_enc>;
+        };
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        colemak_layer {
+            display-name = "ARSTGM";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                                    &trans  &trans  &trans
+            >;
+            sensor-bindings = <&vol_enc>;
         };
 
         lower_layer {
@@ -91,8 +126,7 @@
 &trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &mmv MOVE_DOWN                   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
                                          &trans        &trans        &trans                                                                          &kp INS          &kp DEL          &trans
             >;
-
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&scrl_enc>;
         };
 
         raise_layer {
@@ -104,7 +138,7 @@
                                     &trans     &trans     &kp SPACE                                                             &kp RET    &trans     &trans
             >;
 
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&scrl_enc>;
         };
 
         layer_3 {
@@ -115,8 +149,7 @@
 &trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
                                        &trans       &trans     &trans                                                                   &trans       &trans     &trans
             >;
-
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&scrl_enc>;
         };
 
         layer_4 {
