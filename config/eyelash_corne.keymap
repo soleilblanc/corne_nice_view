@@ -13,22 +13,32 @@
     // Define layer numbers
     #define DEF 0
     #define COL 1
-    #define NAV 2
-    #define NUM 3
-    #define HOT 4
+    #define MIR 2
+    #define GAM 3
+    #define NAV 4
+    #define NUM 5
+    #define HOT 6
+
+    // Define key positon
+    #define KEYS_L 1 2 3 4 5 14 15 16 17 18 29 30 31 32 33      // left hand
+    #define KEYS_R 7 8 9 10 11 22 23 24 25 26 36 37 38 39 40    // right hand
+    #define MODS_L 0 13 28                                      // left mods
+    #define MODS_R 12 27 41                                     // right mods
+    #define THUMBS 42 43 44 45 46 47                            // thumbs
+    #define STICK_R 6 19 20 21 35                               // right joystick
 
     // Mouse Tweaking
     #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-    #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
+    #define ZMK_POINTING_DEFAULT_SCRL_VAL 25    // 10
 
     &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
     &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
     &msc {
-        acceleration-exponent = <1>;      // 0
-        time-to-max-speed-ms = <100>;       // 300
-        delay-ms = <0>;                   // 0
+        acceleration-exponent = <1>;    // 0
+        time-to-max-speed-ms = <100>;   // 300
+        delay-ms = <0>;                 // 0
     };
 
     &mmv {
@@ -36,10 +46,31 @@
         acceleration-exponent = <1>;
         trigger-period-ms = <16>;
     };
+
+    &sl {  // sticky-layer config
+        ignore-modifiers;                   // allow chording sticky mods & layers
+    };
 // ───────────────────────────────────────────────── END Global settings ─────────────────────────────────────────────────
 
 / {
     behaviors {
+        nav_word: nav_word {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <SPACE BSPC DEL DOT KP_DOT COMMA PLUS MINUS STAR FSLH EQUAL CARET PRCNT UP DOWN LEFT RIGHT TAB>;
+            // ignore-alphas;
+            ignore-numbers;
+            ignore-modifiers;
+        };
+
+        mir_word: mir_word {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <SPACE BSPC DEL DOT KP_DOT COMMA FSLH>;
+            ignore-alphas;
+            // ignore-numbers;
+            ignore-modifiers;
+        };
 
         // cmd_tab swapper
         sw_tab: swapper_tab {
@@ -70,6 +101,36 @@
             bindings = <&sk LSHFT>, <&caps_word>;
             mods = <(MOD_LSFT)>;
         };
+// ───────────────────────────────────────────────── Tap Dance ─────────────────────────────────────────────────
+    // arrows, arrows with modifier
+        td_up: td_up {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp UP>, <&mt LG(UP) LA(UP)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_left: td_left {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT>, <&mt LG(LEFT) LA(LEFT)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_down: td_down {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp DOWN>, <&mt LG(DOWN) LA(DOWN)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_right: td_right {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT>, <&mt LG(RIGHT) LA(RIGHT)>;
+            tapping-term-ms = <250>;
+        };
+// ───────────────────────────────────────────────── END Tap Dance ─────────────────────────────────────────────────
     };
 
 // ───────────────────────────────────────────────── Encoder ─────────────────────────────────────────────────
@@ -99,16 +160,27 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&mt INS TAB     &kp Q  &kp W  &kp E         &kp R         &kp T                                  &kp UP                &kp Y          &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&smart_swap     &kp A  &kp S  &kp D         &kp F         &kp G                        &kp LEFT  &kp ENTER  &kp RIGHT  &kp H          &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&mt LSHFT CAPS  &kp Z  &kp X  &kp C         &kp V         &kp B          &kp C_MUTE              &kp DOWN              &kp N          &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                              &mt LGUI ESC  &lt NAV BSPC  &lt NUM SPACE                                                &lt NUM ENTER  &mo 2  &smart_shft
+&mt INS TAB     &kp Q  &kp W  &kp E         &kp R         &kp T                                  &kp UP                &kp Y          &kp U    &kp I      &kp O    &kp P     &kp BSPC
+&smart_swap     &kp A  &kp S  &kp D         &kp F         &kp G                        &kp LEFT  &kp ENTER  &kp RIGHT  &kp H          &kp J    &kp K      &kp L    &kp SEMI  &kp SQT
+&mt LSHFT CAPS  &kp Z  &kp X  &kp C         &kp V         &kp B          &kp C_MUTE              &kp DOWN              &kp N          &kp M    &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+                              &mt LGUI ESC  &lt NAV BSPC  &lt NUM SPACE                                                &lt NUM ENTER  &mo HOT  &smart_shft
             >;
             sensor-bindings = <&vol_enc>;
         };
 
         colemak_layer {
             display-name = "ARSTGM";
+            bindings = <
+&trans         &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&mir_word MIR  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans         &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                               &trans  &trans  &trans                                    &trans  &trans  &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        mirror_layer {
+            display-name = "MIRROR";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -118,8 +190,41 @@
             sensor-bindings = <&vol_enc>;
         };
 
-        lower_layer {
-            display-name = "NUMBER";
+        gaming_layer {
+            display-name = "GAME";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                                    &trans  &trans  &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        navipad_layer {
+            display-name = "NAVPAD";
+            bindings = <
+&trans  &kp PG_UP  &kp HOME  &td_up    &kp END    &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp N7      &kp N8  &kp N9  &kp N0    &kp DEL
+&trans  &kp PG_DN  &td_left  &td_down  &td_right  &kp RET              &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp PLUS   &kp N4      &kp N5  &kp N6  &kp STAR  &kp EQUAL
+&trans  &sk LCTRL  &sk LALT  &sk LGUI  &sk LSHFT  &kp DEL    &trans                    &mmv MOVE_DOWN                   &kp MINUS  &kp N1      &kp N2  &kp N3  &kp FSLH  &trans
+                             &trans    &trans     &trans                                                                &trans     &kp KP_DOT  &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        numfunc_layer {
+            display-name = "NUMFUN";
+            bindings = <
+&trans  &kp N1    &kp N2     &kp N3     &kp N4     &kp N5                                 &mmv MOVE_UP                     &kp CARET  &kp F7  &kp F8  &kp F9  &kp F12  &trans
+&trans  &kp N6    &kp N7     &kp N8     &kp N9     &kp N0                 &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp MINUS  &kp F4  &kp F5  &kp F6  &kp F11  &trans
+&trans  &mkp MB4  &mkp LCLK  &mkp MCLK  &mkp RCLK  &mkp MB5   &kp C_PP                    &mmv MOVE_DOWN                   &kp UNDER  &kp F1  &kp F2  &kp F3  &kp F10  &trans
+                             &trans     &trans     &kp SPACE                                                               &kp RET    &trans  &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_NEXT C_PREV>;
+        };
+
+        hotkey_layer {
+            display-name = "HOTKEY";
             bindings = <
 &trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &mmv MOVE_UP                     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
 &trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
@@ -141,24 +246,25 @@
             sensor-bindings = <&scrl_enc>;
         };
 
-        layer_3 {
-            display-name = "Fn";
+        system_layer {
+            display-name = "SYSTEM";
             bindings = <
-&studio_unlock  &kp F1      &kp F2     &kp F3       &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans          &trans      &mkp LCLK  &mkp MCLK    &mkp RCLK  &mkp MB4                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                                       &trans       &trans     &trans                                                                   &trans       &trans     &trans
+&studio_unlock  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
+&trans          &trans        &mkp LCLK     &mkp MCLK     &mkp RCLK  &mkp MB4                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
+&trans          &sys_reset    &trans        &bootloader   &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
+                                            &trans        &trans     &trans                                                                   &trans       &trans     &trans
             >;
-            sensor-bindings = <&scrl_enc>;
+            sensor-bindings = <&rgb_enc>;
         };
 
-        layer_4 {
+        extra_1 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans            &trans          &trans  &trans  &trans  &trans  &trans  &trans
                         &trans  &trans  &trans                                    &trans  &trans  &trans
             >;
+            sensor-bindings = <&scrl_enc>;
         };
     };
 };
