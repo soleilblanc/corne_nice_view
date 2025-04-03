@@ -670,7 +670,7 @@
 
 
         cb_numWord {
-            bindings = <&num_word>;
+            bindings = <&num_word NUM>;
             key-positions = <28 30>;
         };
 
