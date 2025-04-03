@@ -666,9 +666,14 @@
             key-positions = <LT1 LM0>;
         };
 
-        cb_UH {
+        cb_SZ {
             bindings = <&tog ADJ>;
-            key-positions = <RT1 RM0>;
+            key-positions = <LM3 LB4>;
+        };
+
+        cb_LFslh {
+            bindings = <&tog ADJ>;
+            key-positions = <RM3 RB4>;
         };
 
         cb_UO {
