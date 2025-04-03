@@ -658,15 +658,15 @@
             key-positions = <10 24>;
         };
 
-        cb_tgCLE {
-            bindings = <&tog CLE>;
-            key-positions = <23 37>;
-        };
+        // cb_tgCLE {
+        //     bindings = <&tog CLE>;
+        //     key-positions = <23 37>;
+        // };
 
-        cb_triMOUSE_L {
-            bindings = <&tMOU>;
-            key-positions = <2 4>;
-        };
+        // cb_triMOUSE_L {
+        //     bindings = <&tMOU>;
+        //     key-positions = <2 4>;
+        // };
 
 
         cb_numWord {
@@ -674,10 +674,10 @@
             key-positions = <28 30>;
         };
 
-        cb_triMOUSE_R {
-            bindings = <&tMOU>;
-            key-positions = <8 10>;
-        };
+        // cb_triMOUSE_R {
+        //     bindings = <&tMOU>;
+        //     key-positions = <8 10>;
+        // };
 
         cb_alNAV {
             bindings = <&alNAV>;
