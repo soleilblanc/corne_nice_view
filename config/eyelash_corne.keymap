@@ -157,7 +157,7 @@
         tEXC: tri_EXCHANGE {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
-            bindings = <&tog EXCH>, <&none>, <&tog EXCH>;
+            bindings = <&tog EXC>, <&none>, <&tog EXC>;
             ignored-key-positions = <LT5 LB5 KEYS_L KEYS_R THUMBS>;
         };
         // cmd_tab swapper
