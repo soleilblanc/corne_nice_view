@@ -756,7 +756,7 @@
 &mt INS TAB     &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS DEL
 &sls EXC        &hml LCTRL A  &hml LALT S  &hml LGUI D              &hmlq LSHFT F  &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
 &mt LSHFT CAPS  &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
-                                           &mt LGUI ESC             &ltb NAV BSPC  &ltq NUM SPACE                                               &mosls NUM NUM  &ltb Hot RET   &smart_shft
+                                           &mt LGUI ESC             &ltb NAV BSPC  &ltq NUM SPACE                                               &mosls NUM NUM  &ltb HOT RET   &smart_shft
             >;
             sensor-bindings = <&vol_enc>;
         };
