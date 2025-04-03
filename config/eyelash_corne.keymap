@@ -310,18 +310,18 @@
             // hold-trigger-on-release;
         };
 
-        // Homerow-Mods for Combos
-        hml_tMED: hml_tri_MEDIA {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&tMED>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <QUICK_TAP_MS>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <KEYS_R THUMBS>;
-            hold-trigger-on-release;
-        };
+        // // Homerow-Mods for Combos
+        // hml_tMED: hml_tri_MEDIA {
+        //     compatible = "zmk,behavior-hold-tap";
+        //     #binding-cells = <2>;
+        //     bindings = <&kp>, <&tMED>;
+        //     flavor = "balanced";
+        //     tapping-term-ms = <280>;
+        //     quick-tap-ms = <QUICK_TAP_MS>;
+        //     require-prior-idle-ms = <150>;
+        //     hold-trigger-key-positions = <KEYS_R THUMBS>;
+        //     hold-trigger-on-release;
+        // };
 // ───────────────────────────────────────────────── Tap Dance ─────────────────────────────────────────────────
     // arrows, arrows with modifier
         td_up: td_up {
@@ -404,10 +404,10 @@
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
 
-        cb_hml_tMEDI {
-            bindings = <&hml_tMEDI LA(LSHFT) 0>;
-            key-positions = <LM3 LM1>;
-        };
+        // cb_hml_tMED {
+        //     bindings = <&hml_tMED LA(LSHFT) 0>;
+        //     key-positions = <LM3 LM1>;
+        // };
 // ───────────────────────────────────────────────── left hand: horizontal ─────────────────────────────────────────────────
         cb_tab {
             bindings = <&sw_tab>;
