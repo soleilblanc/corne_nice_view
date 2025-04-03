@@ -154,7 +154,7 @@
             ignore-modifiers;
         };
 
-        // tri exchange_layer
+        // tri EXCHANGE_layer
         tEXC: tri_EXCHANGE {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
@@ -168,6 +168,25 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&tEXC>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            // quick-tap-ms = <200>;
+        };
+
+        // tri MEDIA_layer
+        tMED: tri_MEDIA {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&tog MED>, <&none>, <&tog MED>;
+            ignored-key-positions = <SIDE_L KEYS_L KEYS_R LH0 LH1>;
+            ignored-layers = <MED>;
+        };
+
+        //  hold to momentary layer, tap to tri_MEDIA
+        mo_tMED: mo_tri_MEDIA {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&tMED>;
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
@@ -199,7 +218,7 @@
         smart_grEXC: smart_grave {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&mosls HOT EXC>, <&sw_grave>;
+            bindings = <&mosls HOT EXC>, <&kp GRAVE>;
             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         };
 // ───────────────────────────────────────────────── Sticky ─────────────────────────────────────────────────
@@ -662,10 +681,10 @@
         //     key-positions = <LT1 LT3>;
         // };
 
-        // cb_SF {
-        //     bindings = <&tMOU>;
-        //     key-positions = <LM1 LM3>;
-        // };
+        cb_SF {
+            bindings = <&tMED>;
+            key-positions = <LM1 LM3>;
+        };
 
         cb_XV {
             bindings = <&math_word NAV>;
@@ -775,7 +794,7 @@
             display-name = "EXCHAN";
             bindings = <
 &trans           &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
-&mo_tEXC SYM 0   &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
+&mo_tEXC NUM 0   &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
 &trans           &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
                                             &trans                    &trans         &trans                                       &trans  &trans         &trans
             >;
@@ -799,7 +818,7 @@
 &trans  &kp N1         &kp N2        &kp N3        &kp N4          &kp N5                                 &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &trans
 &trans  &hml LCTRL N6  &hml LALT N7  &hml LGUI N8  &hmlq LSHFT N9  &kp N0                 &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none           &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &trans
 &trans  &mkp MB4       &mkp LCLK     &mkp MCLK     &mkp RCLK       &mkp MB5   &kp C_PP                    &mmv MOVE_DOWN                   &none           &kp F1          &kp F2        &kp F3        &kp F10         &trans
-                                     &trans        &trans          &trans                                                                  &mosls MED MED  &trans          &trans
+                                     &trans        &trans          &trans                                                                  &mo_tMED MED 0  &trans          &trans
             >;
             sensor-bindings = <&inc_dec_kp C_NEXT C_PREV>;
         };
