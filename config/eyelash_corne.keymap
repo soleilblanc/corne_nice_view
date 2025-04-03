@@ -159,7 +159,7 @@
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
             bindings = <&tog EXC>, <&none>, <&tog EXC>;
-            ignored-key-positions = <LT5 LB5 KEYS_L KEYS_R THUMBS>;
+            ignored-key-positions = <SIDE_L KEYS_L KEYS_R THUMBS>;
             ignored-layers = <EXC>;
         };
 
@@ -671,10 +671,10 @@
             key-positions = <RT1 RM0>;
         };
 
-        // cb_SZ {
-        //     bindings = <&tog CLE>;
-        //     key-positions = <LM3 LB4>;
-        // };
+        cb_UO {
+            bindings = <&tog CLE>;
+            key-positions = <RT1 RT3>;
+        };
 
         // cb_WR {
         //     bindings = <&tMOU>;
@@ -791,7 +791,7 @@
         };
 
         exchange_layer {
-            display-name = "EXCHAN";
+            display-name = "CHANGE";
             bindings = <
 &trans           &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
 &mo_tEXC NUM 0   &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
@@ -824,7 +824,7 @@
         };
 
         hotkey_layer {
-            display-name = "HOTKEY";
+            display-name = "HOTMOU";
             bindings = <
 &trans  &none      &kp LS(LG(N2))     &kp LS(LG(N3))  &kp LS(LG(N4))  &kp LS(LG(T))                                &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &trans
 &trans  &none      &none              &none           &none           &kp LG(H)                    &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
@@ -847,7 +847,7 @@
         };
 
         adjust_layer {
-            display-name = "ADJ";
+            display-name = "ADJUST";
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3     &bt BT_SEL 4                                         &rgb_ug RGB_SPI                   &out OUT_BLE     &out OUT_USB  &none            &ext_power EP_ON   &rgb_ug RGB_SPI  &none
 &bootloader  &bt BT_CLR_ALL  &rgb_ug RGB_SAI  &none         &none            &rgb_ug RGB_BRI                      &rgb_ug RGB_EFR &mkp LCLK        &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &none         &none            &ext_power EP_OFF  &rgb_ug RGB_SPD  &bootloader
@@ -858,6 +858,7 @@
         };
 
         clean_layer {
+            display-name = "CLEAN";
             bindings = <
 &none  &none  &none  &none  &none  &none                  &none         &none  &none  &none  &none  &none  &none
 &none  &none  &none  &none  &none  &none           &none  &none  &none  &none  &none  &none  &none  &none  &none
