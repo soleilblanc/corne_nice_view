@@ -157,20 +157,20 @@
         };
 
         //  hold to momentary layer, tap to auto_EXCHANGE
-        mo_alEXC: mo_auto_EXCHANGE {
+        mo_alEXC: mo_autoEXCHANGE {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&mo>, <&alEXC EXC>;
+            bindings = <&mo>, <&alEXC>;
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
         };
 
         //  hold to key press, tap to auto_EXCHANGE
-        kp_alEXC: kp_auto_EXCHANGE {
+        kp_alEXC: kp_autoEXCHANGE {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&kp>, <&alEXC EXC>;
+            bindings = <&kp>, <&alEXC>;
             flavor = "balanced";
             tapping-term-ms = <220>;
             // quick-tap-ms = <200>;
@@ -182,7 +182,7 @@
             #binding-cells = <0>;
             bindings = <&mo EXC>, <&none>, <&mo EXC>;
             ignored-key-positions = <SIDE_L KEYS_L KEYS_R THUMBS>;
-            ignored-layers = <EXC>;
+            ignored-layers = <DEF EXC>;
         };
 
         //  hold to momentary layer, tap to tri_EXCHANGE
@@ -879,10 +879,10 @@
         exchange_layer {
             display-name = "CHANGE";
             bindings = <
-&trans             &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
-&kp_alEXC LCTRL 0  &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
-&kpsk LALT LSHFT   &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
-                                              &trans                    &trans         &trans                                       &trans  &trans         &trans
+&trans               &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
+&kp_alEXC LCTRL EXC  &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
+&kpsk LALT LSHFT     &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
+                                                &trans                    &trans         &trans                                       &trans  &trans         &trans
             >;
             sensor-bindings = <&vol_enc>;
         };
