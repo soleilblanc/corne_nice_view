@@ -14,7 +14,7 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <behaviors/num_word.dtsi>  // Requires auto-layer module.
 #include <dt-bindings/zmk/mouse.h>
-#include <eyelash42.dtsi>       // layout helper
+#include <eyelash_key_labels.dtsi>       // layout helper
 
 // ───────────────────────────────────────────────── Define key positon ─────────────────────────────────────────────────
     // #define LT0  5  // left-top row
