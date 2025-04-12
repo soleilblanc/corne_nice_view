@@ -14,66 +14,66 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <behaviors/num_word.dtsi>  // Requires auto-layer module.
 #include <dt-bindings/zmk/mouse.h>
-// #include <eyelash_42.dtsi>       // layout helper
+#include <eyelash42.dtsi>       // layout helper
 
 // ───────────────────────────────────────────────── Define key positon ─────────────────────────────────────────────────
-    #define LT0  5  // left-top row
-    #define LT1  4
-    #define LT2  3
-    #define LT3  2
-    #define LT4  1
-    #define LT5  0
+    // #define LT0  5  // left-top row
+    // #define LT1  4
+    // #define LT2  3
+    // #define LT3  2
+    // #define LT4  1
+    // #define LT5  0
 
-    #define RT0  7  // right-top row
-    #define RT1  8
-    #define RT2  9
-    #define RT3 10
-    #define RT4 11
-    #define RT5 12
+    // #define RT0  7  // right-top row
+    // #define RT1  8
+    // #define RT2  9
+    // #define RT3 10
+    // #define RT4 11
+    // #define RT5 12
 
-    #define LM0 18  // left-middle row
-    #define LM1 17
-    #define LM2 16
-    #define LM3 15
-    #define LM4 14
-    #define LM5 13
+    // #define LM0 18  // left-middle row
+    // #define LM1 17
+    // #define LM2 16
+    // #define LM3 15
+    // #define LM4 14
+    // #define LM5 13
 
-    #define RM0 22  // right-middle row
-    #define RM1 23
-    #define RM2 24
-    #define RM3 25
-    #define RM4 26
-    #define RM5 27
+    // #define RM0 22  // right-middle row
+    // #define RM1 23
+    // #define RM2 24
+    // #define RM3 25
+    // #define RM4 26
+    // #define RM5 27
 
-    #define LB0 33  // left-bottom row
-    #define LB1 32
-    #define LB2 31
-    #define LB3 30
-    #define LB4 29
-    #define LB5 28
+    // #define LB0 33  // left-bottom row
+    // #define LB1 32
+    // #define LB2 31
+    // #define LB3 30
+    // #define LB4 29
+    // #define LB5 28
 
-    #define RB0 36  // right-bottom row
-    #define RB1 37
-    #define RB2 38
-    #define RB3 39
-    #define RB4 40
-    #define RB5 41
+    // #define RB0 36  // right-bottom row
+    // #define RB1 37
+    // #define RB2 38
+    // #define RB3 39
+    // #define RB4 40
+    // #define RB5 41
 
-    #define LH0 44  // left thumb keys
-    #define LH1 43
-    #define LH2 42
+    // #define LH0 44  // left thumb keys
+    // #define LH1 43
+    // #define LH2 42
 
-    #define RH0 45  // right thumb keys
-    #define RH1 46
-    #define RH2 47
+    // #define RH0 45  // right thumb keys
+    // #define RH1 46
+    // #define RH2 47
 
-    #define LEC 34  // left encoder press
+    // #define LEC 34  // left encoder press
 
-    #define RJU  6  // right joystick
-    #define RJL 19
-    #define RJC 20
-    #define RJR 21
-    #define RJD 35
+    // #define RJU  6  // right joystick
+    // #define RJL 19
+    // #define RJC 20
+    // #define RJR 21
+    // #define RJD 35
 
     #define KEYS_L 1 2 3 4 5 14 15 16 17 18 29 30 31 32 33      // left hand
     #define KEYS_R 7 8 9 10 11 22 23 24 25 26 36 37 38 39 40    // right hand
@@ -125,17 +125,41 @@
         ignore-modifiers;                   // allow chording sticky mods & layers
     };
 
-// ───────────────────────────────────────────────── Define shortcut ─────────────────────────────────────────────────
-    // #define GAM_LB5 &kpsk LALT LSHFT
-    // #define GAM_LB5 &trans
+// ───────────────────────────────────────────────── Keymap settings ─────────────────────────────────────────────────
+    // #define BASE_LM5 &EXC_nword_gr       //setting 1: Hold to EXC, Tap to num_word, CMD/SHFT to grave
+    // #define BASE_LM5 &NUM_nword_gr       //setting 2: Hold to NUM, Tap to num_word, CMD/SHFT to grave
+    // #define BASE_LM5 &NUM_nword_gr       //setting 2: Hold to HYPER, Tap to num_word, CMD/SHFT to grave
 
-    // #define HYPGR_L(LAYER) \
+    // #define BASE_LB5 &mt LSHFT CAPS      //setting 1: Hold to L_SHFT, Tap to CAPS 
+    // #define BASE_LB5 &kpsls LSHFT EXC    //setting 2: Hold to L_SHFT, Tap to Sticky-EXC
+    // #define GAM_LB5 &kpsls LALT EXC      //setting 1: Hold to L_ALT, Tap to Sticky-EXC
+    // #define GAM_LB5 &kpsls LALT EXC      //setting 2: Hold to L_ALT, Tap to Sticky-EXC
+    // #define EXC_LB5 &kpsk LSHFT LALT     //setting 1: Hold to L_SHFT, Tap to Sticky-L_ALT
+    // #define EXC_LB5 &mt LSHFT CAPS       //setting 2: Hold to L_SHFT, Tap to Caps
+
+    // settings 2
+    // #define EXC_LB5 &mt LSHFT CAPS       //Hold to L_SHFT, Tap to CAPS
+
+    // #define HYP_SL_GR(LAYER) \
     // / { \
     //     behaviors { \
-    //         hyp_gr_##NAME: hyper_grave_##NAME { \
+    //         hyp_##LAYER##_gr: hyper_##LAYER##_grave { \
     //             compatible = "zmk,behavior-mod-morph"; \
     //             #binding-cells = <0>; \
     //             bindings = <&kpsls LC(LA(LS(LGUI))) LAYER>, <&kp GRAVE>; \
+    //             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>; \
+    //             keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>; \
+    //         }; \
+    //     }; \
+    // }
+
+    // #define NWORDGR_L(LAYER) \
+    // / { \
+    //     behaviors { \
+    //         nw_gr_##LAYER: num_word_grave_##LAYER { \
+    //             compatible = "zmk,behavior-mod-morph"; \
+    //             #binding-cells = <0>; \
+    //             bindings = <&mo_NUMword LAYER NUM>, <&kp GRAVE>; \
     //             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>; \
     //             keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>; \
     //         }; \
@@ -311,6 +335,14 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mo_NUMword EXC NUM>, <&kp GRAVE>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+            keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        };
+
+        NUM_nword_gr: hyper_numword_grave {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mo_NUMword NUM NUM>, <&kp GRAVE>;
             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
             keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         };
@@ -665,12 +697,12 @@
         //     require-prior-idle-ms = <COMBO_IDLE_FAST>;
         // };
 
-        // cb_ZX {
-        //     bindings = <&kp EQUAL>;
-        //     key-positions = <LB3 LB4>;
-        //     timeout-ms = <COMBO_TERM_FAST>;
-        //     require-prior-idle-ms = <COMBO_IDLE_FAST>;
-        // };
+        cb_ZX {
+            bindings = <&kp CAPS>;
+            key-positions = <LB3 LB4>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        };
 
         cb_XC {
             bindings = <&kp MINUS>;
@@ -921,10 +953,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&mt INS TAB     &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
-&EXC_nword_gr   &hml LCTRL A  &hml LALT S  &hml LGUI D              &hmlq LSHFT F  &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
-&mt LSHFT CAPS  &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
-                                           &mt LGUI ESC             &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
+&mt INS TAB       &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
+&EXC_nword_gr     &hml LCTRL A  &hml LALT S  &hml LGUI D              &hmlq LSHFT F  &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+&kpsls LSHFT EXC  &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+                                             &mt LGUI ESC             &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
             sensor-bindings = <&vol_enc>;
         };
@@ -954,10 +986,10 @@
         exchange_layer {
             display-name = "CHANGE";
             bindings = <
-&trans            &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
-&caps_word        &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
-&kpsk LSHFT LALT  &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
-                                             &trans                    &trans         &trans                                       &trans  &trans         &trans
+&trans          &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
+&caps_word      &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
+&mt LSHFT CAPS  &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
+                                           &trans                    &trans         &trans                                       &trans  &trans         &trans
             >;
             sensor-bindings = <&vol_enc>;
         };
@@ -968,7 +1000,7 @@
 &trans  &kp PG_UP  &kp HOME  &td_up    &kp END    &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0        &mt INS MINUS
 &trans  &kp PG_DN  &td_lf    &td_dn    &td_rt     &key_repeat          &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL STAR  &kp EQUAL
 &trans  &sk LCTRL  &sk LALT  &sk LGUI  &sk LSHFT  &kp DEL    &trans                    &mmv MOVE_DOWN                   &kp MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp FSLH         &m_dPAR
-                             &trans     &trans      &trans                                                              &trans     &kp KP_DOT         &trans
+                             &trans    &trans     &trans                                                                &trans     &kp KP_DOT         &trans
             >;
             sensor-bindings = <&vol_enc>;
         };
@@ -976,12 +1008,12 @@
         numbermouse_layer {
             display-name = "NUMMOU";
             bindings = <
-&trans           &kp N1         &kp N2        &kp N3        &kp N4          &kp N5                                 &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &trans
-&kp EQUAL        &hml LCTRL N6  &hml LALT N7  &hml LGUI N8  &hmlq LSHFT N9  &kp N0                 &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
-&mt LSHFT MINUS  &mkp MB4       &mkp LCLK     &mkp MCLK     &mkp RCLK       &mkp MB5   &kp C_PP                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
-                                              &trans        &kp LALT        &kp LCTRL                                                               &trans    &trans           &trans
+&trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                               &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &trans
+&kp EQUAL        &hml LCTRL N6  &hml LALT N7  &hml LGUI N8       &hmlq LSHFT N9  &kp N0               &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
+&mt LSHFT MINUS  &mkp MB4       &mkp LCLK     &mkp MCLK          &mkp RCLK       &mkp MB5   &trans                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+                                              &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                             &trans    &trans           &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_NEXT C_PREV>;
+            sensor-bindings = <&vol_enc>;
         };
 
         hotkeyfn_layer {
@@ -990,7 +1022,7 @@
 &none  &kp LS(LG(T))  &kp LS(LG(N2))     &kp LS(LG(N3))  &kp LS(LG(N4))  &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
 &none  &none          &kp LG(J)          &none           &none           &kp LG(H)                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none           &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
 &none  &kp LG(K)      &kp LA(LS(LG(V)))  &kp LA(LG(C))   &kp LA(LG(V))   &kp LA(LG(H))   &kp C_MUTE                    &mmv MOVE_DOWN                   &none           &kp F1          &kp F2        &kp F3        &kp F10         &trans
-                                         &trans          &mkp LCLK       &mkp RCLK                                                                          &mo_tMED MED 0  &trans          &trans
+                                         &trans          &trans          &trans                                                                         &mo_tMED MED 0  &trans          &trans
             >;
             sensor-bindings = <&scrl_enc>;
         };
