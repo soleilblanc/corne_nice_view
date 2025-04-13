@@ -427,10 +427,10 @@
             #binding-cells = <0>;
             bindings = <&hmlq LSHFT F>;
 
-            repeat {
+            capital_f {
                 trigger-keys = <LSHFT>;
                 bindings = <&kp LS(F)>;
-                max-prior-idle-ms = <300>;
+                // max-prior-idle-ms = <300>;
                 // strict-modifiers;
             };
         };
@@ -585,7 +585,7 @@
         td_NUM: tapdance_NUM {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&mosls NUM NUM>, <&NUMword NUM>;
+            bindings = <&mosls EXC NUM>, <&NUMword NUM>;
         };
 
 // ───────────────────────────────────────────────── END behaviors ─────────────────────────────────────────────────
