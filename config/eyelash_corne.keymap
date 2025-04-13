@@ -428,23 +428,23 @@
             bindings = <&hml LC(LA(LS(LGUI))) E>;
 
             hyper_e {
-                trigger-keys = <LC(LA(LS(LGUI)))>;
+                trigger-keys = <LSHFT LGUI LALT LCTRL>;
                 bindings = <&kp LC(LA(LS(LG(E))))>;
                 max-prior-idle-ms = <1200>;
                 strict-modifiers;
             };
             meh_e {
-                trigger-keys = <LC(LA(LSHFT))>;
+                trigger-keys = <LSHFT LALT LCTRL>;
                 bindings = <&kp LC(LA(LS(E)))>;
                 max-prior-idle-ms = <1200>;
                 strict-modifiers;
             };
-            command_e {
-                trigger-keys = <LGUI>;
-                bindings = <&kp LG(E)>;
-                max-prior-idle-ms = <1200>;
-                strict-modifiers;
-            };
+            // command_e {
+            //     trigger-keys = <LGUI>;
+            //     bindings = <&kp LG(E)>;
+            //     max-prior-idle-ms = <1200>;
+            //     strict-modifiers;
+            // };
         };
 
         ak_f: adaptive-key_F {
