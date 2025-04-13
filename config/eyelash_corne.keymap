@@ -422,31 +422,61 @@
             tapping-term-ms = <220>;
         };
 // ───────────────────────────────────────────────── Antecedent-Morph AKA. Adaptive-Keys ─────────────────────────────────────────────────
-        ak_e: adaptive-key_E {
-            compatible = "zmk,behavior-antecedent-morph";
+        // ak_e: adaptive-key_E {      // didn't work as expected
+        //     compatible = "zmk,behavior-antecedent-morph";
+        //     #binding-cells = <0>;
+        //     defaults = <&hml LC(LA(LS(LGUI))) E>;
+        //     bindings = <&kp LC(LA(LS(LG(E))))>, <&kp LC(LS(LA(E)))>, <&kp LG(E)>;
+        //     antecedents = <LC(LA(LS(LGUI))) LC(LS(LALT)) LGUI>;
+        //     max-delay-ms = <1000>;
+        // };
+
+        ak_a: adaptive-key_A {
+            compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
-            defaults = <&hml LC(LA(LS(LGUI))) E>;
-            bindings = <&kp LC(LA(LS(LG(E))))>, <&kp LC(LS(LA(E)))>, <&kp LG(E)>;
-            antecedents = <LC(LA(LS(LGUI))) LC(LS(LALT)) LGUI>;
-            max-delay-ms = <1000>;
+            bindings = <&hml LCTRL A>;
+            repeat {
+                trigger-keys = <LCTRL>;
+                bindings = <&kp LC(A)>;
+                max-prior-idle-ms = <1000>;
+                // strict-modifiers;
+                };
+        };
+
+        ak_s: adaptive-key_S {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&hml LALT S>;
+            repeat {
+                trigger-keys = <LALT>;
+                bindings = <&kp LA(S)>;
+                max-prior-idle-ms = <1000>;
+                // strict-modifiers;
+                };
+        };
+
+        ak_d: adaptive-key_D {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&hml LGUI D>;
+            repeat {
+                trigger-keys = <LALT>;
+                bindings = <&kp LG(D)>;
+                max-prior-idle-ms = <1000>;
+                // strict-modifiers;
+                };
         };
 
         ak_f: adaptive-key_F {
-            compatible = "zmk,behavior-antecedent-morph";
+            compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
-            defaults = <&hmlq LSHFT F>;
-            bindings = <&kp LS(F)>;
-            antecedents = <LSHFT>;
-            max-delay-ms = <1000>;
-        };
-
-        ak_g: adaptive-key_G {
-            compatible = "zmk,behavior-antecedent-morph";
-            #binding-cells = <0>;
-            defaults = <&kp G>;
-            bindings = <&kp LS(G)>;
-            antecedents = <LSHFT>;
-            max-delay-ms = <1000>;
+            bindings = <&hmlq LSHFT F>;
+            repeat {
+                trigger-keys = <LSHFT>;
+                bindings = <&kp LS(F)>;
+                max-prior-idle-ms = <1000>;
+                // strict-modifiers;
+                };
         };
 // ───────────────────────────────────────────────── Hold-tap ─────────────────────────────────────────────────
         //  layer-tap config, change flavor to balanced
@@ -995,10 +1025,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&mt INS TAB     &kp Q         &kp W        &ak_e                 &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
-&smart_NUM_gr   &hml LCTRL A  &hml LALT S  &hml LGUI D           &ak_f          &ak_g                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
-&mt LSHFT CAPS  &kp Z         &kp X        &hml LC(LA(LSHFT)) C  &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
-                                           &mt LGUI ESC          &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
+&mt INS TAB     &kp Q  &kp W  &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
+&smart_NUM_gr   &ak_a  &ak_s  &ak_d                    &ak_f          &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+&mt LSHFT CAPS  &kp Z  &kp X  &hml LC(LA(LSHFT)) C     &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+                              &mt LGUI ESC             &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
             sensor-bindings = <&vol_enc>;
         };
