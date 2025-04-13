@@ -421,54 +421,32 @@
             flavor = "balanced";
             tapping-term-ms = <220>;
         };
-// ───────────────────────────────────────────────── Adaptive Keys ─────────────────────────────────────────────────
+// ───────────────────────────────────────────────── Antecedent-Morph AKA. Adaptive-Keys ─────────────────────────────────────────────────
         ak_e: adaptive-key_E {
-            compatible = "zmk,behavior-adaptive-key";
+            compatible = "zmk,behavior-antecedent-morph";
             #binding-cells = <0>;
-            bindings = <&hml LC(LA(LS(LGUI))) E>;
-
-            // command_e {
-            //     trigger-keys = <LGUI>;
-            //     bindings = <&kp LG(E)>;
-            //     max-prior-idle-ms = <1200>;
-            //     strict-modifiers;
-            // };
-            meh_e {
-                trigger-keys = <LSHFT LALT LCTRL>;
-                bindings = <&kp LC(LA(LS(E)))>;
-                max-prior-idle-ms = <1200>;
-                strict-modifiers;
-            };
-            hyper_e {
-                trigger-keys = <LC(LA(LS(LGUI)))>;
-                bindings = <&kp LC(LA(LS(LG(E))))>;
-                max-prior-idle-ms = <1200>;
-                strict-modifiers;
-            };
+            defaults = <&hml LC(LA(LS(LGUI))) E>;
+            bindings = <&kp LC(LA(LS(LG(E))))>, <&kp LC(LS(LA(E)))>, <&kp LG(E)>;
+            antecedents = <LC(LA(LS(LGUI))) LC(LS(LALT)) LGUI>;
+            max-delay-ms = <1000>;
         };
 
         ak_f: adaptive-key_F {
-            compatible = "zmk,behavior-adaptive-key";
+            compatible = "zmk,behavior-antecedent-morph";
             #binding-cells = <0>;
-            bindings = <&hmlq LSHFT F>;
-
-            shift_f {
-                trigger-keys = <LSHFT>;
-                bindings = <&kp LS(F)>;
-                max-prior-idle-ms = <1000>;
-            };
+            defaults = <&hmlq LSHFT F>;
+            bindings = <&kp LS(F)>;
+            antecedents = <LSHFT>;
+            max-delay-ms = <1000>;
         };
 
         ak_g: adaptive-key_G {
-            compatible = "zmk,behavior-adaptive-key";
+            compatible = "zmk,behavior-antecedent-morph";
             #binding-cells = <0>;
-            bindings = <&kp G>;
-
-            shift_g {
-                trigger-keys = <LSHFT>;
-                bindings = <&kp LS(G)>;
-                max-prior-idle-ms = <1000>;
-            };
+            defaults = <&kp G>;
+            bindings = <&kp LS(G)>;
+            antecedents = <LSHFT>;
+            max-delay-ms = <1000>;
         };
 // ───────────────────────────────────────────────── Hold-tap ─────────────────────────────────────────────────
         //  layer-tap config, change flavor to balanced
