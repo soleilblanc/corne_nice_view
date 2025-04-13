@@ -12,8 +12,8 @@ manifest:
       # - https://docs.zephyrproject.org/3.5.0/develop/west/manifest.html#projects
     - name: urob
       url-base: https://github.com/urob
-    - name: ssbb
-      url-base: https://github.com/ssbb
+    # - name: ssbb
+    #   url-base: https://github.com/ssbb
   projects:
     - name: eyelash_corne
       url: https://github.com/a741725193/zmk-new_corne
@@ -23,13 +23,13 @@ manifest:
       revision: main
       import: app/west.yml
 
-    - name: zmk-antecedent-morph
-      remote: ssbb
-      revision: v1
+    # - name: zmk-antecedent-morph
+    #   remote: ssbb
+    #   revision: v1
 
     # ZMK modules
-    # - name: zmk-adaptive-key
-    #   path: modules/zmk/adaptive-key
+    - name: zmk-adaptive-key
+      path: modules/zmk/adaptive-key
     - name: zmk-auto-layer
       path: modules/zmk/auto-layer
     - name: zmk-tri-state
