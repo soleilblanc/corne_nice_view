@@ -430,20 +430,20 @@
             hyper_e {
                 trigger-keys = <LC(LA(LS(LGUI)))>;
                 bindings = <&kp LC(LA(LS(LG(E))))>;
-                max-prior-idle-ms = <1000>;
+                max-prior-idle-ms = <1200>;
                 strict-modifiers;
             };
             meh_e {
                 trigger-keys = <LC(LA(LSHFT))>;
                 bindings = <&kp LC(LA(LS(E)))>;
-                max-prior-idle-ms = <1000>;
+                max-prior-idle-ms = <1200>;
                 strict-modifiers;
             };
             command_e {
                 trigger-keys = <LGUI>;
                 bindings = <&kp LG(E)>;
-                max-prior-idle-ms = <1000>;
-                // strict-modifiers;
+                max-prior-idle-ms = <1200>;
+                strict-modifiers;
             };
         };
 
