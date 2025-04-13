@@ -1017,10 +1017,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&mt INS TAB     &kp Q         &kp W        &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
-&smart_NUM_gr   &hml LCTRL A  &hml LALT S  &hml LGUI D              &ak_f          &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
-&mt LSHFT CAPS  &kp Z         &kp X        &hml LC(LA(LSHFT)) C     &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
-                                           &mt LGUI ESC             &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
+&mt INS TAB     &kp Q         &kp W        &ak_e                 &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
+&smart_NUM_gr   &hml LCTRL A  &hml LALT S  &hml LGUI D           &ak_f          &ak_g                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+&mt LSHFT CAPS  &kp Z         &kp X        &hml LC(LA(LSHFT)) C  &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+                                           &mt LGUI ESC          &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
             sensor-bindings = <&vol_enc>;
         };
