@@ -430,7 +430,7 @@
             capital_f {
                 trigger-keys = <LSHFT>;
                 bindings = <&kp LS(F)>;
-                // max-prior-idle-ms = <300>;
+                max-prior-idle-ms = <1200>;
                 // strict-modifiers;
             };
         };
