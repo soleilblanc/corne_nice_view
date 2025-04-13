@@ -431,11 +431,22 @@
         //     max-delay-ms = <1000>;
         // };
 
+        ak_q: adaptive-key_Q {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp Q>;
+            lc_q {
+                trigger-keys = <LCTRL>;
+                bindings = <&kp LC(Q)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
         ak_a: adaptive-key_A {
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
             bindings = <&hml LCTRL A>;
-            repeat {
+            lc_a {
                 trigger-keys = <LCTRL>;
                 bindings = <&kp LC(A)>;
                 max-prior-idle-ms = <1000>;
@@ -443,13 +454,57 @@
                 };
         };
 
+        ak_z: adaptive-key_Z {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp Z>;
+            lc_z {
+                trigger-keys = <LCTRL>;
+                bindings = <&kp LC(Z)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
+        ak_w: adaptive-key_W {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp W>;
+            la_w {
+                trigger-keys = <LALT>;
+                bindings = <&kp LA(W)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
         ak_s: adaptive-key_S {
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
             bindings = <&hml LALT S>;
-            repeat {
+            la_s {
                 trigger-keys = <LALT>;
                 bindings = <&kp LA(S)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
+        ak_x: adaptive-key_X {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp X>;
+            la_x {
+                trigger-keys = <LALT>;
+                bindings = <&kp LA(X)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
+        ak_e: adaptive-key_E {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&hml LC(LA(LS(LGUI))) E>;
+            lg_e {
+                trigger-keys = <LGUI>;
+                bindings = <&kp LG(E)>;
                 max-prior-idle-ms = <1000>;
                 // strict-modifiers;
                 };
@@ -459,11 +514,32 @@
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
             bindings = <&hml LGUI D>;
-            repeat {
-                trigger-keys = <LALT>;
+            lg_d {
+                trigger-keys = <LGUI>;
                 bindings = <&kp LG(D)>;
                 max-prior-idle-ms = <1000>;
-                // strict-modifiers;
+                };
+        };
+
+        ak_c: adaptive-key_C {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&hml LC(LS(LALT)) C>;
+            lg_c {
+                trigger-keys = <LGUI>;
+                bindings = <&kp LG(C)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
+        ak_r: adaptive-key_R {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp R>;
+            la_x {
+                trigger-keys = <LSHFT>;
+                bindings = <&kp LS(R)>;
+                max-prior-idle-ms = <1000>;
                 };
         };
 
@@ -475,7 +551,50 @@
                 trigger-keys = <LSHFT>;
                 bindings = <&kp LS(F)>;
                 max-prior-idle-ms = <1000>;
-                // strict-modifiers;
+                };
+        };
+
+        ak_v: adaptive-key_V {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp V>;
+            la_x {
+                trigger-keys = <LSHFT>;
+                bindings = <&kp LS(V)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
+        ak_t: adaptive-key_T {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp T>;
+            la_x {
+                trigger-keys = <LSHFT>;
+                bindings = <&kp LS(T)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
+        ak_g: adaptive-key_G {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp G>;
+            la_x {
+                trigger-keys = <LSHFT>;
+                bindings = <&kp LS(G)>;
+                max-prior-idle-ms = <1000>;
+                };
+        };
+
+        ak_b: adaptive-key_B {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp B>;
+            la_x {
+                trigger-keys = <LSHFT>;
+                bindings = <&kp LS(B)>;
+                max-prior-idle-ms = <1000>;
                 };
         };
 // ───────────────────────────────────────────────── Hold-tap ─────────────────────────────────────────────────
@@ -1025,10 +1144,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&mt INS TAB     &kp Q  &kp W  &hml LC(LA(LS(LGUI))) E  &kp R          &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
-&smart_NUM_gr   &ak_a  &ak_s  &ak_d                    &ak_f          &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
-&mt LSHFT CAPS  &kp Z  &kp X  &hml LC(LA(LSHFT)) C     &kp V          &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
-                              &mt LGUI ESC             &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
+&mt INS TAB     &ak_q  &ak_w  &ak_e         &ak_r          &ak_t                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
+&smart_NUM_gr   &ak_a  &ak_s  &ak_d         &ak_f          &ak_g                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+&mt LSHFT CAPS  &ak_z  &ak_x  &ak_c         &ak_v          &ak_b          &kp C_MUTE               &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+                              &mt LGUI ESC  &ltb NAV BSPC  &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
             sensor-bindings = <&vol_enc>;
         };
@@ -1091,10 +1210,10 @@
         hotkeyfn_layer {
             display-name = "HOTFN";
             bindings = <
-&none  &kp LS(LG(T))  &kp LS(LG(N2))     &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
-&none  &kp LG(H)      &kp LG(J)          &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none           &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
-&none  &kp LA(LG(H))  &none              &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_MUTE                    &mmv MOVE_DOWN                   &none           &kp F1          &kp F2        &kp F3        &kp F10         &trans
-                                         &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
+&none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
+&none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none           &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
+&none  &kp LA(LG(H))  &none           &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_MUTE                    &mmv MOVE_DOWN                   &none           &kp F1          &kp F2        &kp F3        &kp F10         &trans
+                                      &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
             >;
             sensor-bindings = <&scrl_enc>;
         };
@@ -1102,10 +1221,10 @@
         media_layer {
             display-name = "MEDIA";
             bindings = <
-&kp LBKT   &kp RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
-&kp LT     &kp GT    &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &none          &none         &none       &kp C_VOL_DN  &none
-&kp COMMA  &kp DOT   &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &none
-                                   &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans         &trans
+&mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
+&kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &none          &none         &none       &kp C_VOL_DN  &none
+&kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &none
+                                           &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans         &trans
             >;
 
             sensor-bindings = <&vol_enc>;
@@ -1116,7 +1235,7 @@
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3     &bt BT_SEL 4                                         &rgb_ug RGB_SPI                   &out OUT_BLE     &out OUT_USB  &none            &ext_power EP_ON   &rgb_ug RGB_SPI  &none
 &bootloader  &bt BT_CLR_ALL  &rgb_ug RGB_SAI  &none         &none            &rgb_ug RGB_BRI                      &rgb_ug RGB_EFR &mkp LCLK        &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &none         &none            &ext_power EP_OFF  &rgb_ug RGB_SPD  &bootloader
-&sys_reset   &sys_reset      &rgb_ug RGB_SAD  &none         &none            &rgb_ug RGB_BRD  &rgb_ug RGB_TOG                     &rgb_ug RGB_SPD                   &rgb_ug RGB_HUD  &none         &rgb_ug RGB_EFR  &rgb_ug RGB_EFF    &none            &sys_reset
+&sys_reset   &none           &rgb_ug RGB_SAD  &none         &none            &rgb_ug RGB_BRD  &rgb_ug RGB_TOG                     &rgb_ug RGB_SPD                   &rgb_ug RGB_HUD  &none         &rgb_ug RGB_EFR  &rgb_ug RGB_EFF    &none            &sys_reset
                                               &to DEF       &rgb_ug RGB_TOG  &studio_unlock                                                                         &none            &none         &to DEF
             >;
             sensor-bindings = <&rgb_enc>;
