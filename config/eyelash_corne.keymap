@@ -1130,6 +1130,13 @@
         bindings = <&kp LA(LS(C_VOL_UP))>, <&kp LA(LS(C_VOL_DN))>;
     };
 
+    play_enc: player_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp C_NEXT>, <&kp C_PREV>;
+        tap-ms = <100>;
+    };
+
     scrl_enc: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
@@ -1212,10 +1219,10 @@
             bindings = <
 &none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
 &none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none           &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
-&none  &kp LA(LG(H))  &none           &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_MUTE                    &mmv MOVE_DOWN                   &none           &kp F1          &kp F2        &kp F3        &kp F10         &trans
+&none  &kp LA(LG(H))  &none           &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_PP                      &mmv MOVE_DOWN                   &none           &kp F1          &kp F2        &kp F3        &kp F10         &trans
                                       &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
             >;
-            sensor-bindings = <&scrl_enc>;
+            sensor-bindings = <&play_enc>;
         };
 
         media_layer {
