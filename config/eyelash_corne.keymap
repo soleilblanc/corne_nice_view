@@ -356,6 +356,14 @@
             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
             keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         };
+
+        fn_bspc_f3: fn_bspc_f3 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mt INS BSPC>, <&kp F3>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
 // ───────────────────────────────────────────────── Sticky ─────────────────────────────────────────────────
         // new sticky-key config, delay duration, quick-release, ignore-modifiers
         skq: sticky_key_quickrelease {
@@ -751,17 +759,17 @@
             bindings = <&mosls EXC NUM>, <&NUMword NUM>;
         };
 
-        td_GAMLH1: tapdance_gameLH1 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            bindings = <&kp LSHFT>, <&mo NAV>;
-        };
+        // td_GAMLH1: tapdance_gameLH1 {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp LSHFT>, <&mo NAV>;
+        // };
 
-        td_GAMLH2: tapdance_gameLH2 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            bindings = <&lt NUM ESC>, <&kp LGUI>;
-        };
+        // td_GAMLH2: tapdance_gameLH2 {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     bindings = <&lt NUM ESC>, <&kp LGUI>;
+        // };
 // ───────────────────────────────────────────────── END behaviors ─────────────────────────────────────────────────
     };
 
@@ -1184,10 +1192,10 @@
         gaming_layer {
             display-name = "GAME";
             bindings = <
-&kp TAB          &kp Q  &kp W  &kp E        &kp R       &kp T                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &mt INS BSPC
-&kp LCTRL        &kp A  &kp S  &kp D        &kp F       &kp G                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
-&kpsls LALT EXC  &kp Z  &kp X  &kp C        &kp V       &kp B      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
-                               &td_GAMLH2   &td_GAMLH1  &kp SPACE                                    &trans  &trans  &trans
+&kp TAB           &kp Q  &kp W  &kp E          &kp R             &kp T                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &fn_bspc_f3
+&kpsk LCTRL LGUI  &kp A  &kp S  &kp D          &kp F             &kp G                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
+&kpsls LALT EXC   &kp Z  &kp X  &kp C          &kp V             &kp B      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
+                                &ltb NUM ESC   &kpsls LSHFT NAV  &kp SPACE                                    &trans  &trans  &trans
             >;
             sensor-bindings = <&vol_enc>;
         };
