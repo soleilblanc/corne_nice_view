@@ -108,7 +108,8 @@
     &mmv {
         acceleration-exponent = <1>;    // default 1
         time-to-max-speed-ms = <500>;   // default 300
-        trigger-period-ms = <16>;
+        delay-ms = <0>;                 // default 0
+        // trigger-period-ms = <16>;    // by eyelash
     };
 
     &msc {
@@ -781,6 +782,7 @@
         //     key-positions = <LM3 LM4>;
         //     timeout-ms = <COMBO_TERM_FAST>;
         //     require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        //     layers = <DEF COL>;
         // };
 
         cb_hml_SD {
@@ -788,6 +790,7 @@
             key-positions = <LM2 LM3>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 
         cb_hml_DF {
@@ -795,11 +798,13 @@
             key-positions = <LM1 LM2>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 
         cb_hml_SF {
             bindings = <&hml_EXCword LA(LSHFT) EXC>;
             key-positions = <LM1 LM3>;
+            layers = <DEF COL EXC>;                     //disable in Gaming layer
         };
 
         cb_hml_JK {
@@ -858,33 +863,37 @@
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
 
-        cb_SX {
-            bindings = <&mt SEMICOLON COMMA>;
-            key-positions = <LM3 LB3>;
-            timeout-ms = <COMBO_TERM_SLOW>;
-            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-        };
+        // cb_SX {
+        //     bindings = <&mt SEMICOLON COMMA>;
+        //     key-positions = <LM3 LB3>;
+        //     timeout-ms = <COMBO_TERM_SLOW>;
+        //     require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        //     layers = <DEF COL>;
+        // };
 
         cb_DC {
-            bindings = <&mt COLON DOT>;
+            bindings = <&mt SEMICOLON COMMA>;
             key-positions = <LM2 LB2>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 
         cb_FV {
-            bindings = <&mt DQT SQT>;
+            bindings = <&mt COLON DOT>;
             key-positions = <LM1 LB1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 
-        // cb_GB {
-        //     bindings = <&kp PIPE>;
-        //     key-positions = <LM0 LB0>;
-        //     timeout-ms = <COMBO_TERM_SLOW>;
-        //     require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-        // };
+        cb_GB {
+            bindings = <&mt DQT SQT>;
+            key-positions = <LM0 LB0>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //disable in Gaming layer
+        };
 // ───────────────────────────────────────────────── left hand: horizontal ─────────────────────────────────────────────────
         // cb_QW {
         //     bindings = <&mt LG(RBKT) LG(LBKT)>;
@@ -933,6 +942,7 @@
             key-positions = <LT2 LM3>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 
         cb_EF {
@@ -940,6 +950,7 @@
             key-positions = <LT2 LM1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 
         cb_DX {
@@ -947,6 +958,7 @@
             key-positions = <LM2 LB3>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 
         cb_DV {
@@ -954,6 +966,7 @@
             key-positions = <LM2 LB1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //disable in Gaming layer
         };
 // ───────────────────────────────────────────────── right hand: horizontal ─────────────────────────────────────────────────
         // cb_NM {
@@ -1127,12 +1140,33 @@
         //     compatible = "zmk,behavior-macro-one-param";
         //     wait-ms = <0>;
         //     #binding-cells = <1>;
-        //     bindings = <&macro_press &kp INS>
-        //              , <&macro_wait_time 300>
-        //              , <&macro_param_1to1>
-        //              , <&kp MACRO_PLACEHOLDER>
-        //              , <&macro_release &kp INS>;
+        //     bindings
+        //         = <&macro_press &kp INS>
+        //         , <&macro_param_1to1>
+        //         , <&macro_press &kp MACRO_PLACEHOLDER>
+        //         , <&macro_pause_for_release>
+        //         , <&macro_param_1to1>
+        //         , <&macro_release &kp MACRO_PLACEHOLDER>
+        //         , <&macro_release &kp INS>;
         // };
+
+        mmkp: modifier_mousekeypress {
+            compatible = "zmk,behavior-macro-two-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <2>;
+            bindings
+                = <&macro_param_1to1>
+                , <&macro_press &kp MACRO_PLACEHOLDER>
+                , <&macro_param_2to1>
+                , <&macro_press &mkp MACRO_PLACEHOLDER>
+                , <&macro_pause_for_release>
+                , <&macro_param_2to1>
+                , <&macro_release &mkp MACRO_PLACEHOLDER>
+                , <&macro_param_1to1>
+                , <&macro_release &kp MACRO_PLACEHOLDER>
+                ;
+        };
 // ───────────────────────────────────────────────── END Macros ─────────────────────────────────────────────────
     };
 
@@ -1192,10 +1226,10 @@
         gaming_layer {
             display-name = "GAME";
             bindings = <
-&kp TAB           &kp Q  &kp W  &kp E          &kp R             &kp T                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &fn_bspc_f3
-&kpsk LCTRL LGUI  &kp A  &kp S  &kp D          &kp F             &kp G                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
-&kpsls LALT EXC   &kp Z  &kp X  &kp C          &kp V             &kp B      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
-                                &ltb NUM ESC   &kpsls LSHFT NAV  &kp SPACE                                    &trans  &trans  &trans
+&kp TAB    &kp Q  &kp W  &kp E          &kp R      &kp T                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &fn_bspc_f3
+&kp LCTRL  &kp A  &kp S  &kp D          &kp F      &kp G                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
+&kp LALT   &kp Z  &kp X  &kp C          &kp V      &kp B      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
+                         &ltb NUM ESC   &kp LSHFT  &kp SPACE                                    &trans  &trans  &trans
             >;
             sensor-bindings = <&vol_enc>;
         };
