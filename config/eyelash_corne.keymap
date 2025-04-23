@@ -1040,7 +1040,7 @@
         };
 
         cb_ER {
-            bindings = <&swap_tab;
+            bindings = <&swap_tab>;
             key-positions = <LT1 LT2>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
