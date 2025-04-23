@@ -698,13 +698,13 @@
         };
 
     // for mouse button
-        ak_lclk: adaptive-key_mouseleftclick {
+        ak_lclk: adaptive-key_lclick {
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
             bindings = <&mkp LCLK>;
             la_lclk {
                 trigger-keys = <LALT>;
-                bindings = <&mmkp LALT LCLK>;
+                bindings = <&alclk>;
                 max-prior-idle-ms = <1000>;
                 };
         };
@@ -1252,21 +1252,35 @@
         //         , <&macro_release &kp INS>;
         // };
 
-        mmkp: modifier_mousekeypress {
-            compatible = "zmk,behavior-macro-two-param";
+        // mmkp: modifier_mousekeypress {
+        //     compatible = "zmk,behavior-macro-two-param";
+        //     wait-ms = <0>;
+        //     tap-ms = <0>;
+        //     #binding-cells = <2>;
+        //     bindings
+        //         = <&macro_param_1to1>
+        //         , <&macro_press &kp MACRO_PLACEHOLDER>
+        //         , <&macro_param_2to1>
+        //         , <&macro_press &mkp MACRO_PLACEHOLDER>
+        //         , <&macro_pause_for_release>
+        //         , <&macro_param_2to1>
+        //         , <&macro_release &mkp MACRO_PLACEHOLDER>
+        //         , <&macro_param_1to1>
+        //         , <&macro_release &kp MACRO_PLACEHOLDER>
+        //         ;
+        // };
+
+        alclk: lalt_lclk {
+            compatible = "zmk,behavior-macro";
             wait-ms = <0>;
             tap-ms = <0>;
-            #binding-cells = <2>;
+            #binding-cells = <0>;
             bindings
-                = <&macro_param_1to1>
-                , <&macro_press &kp MACRO_PLACEHOLDER>
-                , <&macro_param_2to1>
-                , <&macro_press &mkp MACRO_PLACEHOLDER>
+                = <&macro_press &kp LALT>
+                , <&macro_press &mkp LCLK>
                 , <&macro_pause_for_release>
-                , <&macro_param_2to1>
-                , <&macro_release &mkp MACRO_PLACEHOLDER>
-                , <&macro_param_1to1>
-                , <&macro_release &kp MACRO_PLACEHOLDER>
+                , <&macro_release &mkp LCLK>
+                , <&macro_release &kp LALT>
                 ;
         };
 // ───────────────────────────────────────────────── END Macros ─────────────────────────────────────────────────
