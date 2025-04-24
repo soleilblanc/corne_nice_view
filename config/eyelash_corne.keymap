@@ -901,13 +901,13 @@
     combos {
         compatible = "zmk,combos";
 // ───────────────────────────────────────────────── HRMs ─────────────────────────────────────────────────
-        // cb_hml_AS {
-        //     bindings = <&hml LC(LALT) TILDE>;
-        //     key-positions = <LM3 LM4>;
-        //     timeout-ms = <COMBO_TERM_FAST>;
-        //     require-prior-idle-ms = <COMBO_IDLE_FAST>;
-        //     layers = <DEF COL>;
-        // };
+        cb_hml_AS {
+            bindings = <&hml LC(LALT) MINUS>;
+            key-positions = <LM3 LM4>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //disable in Gaming layer
+        };
 
         cb_hml_SD {
             bindings = <&hml LA(LGUI) EQUAL>;
@@ -928,13 +928,13 @@
         cb_hml_SF {
             bindings = <&hml_aEXQW LA(LSHFT) EXQW>;
             key-positions = <LM1 LM3>;
-            layers = <DEF EXQW>;                     //disable in Gaming layer
+            layers = <DEF EXQW>;                        //disable in Gaming layer
         };
 
         cb_hml_RT {
             bindings = <&hml_aEXAR LA(LSHFT) EXAR>;
             key-positions = <LM1 LM3>;
-            layers = <COL EXAR>;                     //disable in Gaming layer
+            layers = <COL EXAR>;                        //disable in Gaming layer
         };
 
         cb_hml_JK {
@@ -1035,38 +1035,38 @@
         cb_WE {
             bindings = <&kp GRAVE>;
             key-positions = <LT2 LT3>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
 
         cb_ER {
             bindings = <&swap_tab>;
             key-positions = <LT1 LT2>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
             layers = <DEF COL NAV>;                         //disable in Gaming layer
         };
 
         cb_ZX {
             bindings = <&kp CAPS>;
             key-positions = <LB3 LB4>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
 
         cb_XC {
-            bindings = <&kp MINUS>;
+            bindings = <&kp LG(C)>;
             key-positions = <LB2 LB3>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
 
         cb_CV {
             bindings = <&kp UNDER>;
             key-positions = <LB1 LB2>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
+
+        cb_XV {
+            bindings = <&kp LG(V)>;
+            key-positions = <LB1 LB3>;
+        };
+
 // ───────────────────────────────────────────────── left hand: diagonal ─────────────────────────────────────────────────
         cb_ES {
             bindings = <&kp LG(LBKT)>;
@@ -1173,29 +1173,29 @@
         cb_RT {
             bindings = <&td_PAR>;
             key-positions = <LT0 LT1>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
 
         cb_FG {
             bindings = <&td_BKT>;
             key-positions = <LM0 LM1>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
 
         cb_VB {
             bindings = <&td_LTGT>;
             key-positions = <LB0 LB1>;
-            timeout-ms = <COMBO_TERM_FAST>;
-            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
         };
 
         cb_FB {
             bindings = <&td_BRC>;
             key-positions = <LM1 LB0>;
-            timeout-ms = <COMBO_TERM_SLOW>;
-            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            // timeout-ms = <COMBO_TERM_SLOW>;
+            // require-prior-idle-ms = <COMBO_IDLE_SLOW>;
         };
 // ───────────────────────────────────────────────── Layer switch ─────────────────────────────────────────────────
         cb_WA {
@@ -1217,11 +1217,6 @@
             bindings = <&tMED>;
             key-positions = <LT1 LT3>;
         };
-
-        // cb_XV {
-        //     bindings = <&math_word NAV>;
-        //     key-positions = <LB1 LB3>;
-        // };
 
         cb_LFslh {
             bindings = <&tog ADJ>;
