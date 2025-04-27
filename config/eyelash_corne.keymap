@@ -183,14 +183,14 @@
             mods = <(MOD_LSFT)>;
         };
 
-        // math_word: auto_layer_mathword {
-        //     compatible = "zmk,behavior-auto-layer";
-        //     #binding-cells = <1>;
-        //     continue-list = <UP DOWN LEFT RIGHT PLUS MINUS STAR FSLH SPACE BSPC DEL DOT KP_DOT COMMA EQUAL CARET PRCNT TAB>;
-        //     // ignore-alphas;
-        //     ignore-numbers;
-        //     ignore-modifiers;
-        // };
+        math_word: auto_layer_mathword {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <UP DOWN LEFT RIGHT PLUS MINUS STAR FSLH SPACE BSPC DEL DOT KP_DOT COMMA EQUAL CARET PRCNT TAB>;
+            // ignore-alphas;
+            ignore-numbers;
+            ignore-modifiers;
+        };
 
         tMED: tri_state_MEDIA {
             compatible = "zmk,behavior-tri-state";
@@ -906,7 +906,7 @@
             key-positions = <LM3 LM4>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_hml_SD {
@@ -914,7 +914,7 @@
             key-positions = <LM2 LM3>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_hml_DF {
@@ -922,40 +922,43 @@
             key-positions = <LM1 LM2>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_hml_SF {
             bindings = <&hml_aEXQW LA(LSHFT) EXQW>;
             key-positions = <LM1 LM3>;
-            layers = <DEF EXQW>;                        //disable in Gaming layer
+            layers = <DEF EXQW>;                        //disable in Colmak, Gaming & Clean layer
         };
 
-        cb_hml_RT {
+        cb_hml_cSF {
             bindings = <&hml_aEXAR LA(LSHFT) EXAR>;
             key-positions = <LM1 LM3>;
-            layers = <COL EXAR>;                        //disable in Gaming layer
+            layers = <COL EXAR>;                        //disable in Default, Gaming & Clean layer
         };
 
-        cb_hml_JK {
+        cb_hmr_JK {
             bindings = <&hmr RS(RGUI) LBKT>;
             key-positions = <RM1 RM2>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //disable in Clean layer
         };
 
-        cb_hml_KL {
+        cb_hmr_KL {
             bindings = <&hmr RA(RGUI) RBKT>;
             key-positions = <RM2 RM3>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //disable in Clean layer
         };
 
-        cb_hml_LSemi {
+        cb_hmr_LSemi {
             bindings = <&hmr RA(RCTRL) EQUAL>;
             key-positions = <RM3 RM4>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //disable in Clean layer
         };
 // ───────────────────────────────────────────────── left hand: vertical ─────────────────────────────────────────────────
         cb_QA {
@@ -963,6 +966,7 @@
             key-positions = <LT4 LM4>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_WS {
@@ -970,6 +974,7 @@
             key-positions = <LT3 LM3>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_ED {
@@ -977,6 +982,7 @@
             key-positions = <LT2 LM2>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_RF {
@@ -984,6 +990,7 @@
             key-positions = <LT1 LM1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_TG {
@@ -991,6 +998,7 @@
             key-positions = <LT0 LM0>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         // cb_SX {
@@ -1006,7 +1014,7 @@
             key-positions = <LM2 LB2>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_FV {
@@ -1014,7 +1022,7 @@
             key-positions = <LM1 LB1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_GB {
@@ -1022,7 +1030,7 @@
             key-positions = <LM0 LB0>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 // ───────────────────────────────────────────────── left hand: horizontal ─────────────────────────────────────────────────
         // cb_QW {
@@ -1037,6 +1045,7 @@
             key-positions = <LT2 LT3>;
             // timeout-ms = <COMBO_TERM_FAST>;
             // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_ER {
@@ -1044,27 +1053,31 @@
             key-positions = <LT1 LT2>;
             // timeout-ms = <COMBO_TERM_FAST>;
             // require-prior-idle-ms = <COMBO_IDLE_FAST>;
-            layers = <DEF COL NAV>;                         //disable in Gaming layer
+            layers = <DEF COL NAV>;                         //disable in Gaming & Clean layer
         };
 
         cb_ZX {
             bindings = <&kp CAPS>;
             key-positions = <LB3 LB4>;
+            layers = <DEF COL>;                             //disable in Gaming & Clean layer
         };
 
         cb_XC {
             bindings = <&kp LG(C)>;
             key-positions = <LB2 LB3>;
+            layers = <DEF COL>;                             //disable in Gaming & Clean layer
         };
 
         cb_CV {
             bindings = <&kp UNDER>;
             key-positions = <LB1 LB2>;
+            layers = <DEF COL>;                             //disable in Gaming & Clean layer
         };
 
         cb_XV {
             bindings = <&kp LG(V)>;
             key-positions = <LB1 LB3>;
+            layers = <DEF COL>;                             //disable in Gaming & Clean layer
         };
 
 // ───────────────────────────────────────────────── left hand: diagonal ─────────────────────────────────────────────────
@@ -1073,7 +1086,7 @@
             key-positions = <LT2 LM3>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_EF {
@@ -1081,7 +1094,7 @@
             key-positions = <LT2 LM1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_DX {
@@ -1089,7 +1102,7 @@
             key-positions = <LM2 LB3>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_DV {
@@ -1097,7 +1110,7 @@
             key-positions = <LM2 LB1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //disable in Gaming layer
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 // ───────────────────────────────────────────────── right hand: horizontal ─────────────────────────────────────────────────
         // cb_NM {
@@ -1112,6 +1125,7 @@
             key-positions = <RB1 RB2>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 
         cb_LtGt {
@@ -1119,6 +1133,7 @@
             key-positions = <RB2 RB3>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //disable in Gaming & Clean layer
         };
 // ───────────────────────────────────────────────── right hand: vertical ─────────────────────────────────────────────────
         cb_YH {
@@ -1126,6 +1141,7 @@
             key-positions = <RT0 RM0>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_UJ {
@@ -1133,6 +1149,7 @@
             key-positions = <RT1 RM1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_IK {
@@ -1140,6 +1157,7 @@
             key-positions = <RT2 RM2>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_OL {
@@ -1147,6 +1165,7 @@
             key-positions = <RT3 RM3>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_JM {
@@ -1154,6 +1173,7 @@
             key-positions = <RM1 RB1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_KLt {
@@ -1161,6 +1181,7 @@
             key-positions = <RM2 RB2>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_LGt {
@@ -1168,6 +1189,7 @@
             key-positions = <RM3 RB3>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 // ───────────────────────────────────────────────── functional ─────────────────────────────────────────────────
         cb_RT {
@@ -1175,6 +1197,7 @@
             key-positions = <LT0 LT1>;
             // timeout-ms = <COMBO_TERM_FAST>;
             // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_FG {
@@ -1182,6 +1205,7 @@
             key-positions = <LM0 LM1>;
             // timeout-ms = <COMBO_TERM_FAST>;
             // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_VB {
@@ -1189,6 +1213,7 @@
             key-positions = <LB0 LB1>;
             // timeout-ms = <COMBO_TERM_FAST>;
             // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_FB {
@@ -1196,41 +1221,57 @@
             key-positions = <LM1 LB0>;
             // timeout-ms = <COMBO_TERM_SLOW>;
             // require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 // ───────────────────────────────────────────────── Layer switch ─────────────────────────────────────────────────
         cb_WA {
             bindings = <&tog COL>;
             key-positions = <LT3 LM4>;
+            layers = <DEF COL GAM>;         //disable in Clean layer
         };
 
         cb_RG {
             bindings = <&tog GAM>;
             key-positions = <LT1 LM0>;
+            layers = <DEF COL GAM>;         //disable in Clean layer
         };
 
         cb_SZ {
             bindings = <&tog ADJ>;
             key-positions = <LM3 LB4>;
+            layers = <DEF COL ADJ>;         //disable in Gaming & Clean layer
         };
 
         cb_WR {
             bindings = <&tMED>;
             key-positions = <LT1 LT3>;
+            layers = <DEF COL>;             //disable in Gaming & Clean layer
         };
 
         cb_LFslh {
             bindings = <&tog ADJ>;
             key-positions = <RM3 RB4>;
+            layers = <DEF COL ADJ>;         //disable in Gaming & Clean layer
         };
 
         cb_UIO {
             bindings = <&tog CLE>;
             key-positions = <RT1 RT2 RT3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL CLE>;         //disable in Gaming layer
         };
 
         cb_LH1LH2 {
             bindings = <&aNUM NUM>;
             key-positions = <LH1 LH2>;
+            layers = <DEF COL GAM NUM>;     //disable in Clean layer
+        };
+
+        cb_LH0LH1 {
+            bindings = <&math_word NAV>;
+            key-positions = <LH0 LH1>;
+            layers = <DEF COL GAM NAV>;     //disable in Clean layer
         };
 // ───────────────────────────────────────────────── END Combos ─────────────────────────────────────────────────
     };
