@@ -1059,7 +1059,7 @@
         cb_ZX {
             bindings = <&kp CAPS>;
             key-positions = <LB3 LB4>;
-            layers = <DEF COL>;                             //disable in Gaming & Clean layer
+            layers = <DEF COL GAM>;                         //disable in Clean layer
         };
 
         cb_XC {
