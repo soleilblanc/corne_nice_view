@@ -129,8 +129,30 @@
     // Soft Off Setting ──────────────────────────────────────────────────
     &soft_off { hold-time-ms = <2000>; };
 
+    &sl {  // sticky-layer config
+        ignore-modifiers;                   // allow chording sticky mods & layers
+    };
+
 / {
     behaviors {
+// Smart, Auto-Layer; Tri-State ──────────────────────────────────────────
+    // smart layer, smart word
+        smart_shft: smart_shift {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&sk LSHFT>, <&caps_word>;
+            mods = <(MOD_LSFT)>;
+        };
+
+        math_word: auto_layer_mathword {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <UP DOWN LEFT RIGHT PLUS MINUS STAR FSLH SPACE BSPC DEL DOT KP_DOT COMMA EQUAL CARET PRCNT TAB>;
+            // ignore-alphas;
+            ignore-numbers;
+            ignore-modifiers;
+        };
+
 // Tap Dance ─────────────────────────────────────────────────────────────
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
