@@ -13,25 +13,18 @@
 #include <behaviors/num_word.dtsi>  // Requires auto-layer module.
 
 // Global settings ───────────────────────────────────────────────────────
-    // Mouse Tweaking ────────────────────────────────────────────────────
-    &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
-
-    &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
-
-    &msc {
-        acceleration-exponent = <1>;      // 0
-        time-to-max-speed-ms = <100>;       // 300
-        delay-ms = <0>;                   // 0
-    };
-
-    &mmv {
-        time-to-max-speed-ms = <500>;
-        acceleration-exponent = <1>;
-        trigger-period-ms = <16>;
-    };
-
-    // Soft Off Setting ──────────────────────────────────────────────────
-    &soft_off { hold-time-ms = <2000>; };
+    // Define layer numbers
+    #define DEF 0
+    #define COL 1
+    #define GAM 2
+    #define EXQW 3
+    #define EXAR 4
+    #define NAV 5
+    #define HOT 6
+    #define NUM 7
+    #define MED 8
+    #define ADJ 9
+    #define CLE 10
 
     // Define timing
     #define QUICK_TAP_MS 175
@@ -41,6 +34,26 @@
 
     #define COMBO_IDLE_FAST 150
     #define COMBO_IDLE_SLOW 50
+
+    // Mouse Tweaking ────────────────────────────────────────────────────
+    &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
+
+    &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
+
+    &msc {
+        acceleration-exponent = <1>;        // default 0, eyelash 1, urob 0
+        time-to-max-speed-ms = <100>;       // default 300, eyelash 100, urob 300
+        delay-ms = <0>;                     // default 0
+    };
+
+    &mmv {
+        time-to-max-speed-ms = <500>;       // default 300, eyelash 500, urob 300
+        acceleration-exponent = <1>;        // default 1
+        trigger-period-ms = <16>;           // default 16
+    };
+
+    // Soft Off Setting ──────────────────────────────────────────────────
+    &soft_off { hold-time-ms = <2000>; };
 
 / {
     behaviors {
