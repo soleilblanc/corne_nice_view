@@ -161,6 +161,14 @@
             ignored-layers = <MED>;
         };
 
+        tMED: tri_state_MEDIA {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&tog MED>, <&none>, <&tog MED>;
+            ignored-key-positions = <SIDE_L KEYS_L KEYS_R LH0 LH1>;
+            ignored-layers = <MED>;
+        };
+
         // hold to momentary layer, tap to tri-state MEDIA
         mo_tMED: mo_triMEDIA {
             compatible = "zmk,behavior-hold-tap";
@@ -213,8 +221,8 @@
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
     };
+// ──────── END behaviors ────────────────────────────────────────────────
 
-// Combos ────────────────────────────────────────────────────────────────
     combos {
         compatible = "zmk,combos";
 // functional ────────────────────────────────────────────────────────────
@@ -222,6 +230,14 @@
             bindings = <&soft_off>;
             key-positions = <1 15 29>;
         };
+
+    // activate NaviPad auto-layer
+        cb_LH0LH1 {
+            bindings = <&math_word 2>;
+            key-positions = <LH0 LH1>;
+            layers = <0 1>;                         //Only in Default & Colemak layer
+        };
+
     };
 
 // Encoder ───────────────────────────────────────────────────────────────
@@ -248,7 +264,7 @@
 &kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
 &td0       &kp A  &kp S  &kp D     &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
 &kp LCTRL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp SPACE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &kp LGUI  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &kp RALT
+                         &kp LGUI  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &smart_shft
             >;
 
              sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
