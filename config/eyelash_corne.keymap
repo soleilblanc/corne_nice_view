@@ -1003,17 +1003,16 @@
 &kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &none
                                            &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans         &trans
             >;
-
             sensor-bindings = <&vol_enc>;
         };
 
         adjust_layer {
             display-name = "ADJUST";
             bindings = <
-&bt BT_CLR   &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3     &bt BT_SEL 4                                         &rgb_ug RGB_SPI                   &out OUT_BLE     &out OUT_USB  &none            &ext_power EP_ON   &rgb_ug RGB_SPI  &none
-&bootloader  &bt BT_CLR_ALL  &rgb_ug RGB_SAI  &none         &none            &rgb_ug RGB_BRI                      &rgb_ug RGB_EFR &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &none         &none            &ext_power EP_OFF  &rgb_ug RGB_SPD  &bootloader
-&sys_reset   &none           &rgb_ug RGB_SAD  &none         &none            &rgb_ug RGB_BRD  &rgb_ug RGB_TOG                     &rgb_ug RGB_SPD                   &rgb_ug RGB_HUD  &none         &rgb_ug RGB_EFR  &rgb_ug RGB_EFF    &none            &sys_reset
-                                              &to DEF       &rgb_ug RGB_TOG  &studio_unlock                                                                         &none            &none         &to DEF
+&bt BT_CLR   &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3     &bt BT_SEL 4                                          &rgb_ug RGB_SPI                   &out OUT_BLE     &out OUT_USB  &none            &ext_power EP_ON   &rgb_ug RGB_SPI  &none
+&bootloader  &bt BT_CLR_ALL  &rgb_ug RGB_SAI  &none         &none            &rgb_ug RGB_BRI                      &rgb_ug RGB_EFR  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &none         &none            &ext_power EP_OFF  &rgb_ug RGB_SPD  &bootloader
+&sys_reset   &none           &rgb_ug RGB_SAD  &none         &none            &rgb_ug RGB_BRD  &rgb_ug RGB_TOG                      &rgb_ug RGB_SPD                   &rgb_ug RGB_HUD  &none         &rgb_ug RGB_EFR  &rgb_ug RGB_EFF    &none            &sys_reset
+                                              &to DEF       &rgb_ug RGB_TOG  &studio_unlock                                                                          &none            &none         &to DEF
             >;
             sensor-bindings = <&rgb_enc>;
         };
@@ -1029,7 +1028,7 @@
             sensor-bindings = <&vol_enc>;
         };
 
-        gaming2_layer {
+        gamenumber_layer {
             display-name = "GAMNUM";
             bindings = <
 &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                               &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
