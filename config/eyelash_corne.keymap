@@ -99,6 +99,7 @@
     #define MED 8
     #define ADJ 9
     #define CLE 10
+    #define GAMNUM 11
 
     // Define timing
     #define QUICK_TAP_MS 175
@@ -136,7 +137,6 @@
 / {
     behaviors {
 // Smart, Auto-Layer; Tri-State ──────────────────────────────────────────
-    // smart layer, smart word
         smart_shft: smart_shift {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -161,7 +161,7 @@
             ignored-layers = <MED>;
         };
 
-        // hold to momentary layer, tap to tri-state MEDIA
+    // hold to momentary layer, tap to tri-state MEDIA
         mo_tMED: mo_triMEDIA {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -171,7 +171,7 @@
             // quick-tap-ms = <200>;
         };
 
-        // hold to FN, tap to backspace, shift to F3
+    // hold to FN, tap to backspace, shift to F3
         fn_bs_f3: fn_backspace_f3 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -188,13 +188,6 @@
             ignored-layers = <DEF COL NAV>;
         };
 
-        // swap_gr: cmd_grave_swapper {
-        //     compatible = "zmk,behavior-tri-state";
-        //     #binding-cells = <0>;
-        //     bindings = <&kt LGUI>, <&kp GRAVE>, <&kt LGUI>;
-        //     ignored-key-positions = <LT5 LM5 LT2 LT3 LM2 LM3>;
-        // };
-
     // smart EXQWER layer and morph grave
         aEXQW: auto_layer_EXQWERT {
             compatible = "zmk,behavior-auto-layer";
@@ -205,7 +198,246 @@
             ignore-modifiers;
         };
 
+    // SMART-GRAVE for QWERTY setting 1: hold to EXQWER, tap to sticky-EXQWER, double-tap to auto-EXQWER, command/shift morph into grave
+        smart_gr: smart_EXQWERT_grave {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&td_EXQW>, <&kp GRAVE>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+            keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        };
+
+    // smart EXARSTG layer and morph grave
+        aEXAR: auto_layer_EXARSTG {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
+            ignore-alphas;
+            // ignore-numbers;
+            ignore-modifiers;
+        };
+
+    // SMART-GRAVE for EXARSTG setting 1: hold to EXQWER, tap to sticky-EXQWER, double-tap to auto-EXQWER, command/shift morph into grave
+        smartEXAR_gr: smart_EXARSTG_grave {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&td_EXAR>, <&kp GRAVE>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+            keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        };
+
+    // smart NUMBER layer and morph grave
+        aNUM: auto_layer_NUMBER {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <PLUS MINUS EQUAL TAB INS>;
+            // ignore-alphas;
+            ignore-numbers;
+            ignore-modifiers;
+        };
+// Sticky ────────────────────────────────────────────────────────────────
+        kpsk: keypress_sticky-key {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&sk>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+        };
+
+        // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
+        sls: sticky-layer-slow {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&mo>;
+            release-after-ms = <1500>;              // default 1000
+            /delete-property/ quick-release;        //no quic-release
+            ignore-modifiers;                       // allow chording sticky mods & layers
+        };
+
+        //  hold to key press, tap to sticky layer, no quick-release
+        kpsls: keypress_sticky-layer-slow {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&sls>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+        };
+
+        //  hold to key press, tap to sticky layer
+        kpsl: keypress_stickylayer {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&sl>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+        };
+
+        //  hold to momentary layer, tap to sticky-layer slow
+        mosls: layer_stickylayer_slow {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&sls>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+        };
+// Hold-tap ──────────────────────────────────────────────────────────────
+        //  layer-tap config, change flavor to balanced
+        ltb: layertap_balance {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+        };
+
+        //  layer-tap config, hold to layer, double-tap and holding to repeat key
+        ltq: layertap_quick {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <220>;
+        };
+// Timeless Homerow-Mods ─────────────────────────────────────────────────
+        hml: homerow_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;          // repeat on tap-into-hold
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS LT5 LM5>;
+            hold-trigger-on-release;                // delay positional check until key-release
+        };
+
+        hmr: homerow_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_L KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hmlq: homerow_mode_left_quick {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS>;
+            // hold-trigger-on-release;
+        };
+
+        hmrq: homerow_mode_right_quick {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_L KEYS_L THUMBS>;
+            // hold-trigger-on-release;
+        };
+
+        hml_aEXQW: hml_autoEXQWER {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&aEXQW>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hml_aEXAR: hml_autoEXARST {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&aEXAR>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
 // Tap Dance ─────────────────────────────────────────────────────────────
+    // arrows, arrows with modifier
+        td_up: tapdance_up {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp UP>, <&mt LG(UP) LA(UP)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_lf: tapdance_left {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT>, <&mt LG(LEFT) LA(LEFT)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_dn: tapdance_down {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp DOWN>, <&mt LG(DOWN) LA(DOWN)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_rt: tapdance_right {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT>, <&mt LG(RIGHT) LA(RIGHT)>;
+            tapping-term-ms = <250>;
+        };
+
+    // symbols
+        td_PAR: tapdance_PAR {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt RPAR LPAR>, <&m_dPAR>;
+        };
+
+        td_BKT: tapdance_BKT {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt RBKT LBKT>, <&m_dBKT>;
+        };
+
+        td_BRC: tapdance_BRC {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt RBRC LBRC>, <&m_dBRC>;
+        };
+
+        td_LTGT: tapdance_LTGT {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt GT LT>, <&m_LTGT>;
+        };
+
+    // layer switch
+        td_EXQW: tapdance_EXQWER {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mosls EXQW EXQW>, <&aEXQW EXQW>;
+        };
+
+        td_EXAR: tapdance_EXARST {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mosls EXAR EXAR>, <&aEXAR EXAR>;
+        };
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
             display-name = "Shift/Caps Lock Tap Dance";
@@ -214,27 +446,460 @@
         };
     };
 
-// Combos ────────────────────────────────────────────────────────────────
+// ──────── END behaviors ────────────────────────────────────────────────
     combos {
         compatible = "zmk,combos";
+// HRMs ──────────────────────────────────────────────────────────────────
+        cb_hml_AS {
+            bindings = <&hml LC(LALT) MINUS>;
+            key-positions = <LM3 LM4>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_hml_SD {
+            bindings = <&hml LA(LGUI) EQUAL>;
+            key-positions = <LM2 LM3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_hml_DF {
+            bindings = <&hml LG(LSHFT) RET>;
+            key-positions = <LM1 LM2>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_hml_SF {
+            bindings = <&hml_aEXQW LA(LSHFT) EXQW>;
+            key-positions = <LM1 LM3>;
+            layers = <DEF EXQW>;                        //Only in Default & defaultEX layer
+        };
+
+        cb_hml_cSF {
+            bindings = <&hml_aEXAR LA(LSHFT) EXAR>;
+            key-positions = <LM1 LM3>;
+            layers = <COL EXAR>;                        //Only in Colemak & colemakEX layer
+        };
+
+        cb_hmr_JK {
+            bindings = <&hmr RS(RGUI) LBKT>;
+            key-positions = <RM1 RM2>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //Only in Default, Colemak & Gaming layer
+        };
+
+        cb_hmr_KL {
+            bindings = <&hmr RA(RGUI) RBKT>;
+            key-positions = <RM2 RM3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //Only in Default, Colemak & Gaming layer
+        };
+
+        cb_hmr_LSemi {
+            bindings = <&hmr RA(RCTRL) EQUAL>;
+            key-positions = <RM3 RM4>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //Only in Default, Colemak & Gaming layer
+        };
+// left hand: vertical ───────────────────────────────────────────────────
+        cb_QA {
+            bindings = <&mt QMARK EXCL>;
+            key-positions = <LT4 LM4>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_WS {
+            bindings = <&mt AMPS AT>;
+            key-positions = <LT3 LM3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_ED {
+            bindings = <&mt STAR HASH>;
+            key-positions = <LT2 LM2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_RF {
+            bindings = <&mt LA(Y) DLLR>;
+            key-positions = <LT1 LM1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_TG {
+            bindings = <&mt CARET PRCNT>;
+            key-positions = <LT0 LM0>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        // cb_SX {
+        //     bindings = <&mt SEMICOLON COMMA>;
+        //     key-positions = <LM3 LB3>;
+        //     timeout-ms = <COMBO_TERM_SLOW>;
+        //     require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        //     layers = <DEF COL>;
+        // };
+
+        cb_DC {
+            bindings = <&mt SEMICOLON COMMA>;
+            key-positions = <LM2 LB2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_FV {
+            bindings = <&mt COLON DOT>;
+            key-positions = <LM1 LB1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_GB {
+            bindings = <&mt DQT SQT>;
+            key-positions = <LM0 LB0>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// left hand: horizontal ─────────────────────────────────────────────────
+        cb_WE {
+            bindings = <&kp GRAVE>;
+            key-positions = <LT2 LT3>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_ER {
+            bindings = <&swap_tab>;
+            key-positions = <LT1 LT2>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL NAV>;                         //Only in Default, Colemak & Navipad layer
+        };
+
+        cb_XC {
+            bindings = <&kp LG(C)>;
+            key-positions = <LB2 LB3>;
+            layers = <DEF COL>;                             //Only in Default & Colemak layer
+        };
+
+        cb_CV {
+            bindings = <&kp UNDER>;
+            key-positions = <LB1 LB2>;
+            layers = <DEF COL>;                             //Only in Default & Colemak layer
+        };
+
+        cb_XV {
+            bindings = <&kp LG(V)>;
+            key-positions = <LB1 LB3>;
+            layers = <DEF COL>;                             //Only in Default & Colemak layer
+        };
+// left hand: diagonal ───────────────────────────────────────────────────
+    // aka command+[, backward
+        cb_ES {
+            bindings = <&kp LG(LBKT)>;
+            key-positions = <LT2 LM3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+    // aka command+], forward
+        cb_EF {
+            bindings = <&kp LG(RBKT)>;
+            key-positions = <LT2 LM1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_DX {
+            bindings = <&kp FSLH>;
+            key-positions = <LM2 LB3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_DV {
+            bindings = <&mt PIPE BSLH>;
+            key-positions = <LM2 LB1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// right hand: horizontal ────────────────────────────────────────────────
+        // cb_NM {
+        //     bindings = <&kp UNDER>;
+        //     key-positions = <RB0 RB1>;
+        //     timeout-ms = <COMBO_TERM_FAST>;
+        //     require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        // };
+
+        cb_MLt {
+            bindings = <&kp UNDER>;
+            key-positions = <RB1 RB2>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_LtGt {
+            bindings = <&kp PIPE>;
+            key-positions = <RB2 RB3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// right hand: vertical ──────────────────────────────────────────────────
+        cb_YH {
+            bindings = <&kp CARET>;
+            key-positions = <RT0 RM0>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_UJ {
+            bindings = <&kp PLUS>;
+            key-positions = <RT1 RM1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_IK {
+            bindings = <&kp STAR>;
+            key-positions = <RT2 RM2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_OL {
+            bindings = <&kp AMPS>;
+            key-positions = <RT3 RM3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_JM {
+            bindings = <&kp MINUS>;
+            key-positions = <RM1 RB1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_KLt {
+            bindings = <&kp FSLH>;
+            key-positions = <RM2 RB2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_LGt {
+            bindings = <&kp BSLH>;
+            key-positions = <RM3 RB3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
 // functional ────────────────────────────────────────────────────────────
         softoff {
             bindings = <&soft_off>;
             key-positions = <1 15 29>;
         };
+
+        cb_RT {
+            bindings = <&td_PAR>;
+            key-positions = <LT0 LT1>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_FG {
+            bindings = <&td_BKT>;
+            key-positions = <LM0 LM1>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_VB {
+            bindings = <&td_LTGT>;
+            key-positions = <LB0 LB1>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_FB {
+            bindings = <&td_BRC>;
+            key-positions = <LM1 LB0>;
+            // timeout-ms = <COMBO_TERM_SLOW>;
+            // require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// left hand: only in Gaming layer ───────────────────────────────────────
+        cb_TabQ {
+            bindings = <&kp ESC>;
+            key-positions = <LT4 LT5>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <GAM>;                             //only in Gaming layer
+        };
+
+        cb_QW {
+            bindings = <&kp GRAVE>;
+            key-positions = <LT3 LT4>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <GAM>;                             //only in Gaming layer
+        };
+
+        cb_ZX {
+            bindings = <&kp CAPS>;
+            key-positions = <LB3 LB4>;
+            layers = <GAM>;                             //only in Gaming layer
+        };
+// Layer switch ──────────────────────────────────────────────────────────
+        cb_WA {
+            bindings = <&tog COL>;
+            key-positions = <LT3 LM4>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_RG {
+            bindings = <&tog GAM>;
+            key-positions = <LT1 LM0>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_SZ {
+            bindings = <&tog ADJ>;
+            key-positions = <LM3 LB4>;
+            layers = <DEF COL ADJ>;                     //Only in Default & Colemak & Adjust layer
+        };
+
+        cb_WR {
+            bindings = <&tMED>;
+            key-positions = <LT1 LT3>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_LFslh {
+            bindings = <&tog ADJ>;
+            key-positions = <RM3 RB4>;
+            layers = <DEF COL ADJ>;                     //Only in Default & Colemak & Adjust layer
+        };
+
+        cb_UIO {
+            bindings = <&tog CLE>;
+            key-positions = <RT1 RT2 RT3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL CLE>;                     //Only in Default & Colemak & Clean layer
+        };
+
+    // activate NumberMouse auto-layer
+        cb_LH1LH2 {
+            bindings = <&aNUM NUM>;
+            key-positions = <LH1 LH2>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+    // activate NaviPad auto-layer
+        cb_LH0LH1 {
+            bindings = <&math_word NAV>;
+            key-positions = <LH0 LH1>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// ──────── END Combos ───────────────────────────────────────────────────
+    };
+
+    macros {
+//Macros ─────────────────────────────────────────────────
+        m_dPAR: m_double_PAR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR &kp RPAR &kp LEFT>;
+        };
+
+        m_dBKT: m_doubel_BKT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT &kp RBKT &kp LEFT>;
+        };
+
+        m_dBRC: m_double_BRC {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBRC &kp RBRC &kp LEFT>;
+        };
+
+        m_LTGT: m_LT_GT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LT &kp GT &kp LEFT>;
+        };
+
+        m_Q4: m_Q_Four {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp Q &kp N4>;
+        };
+// ──────── END Macros ───────────────────────────────────────────────────
     };
 
 // Encoder ───────────────────────────────────────────────────────────────
-    rgb_encoder: rgb_encoder {
+    rgb_enc: rgb_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
     };
 
-    scroll_encoder: scroll_encoder {
+    scrl_enc: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        tap-ms = <100>;
+    };
+
+    vol_enc: volume_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LA(LS(C_VOL_UP))>, <&kp LA(LS(C_VOL_DN))>;
+    };
+
+    play_enc: player_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp C_NEXT>, <&kp C_PREV>;
         tap-ms = <100>;
     };
 
@@ -245,49 +910,134 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&td0       &kp A  &kp S  &kp D     &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp SPACE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &kp LGUI  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &kp RALT
+&mt INS TAB                &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
+&smart_gr                  &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+&mt LC(LA(LS(LGUI))) CAPS  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+                                                              &ltb NUM ESC             &ltb NAV BSPC            &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
-
-             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&vol_enc>;
         };
 
-        lower_layer {
-            display-name = "NUMBER";
+        colemakDH_layer {
+            display-name = "ARSTGM";
             bindings = <
-&trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &mmv MOVE_UP                     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
-&trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
-&trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &mmv MOVE_DOWN                   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
-                                         &trans        &trans        &trans                                                                          &kp INS          &kp DEL          &trans
+&trans         &trans  &trans       &hml LC(LA(LS(LGUI))) F  &kp P          &kp B                     &trans          &kp J   &kp L          &hmr RC(RA(RS(RGUI))) U  &kp Y        &kp SEMI      &trans
+&smartEXAR_gr  &trans  &hml LALT R  &hml LGUI S              &hmlq LSHFT T  &trans            &trans  &trans  &trans  &kp M   &hmrq RSHFT N  &hmr RGUI E              &hmr RALT I  &hmr RCTRL O  &trans
+&trans         &trans  &trans       &trans                   &kp D          &kp V   &trans            &trans          &kp K   &kp H          &trans                   &trans       &trans        &trans
+                                    &trans                   &trans         &trans                                    &trans  &trans         &trans
             >;
-
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&vol_enc>;
         };
 
-        raise_layer {
-            display-name = "SYMBOL";
+        gaming_layer {
+            display-name = "GAME";
             bindings = <
-&trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&trans  &bt BT_CLR    &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5   &trans                    &mmv MOVE_DOWN                   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                                    &trans     &trans     &kp SPACE                                                             &kp RET    &trans     &trans
+&kp TAB    &kp T  &kp Q  &kp W       &kp E      &kp R                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &fn_bs_f3
+&kp LCTRL  &kp G  &kp A  &kp S       &kp D      &kp F                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
+&kp LALT   &kp B  &kp Z  &kp X       &kp C      &kp V      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
+                         &mo GAMNUM  &kp LSHFT  &kp SPACE                                    &trans  &trans  &trans
             >;
-
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&vol_enc>;
         };
 
-        layer_3 {
-            display-name = "Fn";
+        exqwert_layer {
+            display-name = "EXQWER";
             bindings = <
-&studio_unlock  &kp F1      &kp F2     &kp F3       &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans          &trans      &mkp LCLK  &mkp MCLK    &mkp RCLK  &mkp MB4                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                                       &trans       &trans     &trans                                                                   &trans       &trans     &trans
+&trans            &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
+&caps_word        &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
+&kpsk LSHFT LALT  &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
+                                             &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        exarstg_layer {
+            display-name = "EXARST";
+            bindings = <
+&trans            &kp J         &kp L        &hml LC(LA(LS(LGUI))) U   &kp Y          &kp SEMI                     &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) F  &kp P        &kp B         &trans
+&caps_word        &hml LCTRL M  &hml LALT N  &hml LGUI E               &hmlq LSHFT I  &kp O                &trans  &trans  &trans  &kp A   &hmrq RSHFT R  &hmr RGUI S              &hmr RALT T  &hmr RCTRL G  &trans
+&kpsk LSHFT LALT  &kp K         &kp H        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp D        &kp V         &trans
+                                             &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        navipad_layer {
+            display-name = "NAVPAD";
+            bindings = <
+&trans  &kp PG_UP  &kp HOME  &td_up             &kp END    &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0        &m_dPAR
+&none   &kp PG_DN  &td_lf    &td_dn             &td_rt     &key_repeat          &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL STAR  &kp EQUAL
+&none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT  &kp DEL    &trans                    &mmv MOVE_DOWN                   &kp MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp FSLH         &kp COLON
+                             &mt LGUI K_CANCEL  &trans     &trans                                                                &trans     &kp KP_DOT         &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        hotkeyfn_layer {
+            display-name = "HOTFN";
+            bindings = <
+&none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
+&none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &sk LGUI        &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
+&none  &kp LA(LG(H))  &none           &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_PP                      &mmv MOVE_DOWN                   &sk LSHFT       &kp F1          &kp F2        &kp F3        &kp F10         &sk LALT
+                                      &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
+            >;
+            sensor-bindings = <&play_enc>;
+        };
+
+        numbermouse_layer {
+            display-name = "NUMOU";
+            bindings = <
+&trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                               &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
+&kp EQUAL        &hml LCTRL N6  &hml LALT N7  &hml LGUI N8       &hmlq LSHFT N9  &kp N0               &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
+&mt LSHFT MINUS  &mkp MB4       &mkp LCLK     &mkp MCLK          &mkp RCLK       &mkp MB5   &trans                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+                                              &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                             &trans    &trans           &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        media_layer {
+            display-name = "MEDIA";
+            bindings = <
+&mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
+&kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &none          &none         &none       &kp C_VOL_DN  &none
+&kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &none
+                                           &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans         &trans
             >;
 
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        adjust_layer {
+            display-name = "ADJUST";
+            bindings = <
+&bt BT_CLR   &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3     &bt BT_SEL 4                                         &rgb_ug RGB_SPI                   &out OUT_BLE     &out OUT_USB  &none            &ext_power EP_ON   &rgb_ug RGB_SPI  &none
+&bootloader  &bt BT_CLR_ALL  &rgb_ug RGB_SAI  &none         &none            &rgb_ug RGB_BRI                      &rgb_ug RGB_EFR &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &none         &none            &ext_power EP_OFF  &rgb_ug RGB_SPD  &bootloader
+&sys_reset   &none           &rgb_ug RGB_SAD  &none         &none            &rgb_ug RGB_BRD  &rgb_ug RGB_TOG                     &rgb_ug RGB_SPD                   &rgb_ug RGB_HUD  &none         &rgb_ug RGB_EFR  &rgb_ug RGB_EFF    &none            &sys_reset
+                                              &to DEF       &rgb_ug RGB_TOG  &studio_unlock                                                                         &none            &none         &to DEF
+            >;
+            sensor-bindings = <&rgb_enc>;
+        };
+
+        clean_layer {
+            display-name = "CLEAN";
+            bindings = <
+&none  &none  &none  &none  &none  &none                  &none         &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none           &none  &none  &none  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none  &none           &none         &none  &none  &none  &none  &none  &none
+                     &none  &none  &none                                &none  &none  &none
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        gaming2_layer {
+            display-name = "GAMNUM";
+            bindings = <
+&trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                               &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
+&kp EQUAL        &kp N6         &kp N7        &kp N8             &kp N9          &kp N0               &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
+&mt LSHFT MINUS  &mkp MB4       &mkp LCLK     &mkp MCLK          &mkp RCLK       &m_Q4      &trans                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+                                              &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                             &trans    &trans           &trans
+            >;
+            sensor-bindings = <&vol_enc>;
         };
     };
 };
