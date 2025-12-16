@@ -153,6 +153,58 @@
             ignore-modifiers;
         };
 
+        tMED: tri_state_MEDIA {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&tog MED>, <&none>, <&tog MED>;
+            ignored-key-positions = <SIDE_L KEYS_L KEYS_R LH0 LH1>;
+            ignored-layers = <MED>;
+        };
+
+        // hold to momentary layer, tap to tri-state MEDIA
+        mo_tMED: mo_triMEDIA {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&tMED>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            // quick-tap-ms = <200>;
+        };
+
+        // hold to FN, tap to backspace, shift to F3
+        fn_bs_f3: fn_backspace_f3 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mt INS BSPC>, <&kp F3>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        swap_tab: cmd_tab_swapper {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+            ignored-key-positions = <LT1 LT2 LT3 LT5 LM5 LM0>;
+            ignored-layers = <DEF COL NAV>;
+        };
+
+        // swap_gr: cmd_grave_swapper {
+        //     compatible = "zmk,behavior-tri-state";
+        //     #binding-cells = <0>;
+        //     bindings = <&kt LGUI>, <&kp GRAVE>, <&kt LGUI>;
+        //     ignored-key-positions = <LT5 LM5 LT2 LT3 LM2 LM3>;
+        // };
+
+    // smart EXQWER layer and morph grave
+        aEXQW: auto_layer_EXQWERT {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
+            ignore-alphas;
+            // ignore-numbers;
+            ignore-modifiers;
+        };
+
 // Tap Dance ─────────────────────────────────────────────────────────────
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
