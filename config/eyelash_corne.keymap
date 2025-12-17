@@ -162,16 +162,7 @@
             ignored-layers = <MED>;
         };
 
-    // tri-state test
-        tRAISE: tri_state_RAISE {
-            compatible = "zmk,behavior-tri-state";
-            #binding-cells = <0>;
-            bindings = <&tog 2>, <&none>, <&tog 2>;
-            ignored-key-positions = <SIDE_L KEYS_L KEYS_R LH0 LH1>;
-            ignored-layers = <2>;
-        };
-        
-        mo_tMED: mo_triMEDIA {          // hold to momentary layer, tap to tri-state MEDIA
+        mo_tMED: mo_triMEDIA {                  // hold to momentary layer, tap to tri-state MEDIA
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&tMED>;
@@ -180,7 +171,7 @@
             // quick-tap-ms = <200>;
         };
 
-        fn_bs_f3: fn_backspace_f3 {     // hold to FN, tap to backspace, shift to F3
+        fn_bs_f3: fn_backspace_f3 {             // hold to FN, tap to backspace, shift to F3
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mt INS BSPC>, <&kp F3>;
@@ -569,6 +560,13 @@
         #sensor-binding-cells = <0>;
         bindings = <&kp LA(LS(C_VOL_UP))>, <&kp LA(LS(C_VOL_DN))>;
     };
+
+    play_enc: player_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp C_NEXT>, <&kp C_PREV>;
+        tap-ms = <100>;
+    };
 // Keymap ────────────────────────────────────────────────────────────────
     keymap {
         compatible = "zmk,keymap";
@@ -637,6 +635,17 @@
                              &mt LGUI K_CANCEL  &trans     &trans                                                                &trans     &kp KP_DOT         &trans
             >;
             sensor-bindings = <&vol_enc>;
+        };
+
+        hotkeyfn_layer {
+            display-name = "HOTFN";
+            bindings = <
+&none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
+&none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &sk LGUI        &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
+&none  &kp LA(LG(H))  &none           &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_PP                      &mmv MOVE_DOWN                   &sk LSHFT       &kp F1          &kp F2        &kp F3        &kp F10         &sk LALT
+                                      &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
+            >;
+            sensor-bindings = <&play_enc>;
         };
     };
 };
