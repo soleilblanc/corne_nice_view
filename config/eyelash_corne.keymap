@@ -365,12 +365,17 @@
         };
 
     // layer switch
-        td_EXQW: tapdance_EXQWER {
+        td_EXQW: tapdance_EXQW {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&mosls EXQW EXQW>, <&aEXQW EXQW>;
         };
 
+        td_EXAR: tapdance_EXAR {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mosls EXAR EXAR>, <&aEXAR EXAR>;
+        };
     };
 // ──────── END behaviors ────────────────────────────────────────────────
 
