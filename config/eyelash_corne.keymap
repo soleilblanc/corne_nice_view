@@ -248,8 +248,7 @@
             ignore-modifiers;
         };
 // Sticky ────────────────────────────────────────────────────────────────
-    // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
-        sls: sticky-layer-slow {
+        sls: sticky-layer-slow {                    // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
             bindings = <&mo>;
@@ -258,8 +257,7 @@
             ignore-modifiers;                       // allow chording sticky mods & layers
         };
 
-    //  hold to momentary layer, tap to sticky-layer slow
-        mosls: layer_stickylayer_slow {
+        mosls: layer_stickylayer_slow {             //  hold to momentary layer, tap to sticky-layer slow
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&sls>;
@@ -267,6 +265,13 @@
             tapping-term-ms = <220>;
         };
 
+        kpsk: keypress_sticky-key {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&sk>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+        };
 // Hold-tap ──────────────────────────────────────────────────────────────
         ltb: layertap_balance {         //  layer-tap config, change flavor to balanced
             compatible = "zmk,behavior-hold-tap";
