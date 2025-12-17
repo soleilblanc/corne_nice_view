@@ -144,7 +144,7 @@
             mods = <(MOD_LSFT)>;
         };
 
-        math_word: auto_layer_mathword {
+        aNAV: auto_layer_NAVPAD {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
             continue-list = <UP DOWN LEFT RIGHT PLUS MINUS STAR FSLH SPACE BSPC DEL DOT KP_DOT COMMA EQUAL CARET PRCNT TAB>;
@@ -204,8 +204,8 @@
         //     ignored-key-positions = <LT5 LM5 LT2 LT3 LM2 LM3>;
         // };
 
-    // smart EXQWER layer and morph grave
-        aEXQW: auto_layer_EXQWERT {
+    // smart qwetyEX layer and morph grave
+        aEXQW: auto_layer_qwertyEX {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
             continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
@@ -214,6 +214,107 @@
             ignore-modifiers;
         };
 
+    // SMART-GRAVE for QWERTY setting 1: hold to EXQWER, tap to sticky-EXQWER, double-tap to auto-EXQWER, command/shift morph into grave
+        smart_gr: smart_qwertyEX_grave {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&td_EXQW>, <&kp GRAVE>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+            keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        };
+
+// Sticky ────────────────────────────────────────────────────────────────
+    // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
+        sls: sticky-layer-slow {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&mo>;
+            release-after-ms = <1500>;              // default 1000
+            /delete-property/ quick-release;        // no quick-release
+            ignore-modifiers;                       // allow chording sticky mods & layers
+        };
+
+    //  hold to momentary layer, tap to sticky-layer slow
+        mosls: layer_stickylayer_slow {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&sls>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+        };
+
+// Timeless Homerow-Mods ─────────────────────────────────────────────────
+        hml: homerow_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;          // repeat on tap-into-hold
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS LT5 LM5>;
+            hold-trigger-on-release;                // delay positional check until key-release
+        };
+
+        hmr: homerow_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_L KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hmlq: homerow_mode_left_quick {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS>;
+            // hold-trigger-on-release;
+        };
+
+        hmrq: homerow_mode_right_quick {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_L KEYS_L THUMBS>;
+            // hold-trigger-on-release;
+        };
+
+        hml_aEXQW: hml_autoEXQWER {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&aEXQW>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hml_aEXAR: hml_autoEXARST {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&aEXAR>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
 // Tap Dance ─────────────────────────────────────────────────────────────
         td0: td0 {
             compatible = "zmk,behavior-tap-dance";
@@ -221,11 +322,79 @@
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
+
+    // layer switch
+        td_EXQW: tapdance_EXQWER {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mosls EXQW EXQW>, <&aEXQW EXQW>;
+        };
+
     };
 // ──────── END behaviors ────────────────────────────────────────────────
 
     combos {
         compatible = "zmk,combos";
+// HRMs ──────────────────────────────────────────────────────────────────
+        cb_hml_AS {
+            bindings = <&hml LC(LALT) MINUS>;
+            key-positions = <LM3 LM4>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_hml_SD {
+            bindings = <&hml LA(LGUI) EQUAL>;
+            key-positions = <LM2 LM3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_hml_DF {
+            bindings = <&hml LG(LSHFT) RET>;
+            key-positions = <LM1 LM2>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_hml_SF {
+            bindings = <&hml_aEXQW LA(LSHFT) EXQW>;
+            key-positions = <LM1 LM3>;
+            layers = <DEF EXQW>;                        //Only in Default & defaultEX layer
+        };
+
+        cb_hml_cSF {
+            bindings = <&hml_aEXAR LA(LSHFT) EXAR>;
+            key-positions = <LM1 LM3>;
+            layers = <COL EXAR>;                        //Only in Colemak & colemakEX layer
+        };
+
+        cb_hmr_JK {
+            bindings = <&hmr RS(RGUI) LBKT>;
+            key-positions = <RM1 RM2>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //Only in Default, Colemak & Gaming layer
+        };
+
+        cb_hmr_KL {
+            bindings = <&hmr RA(RGUI) RBKT>;
+            key-positions = <RM2 RM3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //Only in Default, Colemak & Gaming layer
+        };
+
+        cb_hmr_LSemi {
+            bindings = <&hmr RA(RCTRL) EQUAL>;
+            key-positions = <RM3 RM4>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL GAM>;                     //Only in Default, Colemak & Gaming layer
+        };
 // functional ────────────────────────────────────────────────────────────
         softoff {
             bindings = <&soft_off>;
@@ -234,7 +403,7 @@
 
     // activate NaviPad auto-layer
         cb_LH0LH1 {
-            bindings = <&math_word 2>;
+            bindings = <&aNAV 2>;
             key-positions = <LH0 LH1>;
             layers = <0 1>;                         //Only in Default & Colemak layer
         };
@@ -245,6 +414,7 @@
             layers = <0 1>;                         //Only in Default & Colemak layer
         };
 
+// ──────── END Combos ───────────────────────────────────────────────────
     };
 
 // Encoder ───────────────────────────────────────────────────────────────
@@ -268,10 +438,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T                               &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&td0       &kp A  &kp S  &kp D     &kp F  &kp G                     &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LCTRL  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp SPACE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &kp LGUI  &mo 1  &lt 3 SPACE                                               &lt 3 ENTER  &mo 2  &smart_shft
+&kp TAB                    &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
+&smart_gr                  &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                      &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+&mt LC(LA(LS(LGUI))) CAPS  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B        &kp C_MUTE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
+                                                              &kp LGUI                 &mo 1                    &lt 3 SPACE                                                &lt 3 ENTER  &mo 2  &smart_shft
             >;
 
              sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
