@@ -363,11 +363,58 @@
             hold-trigger-on-release;
         };
 // Tap Dance ─────────────────────────────────────────────────────────────
-        td0: td0 {
+    // arrows, arrows with modifier
+        td_up: tapdance_up {
             compatible = "zmk,behavior-tap-dance";
-            display-name = "Shift/Caps Lock Tap Dance";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+            bindings = <&kp UP>, <&mt LG(UP) LA(UP)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_lf: tapdance_left {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT>, <&mt LG(LEFT) LA(LEFT)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_dn: tapdance_down {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp DOWN>, <&mt LG(DOWN) LA(DOWN)>;
+            tapping-term-ms = <250>;
+        };
+
+        td_rt: tapdance_right {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT>, <&mt LG(RIGHT) LA(RIGHT)>;
+            tapping-term-ms = <250>;
+        };
+
+    // symbols
+        td_PAR: tapdance_PAR {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt RPAR LPAR>, <&m_dPAR>;
+        };
+
+        td_BKT: tapdance_BKT {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt RBKT LBKT>, <&m_dBKT>;
+        };
+
+        td_BRC: tapdance_BRC {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt RBRC LBRC>, <&m_dBRC>;
+        };
+
+        td_LTGT: tapdance_LTGT {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mt GT LT>, <&m_LTGT>;
         };
 
     // layer switch
@@ -469,6 +516,40 @@
 // ──────── END Combos ───────────────────────────────────────────────────
     };
 
+    macros {
+//Macros ─────────────────────────────────────────────────
+        m_dPAR: m_double_PAR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR &kp RPAR &kp LEFT>;
+        };
+
+        m_dBKT: m_double_BKT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT &kp RBKT &kp LEFT>;
+        };
+
+        m_dBRC: m_double_BRC {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBRC &kp RBRC &kp LEFT>;
+        };
+
+        m_LTGT: m_LT_GT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LT &kp GT &kp LEFT>;
+        };
+
+        m_1: macro_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp Q &kp N4>;
+        };
+// ──────── END Macros ───────────────────────────────────────────────────
+    };
+
 // Encoder ───────────────────────────────────────────────────────────────
     rgb_encoder: rgb_encoder {
         compatible = "zmk,behavior-sensor-rotate";
@@ -543,6 +624,17 @@
 &caps_word        &hml LCTRL M  &hml LALT N  &hml LGUI E               &hmlq LSHFT I  &kp O                &trans  &trans  &trans  &kp A   &hmrq RSHFT R  &hmr RGUI S              &hmr RALT T  &hmr RCTRL G  &trans
 &kpsk LSHFT LALT  &kp K         &kp H        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp D        &kp V         &trans
                                              &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
+
+        navipad_layer {
+            display-name = "NAVPAD";
+            bindings = <
+&trans  &kp PG_UP  &kp HOME  &td_up             &kp END    &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0        &m_dPAR
+&none   &kp PG_DN  &td_lf    &td_dn             &td_rt     &key_repeat          &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL STAR  &kp EQUAL
+&none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT  &kp DEL    &trans                    &mmv MOVE_DOWN                   &kp MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp FSLH         &kp COLON
+                             &mt LGUI K_CANCEL  &trans     &trans                                                                &trans     &kp KP_DOT         &trans
             >;
             sensor-bindings = <&vol_enc>;
         };
