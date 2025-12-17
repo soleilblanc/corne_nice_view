@@ -691,5 +691,16 @@
             >;
             sensor-bindings = <&vol_enc>;
         };
+
+        gamenumber_layer {
+            display-name = "GAMNUM";
+            bindings = <
+&trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                               &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
+&kp EQUAL        &kp N6         &kp N7        &kp N8             &kp N9          &kp N0               &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
+&mt LSHFT MINUS  &mkp MB4       &mkp LCLK     &mkp MCLK          &mkp RCLK       &m_1       &trans                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+                                              &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                             &trans    &trans           &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
     };
 };
