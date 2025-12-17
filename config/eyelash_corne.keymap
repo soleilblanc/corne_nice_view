@@ -493,15 +493,15 @@
 
     // activate NaviPad auto-layer
         cb_LH0LH1 {
-            bindings = <&aNAV 2>;
+            bindings = <&aNAV NAV>;
             key-positions = <LH0 LH1>;
-            layers = <0 1>;                         //Only in Default & Colemak layer
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
         };
 
         cb_WR {
-            bindings = <&tRAISE>;
+            bindings = <&tMED>;
             key-positions = <LT1 LT3>;
-            layers = <0 1>;                         //Only in Default & Colemak layer
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
         };
 
 // ──────── END Combos ───────────────────────────────────────────────────
