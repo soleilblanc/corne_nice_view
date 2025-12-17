@@ -680,5 +680,16 @@
             >;
             sensor-bindings = <&rgb_enc>;
         };
+
+        clean_layer {
+            display-name = "CLEAN";
+            bindings = <
+&none  &none  &none  &none  &none  &none                  &none         &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none           &none  &none  &none  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none  &none           &none         &none  &none  &none  &none  &none  &none
+                     &none  &none  &none                                &none  &none  &none
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
     };
 };
