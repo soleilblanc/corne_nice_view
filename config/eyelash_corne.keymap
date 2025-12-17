@@ -675,7 +675,7 @@
             bindings = <
 &bt BT_CLR   &bt BT_SEL 0    &bt BT_SEL 1     &bt BT_SEL 2  &bt BT_SEL 3     &bt BT_SEL 4                                       &rgb_ug RGB_SPI                   &out OUT_BLE     &out OUT_USB  &none            &none              &rgb_ug RGB_SPI  &none
 &bootloader  &bt BT_CLR_ALL  &rgb_ug RGB_SAI  &none         &none            &rgb_ug RGB_BRI                   &rgb_ug RGB_EFR  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &none         &none            &none              &rgb_ug RGB_SPD  &bootloader
-&sys_reset   &none           &rgb_ug RGB_SAD  &none         &none            &rgb_ug RGB_BRD  &rgb_ug RGB_TOG                   &rgb_ug RGB_SPD                   &rgb_ug RGB_HUD  &none         &rgb_ug RGB_EFR  &rgb_ug RGB_EFF    &none            &none
+&sys_reset   &none           &rgb_ug RGB_SAD  &none         &none            &rgb_ug RGB_BRD  &rgb_ug RGB_TOG                   &rgb_ug RGB_SPD                   &rgb_ug RGB_HUD  &none         &rgb_ug RGB_EFR  &rgb_ug RGB_EFF    &none            &sys_reset
                                               &to DEF       &rgb_ug RGB_TOG  &studio_unlock                                                                       &none            &none         &to DEF
             >;
             sensor-bindings = <&rgb_enc>;
