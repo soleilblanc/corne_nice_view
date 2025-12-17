@@ -161,12 +161,13 @@
             ignored-layers = <MED>;
         };
 
-        tMED: tri_state_MEDIA {
+    // tri-state test
+        tRAISE: tri_state_RAISE {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
-            bindings = <&tog MED>, <&none>, <&tog MED>;
+            bindings = <&tog 2>, <&none>, <&tog 2>;
             ignored-key-positions = <SIDE_L KEYS_L KEYS_R LH0 LH1>;
-            ignored-layers = <MED>;
+            ignored-layers = <2>;
         };
 
         // hold to momentary layer, tap to tri-state MEDIA
@@ -235,6 +236,12 @@
         cb_LH0LH1 {
             bindings = <&math_word 2>;
             key-positions = <LH0 LH1>;
+            layers = <0 1>;                         //Only in Default & Colemak layer
+        };
+
+        cb_WR {
+            bindings = <&tRAISE>;
+            key-positions = <LT1 LT3>;
             layers = <0 1>;                         //Only in Default & Colemak layer
         };
 
