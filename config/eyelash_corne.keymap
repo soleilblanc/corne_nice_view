@@ -223,6 +223,15 @@
             keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         };
 
+    // smart colemakEX layer and morph grave
+        aEXAR: auto_layer_colemakEX {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
+            ignore-alphas;
+            // ignore-numbers;
+            ignore-modifiers;
+        };
 // Sticky ────────────────────────────────────────────────────────────────
     // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
         sls: sticky-layer-slow {
@@ -292,7 +301,7 @@
             // hold-trigger-on-release;
         };
 
-        hml_aEXQW: hml_autoEXQWER {
+        hml_aEXQW: hml_autoEXQW {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&aEXQW>;
@@ -304,7 +313,7 @@
             hold-trigger-on-release;
         };
 
-        hml_aEXAR: hml_autoEXARST {
+        hml_aEXAR: hml_autoEXAR {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&aEXAR>;
