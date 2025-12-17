@@ -535,5 +535,16 @@
             >;
             sensor-bindings = <&vol_enc>;
         };
+
+        exarstg_layer {
+            display-name = "EXARST";
+            bindings = <
+&trans            &kp J         &kp L        &hml LC(LA(LS(LGUI))) U   &kp Y          &kp SEMI                     &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) F  &kp P        &kp B         &trans
+&caps_word        &hml LCTRL M  &hml LALT N  &hml LGUI E               &hmlq LSHFT I  &kp O                &trans  &trans  &trans  &kp A   &hmrq RSHFT R  &hmr RGUI S              &hmr RALT T  &hmr RCTRL G  &trans
+&kpsk LSHFT LALT  &kp K         &kp H        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp D        &kp V         &trans
+                                             &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
     };
 };
