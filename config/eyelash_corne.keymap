@@ -658,5 +658,16 @@
             >;
             sensor-bindings = <&vol_enc>;
         };
+
+        media_layer {
+            display-name = "MEDIA";
+            bindings = <
+&mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV     &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
+&kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &none          &none         &none       &kp C_VOL_DN  &none
+&kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN   &kp C_BRI_UP  &none       &kp C_MUTE    &none
+                                           &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans         &trans
+            >;
+            sensor-bindings = <&vol_enc>;
+        };
     };
 };
