@@ -252,6 +252,24 @@
             tapping-term-ms = <220>;
         };
 
+// Hold-tap ──────────────────────────────────────────────────────────────
+        ltb: layertap_balance {         //  layer-tap config, change flavor to balanced
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+        };
+
+        //  layer-tap config, hold to layer, double-tap and holding to repeat key
+        ltq: layertap_quick {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <220>;
+        };
 // Timeless Homerow-Mods ─────────────────────────────────────────────────
         hml: homerow_mod_left {
             compatible = "zmk,behavior-hold-tap";
@@ -447,10 +465,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB                    &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                &kp UP                &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&smart_gr                  &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                      &kp LEFT  &kp ENTER  &kp RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&mt LC(LA(LS(LGUI))) CAPS  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B        &kp C_MUTE              &kp DOWN              &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                                                              &kp LGUI                 &mo 1                    &lt 3 SPACE                                                &lt 3 ENTER  &mo 2  &smart_shft
+&mt INS TAB                &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                &kp UP               &kp Y        &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
+&smart_gr                  &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                      &kp LEFT  &kp RET   &kp RIGHT  &kp H        &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+&mt LC(LA(LS(LGUI))) CAPS  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B        &kp C_MUTE              &kp DOWN             &kp N        &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+                                                              &kp LGUI                 &mo 1                    &lt 3 SPACE                                               &lt 3 ENTER  &mo 2          &smart_shft
             >;
 
              sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
