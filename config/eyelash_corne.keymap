@@ -264,7 +264,7 @@
             tapping-term-ms = <220>;
         };
 // Hold-tap ──────────────────────────────────────────────────────────────
-        ltb: layertap_balance {         //  layer-tap config, change flavor to balanced
+        ltb: layertap_balance {                 // layer-tap config, change flavor to balanced
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&kp>;
@@ -272,8 +272,7 @@
             tapping-term-ms = <200>;
         };
 
-        //  layer-tap config, hold to layer, double-tap and holding to repeat key
-        ltq: layertap_quick {
+        ltq: layertap_quick {                   // layer-tap config, hold to layer, double-tap and holding to repeat key
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&kp>;
@@ -288,10 +287,10 @@
             bindings = <&kp>, <&kp>;
             flavor = "balanced";
             tapping-term-ms = <280>;
-            quick-tap-ms = <QUICK_TAP_MS>;          // repeat on tap-into-hold
+            quick-tap-ms = <QUICK_TAP_MS>;              // repeat on tap-into-hold
             require-prior-idle-ms = <150>;
             hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS LT5 LM5>;
-            hold-trigger-on-release;                // delay positional check until key-release
+            hold-trigger-on-release;                    // delay positional check until key-release
         };
 
         hmr: homerow_mod_right {
@@ -485,25 +484,332 @@
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
             layers = <DEF COL GAM>;                     //Only in Default, Colemak & Gaming layer
         };
+// left hand: vertical ───────────────────────────────────────────────────
+        cb_QA {
+            bindings = <&mt QMARK EXCL>;
+            key-positions = <LT4 LM4>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_WS {
+            bindings = <&mt AMPS AT>;
+            key-positions = <LT3 LM3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_ED {
+            bindings = <&mt STAR HASH>;
+            key-positions = <LT2 LM2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_RF {
+            bindings = <&mt LA(Y) DLLR>;
+            key-positions = <LT1 LM1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_TG {
+            bindings = <&mt CARET PRCNT>;
+            key-positions = <LT0 LM0>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        // cb_SX {
+        //     bindings = <&mt SEMICOLON COMMA>;
+        //     key-positions = <LM3 LB3>;
+        //     timeout-ms = <COMBO_TERM_SLOW>;
+        //     require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        //     layers = <DEF COL>;
+        // };
+
+        cb_DC {
+            bindings = <&mt SEMICOLON COMMA>;
+            key-positions = <LM2 LB2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_FV {
+            bindings = <&mt COLON DOT>;
+            key-positions = <LM1 LB1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_GB {
+            bindings = <&mt DQT SQT>;
+            key-positions = <LM0 LB0>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// left hand: horizontal ─────────────────────────────────────────────────
+        cb_WE {
+            bindings = <&kp GRAVE>;
+            key-positions = <LT2 LT3>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_ER {
+            bindings = <&swap_tab>;
+            key-positions = <LT1 LT2>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL NAV>;                     //Only in Default, Colemak & Navipad layer
+        };
+
+        cb_XC {
+            bindings = <&kp LG(C)>;
+            key-positions = <LB2 LB3>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_CV {
+            bindings = <&kp UNDER>;
+            key-positions = <LB1 LB2>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_XV {
+            bindings = <&kp LG(V)>;
+            key-positions = <LB1 LB3>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// left hand: diagonal ───────────────────────────────────────────────────
+        cb_ES {         // aka command+[, backward
+            bindings = <&kp LG(LBKT)>;
+            key-positions = <LT2 LM3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_EF {         // aka command+], forward
+            bindings = <&kp LG(RBKT)>;
+            key-positions = <LT2 LM1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_DX {
+            bindings = <&kp FSLH>;
+            key-positions = <LM2 LB3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_DV {
+            bindings = <&mt PIPE BSLH>;
+            key-positions = <LM2 LB1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// right hand: vertical ──────────────────────────────────────────────────
+        cb_YH {
+            bindings = <&kp CARET>;
+            key-positions = <RT0 RM0>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_UJ {
+            bindings = <&kp PLUS>;
+            key-positions = <RT1 RM1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_IK {
+            bindings = <&kp STAR>;
+            key-positions = <RT2 RM2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_OL {
+            bindings = <&kp AMPS>;
+            key-positions = <RT3 RM3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_JM {
+            bindings = <&kp MINUS>;
+            key-positions = <RM1 RB1>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_KLt {
+            bindings = <&kp FSLH>;
+            key-positions = <RM2 RB2>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_LGt {
+            bindings = <&kp BSLH>;
+            key-positions = <RM3 RB3>;
+            timeout-ms = <COMBO_TERM_SLOW>;
+            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+// right hand: horizontal ────────────────────────────────────────────────
+        // cb_NM {
+        //     bindings = <&kp UNDER>;
+        //     key-positions = <RB0 RB1>;
+        //     timeout-ms = <COMBO_TERM_FAST>;
+        //     require-prior-idle-ms = <COMBO_IDLE_FAST>;
+        // };
+
+        cb_MLt {
+            bindings = <&kp UNDER>;
+            key-positions = <RB1 RB2>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_LtGt {
+            bindings = <&kp PIPE>;
+            key-positions = <RB2 RB3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
 // functional ────────────────────────────────────────────────────────────
         softoff {
             bindings = <&soft_off>;
             key-positions = <1 15 29>;
         };
 
-    // activate NaviPad auto-layer
-        cb_LH0LH1 {
-            bindings = <&aNAV NAV>;
-            key-positions = <LH0 LH1>;
+        cb_RT {
+            bindings = <&td_PAR>;
+            key-positions = <LT0 LT1>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
             layers = <DEF COL>;                         //Only in Default & Colemak layer
         };
 
+        cb_FG {
+            bindings = <&td_BKT>;
+            key-positions = <LM0 LM1>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_VB {
+            bindings = <&td_LTGT>;
+            key-positions = <LB0 LB1>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_FB {
+            bindings = <&td_BRC>;
+            key-positions = <LM1 LB0>;
+            // timeout-ms = <COMBO_TERM_SLOW>;
+            // require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+// left hand: only in Gaming layer ───────────────────────────────────────
+        cb_TabQ {
+            bindings = <&kp ESC>;
+            key-positions = <LT4 LT5>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <GAM>;                             //only in Gaming layer
+        };
+
+        cb_QW {
+            bindings = <&kp GRAVE>;
+            key-positions = <LT3 LT4>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <GAM>;                             //only in Gaming layer
+        };
+
+        cb_ZX {
+            bindings = <&kp CAPS>;
+            key-positions = <LB3 LB4>;
+            layers = <GAM>;                             //only in Gaming layer
+        };
+// Layer switch ──────────────────────────────────────────────────────────
+        cb_WA {
+            bindings = <&tog COL>;
+            key-positions = <LT3 LM4>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_RG {
+            bindings = <&tog GAM>;
+            key-positions = <LT1 LM0>;
+            layers = <DEF COL GAM>;                     //Only in Default & Colemak & Gaming layer
+        };
+
+        cb_SZ {
+            bindings = <&tog ADJ>;
+            key-positions = <LM3 LB4>;
+            layers = <DEF COL ADJ>;                     //Only in Default & Colemak & Adjust layer
+        };
+
+        cb_LFslh {
+            bindings = <&tog ADJ>;
+            key-positions = <RM3 RB4>;
+            layers = <DEF COL ADJ>;                     //Only in Default & Colemak & Adjust layer
+        };
+
+        cb_UIO {
+            bindings = <&tog CLE>;
+            key-positions = <RT1 RT2 RT3>;
+            timeout-ms = <COMBO_TERM_FAST>;
+            require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <DEF COL CLE>;                     //Only in Default & Colemak & Clean layer
+        };
+    
         cb_WR {
             bindings = <&tMED>;
             key-positions = <LT1 LT3>;
             layers = <DEF COL>;                         //Only in Default & Colemak layer
         };
 
+        cb_LH1LH2 {         // activate NumMouse auto-layer
+            bindings = <&aNUM NUM>;
+            key-positions = <LH1 LH2>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
+
+        cb_LH0LH1 {         // activate NaviPad auto-layer
+            bindings = <&aNAV NAV>;
+            key-positions = <LH0 LH1>;
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
+        };
 // ──────── END Combos ───────────────────────────────────────────────────
     };
 
@@ -538,6 +844,12 @@
             #binding-cells = <0>;
             bindings = <&kp Q &kp N4>;
         };
+
+        // m_2: macro_2 {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp Q &kp N4>;
+        // };
 // ──────── END Macros ───────────────────────────────────────────────────
     };
 
@@ -548,7 +860,7 @@
         bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
     };
 
-    scroll_encoder: scroll_encoder {
+    scrl_enc: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
