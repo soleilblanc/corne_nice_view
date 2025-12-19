@@ -91,8 +91,8 @@
     #define DEF 0
     #define COL 1
     #define GAM 2
-    #define EXQW 3
-    #define EXAR 4
+    #define QWEX 3
+    #define AREX 4
     #define NAV 5
     #define HOT 6
     #define NUM 7
@@ -194,7 +194,7 @@
         //     ignored-key-positions = <LT5 LM5 LT2 LT3 LM2 LM3>;
         // };
 
-        aEXQW: auto_layer_qwertyEX {
+        aQWEX: auto_layer_qwertyEX {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
             continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
@@ -203,16 +203,16 @@
             ignore-modifiers;
         };
 
-    // SMART-GRAVE for QWERTY setting 1: hold to EXQWER, tap to sticky-EXQWER, double-tap to auto-EXQWER, command/shift morph into grave
-        smart_gr: smart_qwertyEX_grave {
+    // SMART-GRAVE for QWERTY setting 1: hold to qwertyEX, tap to sticky-qwertyEX, double-tap to auto-qwertyEX, command/shift morph into grave
+        smart_gr: smart_grave {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&td_EXQW>, <&kp GRAVE>;
+            bindings = <&td_QWEX>, <&kp GRAVE>;
             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
             keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         };
 
-        aEXAR: auto_layer_colemakEX {
+        aAREX: auto_layer_colemakEX {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
             continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
@@ -221,11 +221,11 @@
             ignore-modifiers;
         };
 
-    // SMART-GRAVE for EXARSTG setting 1: hold to EXQWER, tap to sticky-EXQWER, double-tap to auto-EXQWER, command/shift morph into grave
-        smartEXAR_gr: smart_EXARSTG_grave {
+    // SMART-GRAVE for ARSTGM setting 1: hold to arstgmEX, tap to sticky-arstgmEX, double-tap to auto-arstgmEX, command/shift morph into grave
+        smart_gr_AR: smart_grave_colemak {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&td_EXAR>, <&kp GRAVE>;
+            bindings = <&td_AREX>, <&kp GRAVE>;
             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
             keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         };
@@ -329,10 +329,10 @@
             // hold-trigger-on-release;
         };
 
-        hml_aEXQW: hml_autoEXQW {
+        hml_aQWEX: hml_auto-QWEX {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&kp>, <&aEXQW>;
+            bindings = <&kp>, <&aQWEX>;
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <QUICK_TAP_MS>;
@@ -341,10 +341,10 @@
             hold-trigger-on-release;
         };
 
-        hml_aEXAR: hml_autoEXAR {
+        hml_aAREX: hml_auto-AREX {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&kp>, <&aEXAR>;
+            bindings = <&kp>, <&aAREX>;
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <QUICK_TAP_MS>;
@@ -408,16 +408,16 @@
         };
 
     // layer switch
-        td_EXQW: tapdance_EXQW {
+        td_QWEX: tapdance_QWEX {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&mosls EXQW EXQW>, <&aEXQW EXQW>;
+            bindings = <&mosls QWEX QWEX>, <&aQWEX QWEX>;
         };
 
-        td_EXAR: tapdance_EXAR {
+        td_AREX: tapdance_AREX {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&mosls EXAR EXAR>, <&aEXAR EXAR>;
+            bindings = <&mosls AREX AREX>, <&aAREX AREX>;
         };
     };
 // ──────── END behaviors ────────────────────────────────────────────────
@@ -450,15 +450,15 @@
         };
 
         cb_hml_SF {
-            bindings = <&hml_aEXQW LA(LSHFT) EXQW>;
+            bindings = <&hml_aQWEX LA(LSHFT) QWEX>;
             key-positions = <LM1 LM3>;
-            layers = <DEF EXQW>;                        //Only in Default & defaultEX layer
+            layers = <DEF QWEX>;                        //Only in Default & defaultEX layer
         };
 
         cb_hml_cSF {
-            bindings = <&hml_aEXAR LA(LSHFT) EXAR>;
+            bindings = <&hml_aAREX LA(LSHFT) AREX>;
             key-positions = <LM1 LM3>;
-            layers = <COL EXAR>;                        //Only in Colemak & colemakEX layer
+            layers = <COL AREX>;                        //Only in Colemak & colemakEX layer
         };
 
         cb_hmr_JK {
@@ -570,7 +570,7 @@
             key-positions = <LT2 LT3>;
             // timeout-ms = <COMBO_TERM_FAST>;
             // require-prior-idle-ms = <COMBO_IDLE_FAST>;
-            layers = <DEF COL>;                         //Only in Default & Colemak layer
+            layers = <DEF COL GAM>;                         //Only in Default & Colemak, Gaming layer
         };
 
         cb_ER {
@@ -584,7 +584,7 @@
         cb_ZX {
             bindings = <&kp CAPS>;
             key-positions = <LB3 LB4>;
-            layers = <DEF COL>;                         //Only in Default & Colemak layer
+            layers = <DEF COL GAM>;                         //Only in Default & Colemak layer
         };
 
         cb_XC {
@@ -775,14 +775,6 @@
         //     layers = <GAM>;                             //only in Gaming layer
         // };
 
-        cb_WE_G {
-            bindings = <&&mt TILDE GRAVE>;
-            key-positions = <LT3 LT4>;
-            // timeout-ms = <COMBO_TERM_FAST>;
-            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
-            layers = <GAM>;                             //only in Gaming layer
-        };
-
         cb_ZX_G {
             bindings = <&kp CAPS>;
             key-positions = <LB3 LB4>;
@@ -943,7 +935,7 @@
             display-name = "ARSTGM";
             bindings = <
     &trans         &trans  &trans       &hml LC(LA(LS(LGUI))) F  &kp P          &kp B                         &trans          &kp J   &kp L          &hmr RC(RA(RS(RGUI))) U  &kp Y        &kp SEMI      &trans
-    &smartEXAR_gr  &trans  &hml LALT R  &hml LGUI S              &hmlq LSHFT T  &trans                &trans  &trans  &trans  &kp M   &hmrq RSHFT N  &hmr RGUI E              &hmr RALT I  &hmr RCTRL O  &trans
+    &smart_gr_AR  &trans  &hml LALT R  &hml LGUI S              &hmlq LSHFT T  &trans                &trans  &trans  &trans  &kp M   &hmrq RSHFT N  &hmr RGUI E              &hmr RALT I  &hmr RCTRL O  &trans
     &trans         &trans  &trans       &trans                   &kp D          &kp V   &kp C_MUTE            &trans          &kp K   &kp H          &trans                   &trans       &trans        &trans
                                         &trans                   &trans         &trans                                        &trans  &trans         &trans
             >;
