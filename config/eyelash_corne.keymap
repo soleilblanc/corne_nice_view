@@ -9,8 +9,7 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
-// add Urob's Behaviors
-#include <behaviors/num_word.dtsi>  // Requires auto-layer module.
+#include <behaviors/num_word.dtsi>  // add Urob's Behaviors, Requires auto-layer module.
 
 // Define key positon ────────────────────────────────────────────────────
     /*                KEY POSITIONS
@@ -90,12 +89,12 @@
     // Define layer numbers
     #define DEF 0
     #define COL 1
-    #define GAM 2
-    #define QWEX 3
-    #define AREX 4
-    #define NAV 5
-    #define HOT 6
-    #define NUM 7
+    #define QWEX 2
+    #define AREX 3
+    #define GAM 4
+    #define NUM 5
+    #define NAV 6
+    #define HOT 7
     #define MED 8
     #define ADJ 9
     #define CLE 10
@@ -171,13 +170,13 @@
             // quick-tap-ms = <200>;
         };
 
-        fn_bs_f3: fn_backspace_f3 {             // hold to FN, tap to backspace, shift to F3
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mt INS BSPC>, <&kp F3>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
+        // fn_bs_f3: fn_backspace_f3 {             // hold to FN, tap to backspace, shift to F3
+        //     compatible = "zmk,behavior-mod-morph";
+        //     #binding-cells = <0>;
+        //     bindings = <&mt INS BSPC>, <&kp F3>;
+        //     mods = <(MOD_LSFT|MOD_RSFT)>;
+        //     // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+        // };
 
         swap_tab: cmd_tab_swapper {
             compatible = "zmk,behavior-tri-state";
@@ -419,8 +418,8 @@
             #binding-cells = <0>;
             bindings = <&mosls AREX AREX>, <&aAREX AREX>;
         };
-    };
 // ──────── END behaviors ────────────────────────────────────────────────
+    };
 
     combos {
         compatible = "zmk,combos";
@@ -859,13 +858,13 @@
             bindings = <&kp LT &kp GT &kp LEFT>;
         };
 
-        m_4: macro_1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp Q>,
-                       <&macro_wait_time 500>,
-                       <&kp N4>;
-        };
+        // m_4: macro_1 {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings = <&kp Q>,
+        //                <&macro_wait_time 500>,
+        //                <&kp N4>;
+        // };
 
         // m_2: macro_2 {
         //     compatible = "zmk,behavior-macro";
@@ -915,10 +914,11 @@
         tap-ms = <100>;
     };
 // ──────── END Encoders ─────────────────────────────────────────────────
+
     keymap {
         compatible = "zmk,keymap";
 
-// Layer 0 default ───────────────────────────────────────────────────────
+// Layer 0 default (DEF) ─────────────────────────────────────────────────
         default_layer {
             display-name = "QWERTY";
             bindings = <
@@ -930,7 +930,7 @@
             sensor-bindings = <&vol_enc>;
         };
 
-// Layer 1 colemakDH ─────────────────────────────────────────────────────
+// Layer 1 colemakDH (COL) ───────────────────────────────────────────────
         colemakDH_layer {
             display-name = "ARSTGM";
             bindings = <
@@ -942,19 +942,7 @@
             sensor-bindings = <&vol_enc>;
         };
 
-// Layer 2 gaming ────────────────────────────────────────────────────────
-        game_layer {
-            display-name = "GAME";
-            bindings = <
-    &kp TAB    &kp T  &kp Q  &kp W           &kp E      &kp R                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &fn_bs_f3
-    &kp LCTRL  &kp G  &kp A  &kp S           &kp D      &kp F                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
-    &kp LALT   &kp B  &kp Z  &kp X           &kp C      &kp V      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
-                             &lt GAM2 ESC  &kp LSHFT  &kp SPACE                                    &trans  &trans  &trans
-            >;
-            sensor-bindings = <&vol_enc>;
-        };
-
-// Layer 3 qwertyEX ──────────────────────────────────────────────────────
+// Layer 2 qwertyEX (QWEX) ───────────────────────────────────────────────
         qwertyEX_layer {
             display-name = "qwEX";
             bindings = <
@@ -966,7 +954,7 @@
             sensor-bindings = <&vol_enc>;
         };
 
-// Layer 4 arstgmEX ──────────────────────────────────────────────────────
+// Layer 3 arstgmEX (AREX) ───────────────────────────────────────────────
         arstgmEX_layer {
             display-name = "arEX";
             bindings = <
@@ -978,31 +966,19 @@
             sensor-bindings = <&vol_enc>;
         };
 
-// Layer 5 navipad ───────────────────────────────────────────────────────
-        navipad_layer {
-            display-name = "NAVPAD";
+// Layer 4 gaming (GAM) ──────────────────────────────────────────────────
+        game_layer {
+            display-name = "GAME";
             bindings = <
-&trans  &kp PG_UP  &kp HOME  &td_up             &kp END    &kp PRCNT                                &msc SCRL_UP                     &kp CARET  &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0        &m_dPAR
-&none   &kp PG_DN  &td_lf    &td_dn             &td_rt     &key_repeat              &msc SCRL_LEFT  &kp HOME        &msc SCRL_RIGHT  &kp PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL STAR  &kp EQUAL
-&none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT  &kp DEL      &kp HOME                    &msc SCRL_DOWN                   &kp MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp FSLH         &kp COLON
-                             &mt LGUI K_CANCEL  &trans     &trans                                                                    &trans     &kp KP_DOT         &trans
+    &kp TAB    &kp T  &kp Q  &kp W          &kp E      &kp R                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &mt INS BSPC
+    &kp LCTRL  &kp G  &kp A  &kp S          &kp D      &kp F                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
+    &kp LALT   &kp B  &kp Z  &kp X          &kp C      &kp V      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
+                             &ltb GAM2 ESC  &kp LSHFT  &kp SPACE                                    &trans  &trans  &trans
             >;
-            sensor-bindings = <&scrlh_enc>;
+            sensor-bindings = <&vol_enc>;
         };
 
-// Layer 6 hotkeyfn ──────────────────────────────────────────────────────
-        hotkeyfn_layer {
-            display-name = "HOTFN";
-            bindings = <
-    &none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
-    &none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &sk LGUI        &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
-    &none  &kp LA(LG(H))  &none           &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_PP                      &mmv MOVE_DOWN                   &sk LSHFT       &kp F1          &kp F2        &kp F3        &kp F10         &sk LALT
-                                          &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
-            >;
-            sensor-bindings = <&play_enc>;
-        };
-
-// Layer 7 numbermouse ───────────────────────────────────────────────────
+// Layer 5 numbermouse (NUM) ─────────────────────────────────────────────
         numbermouse_layer {
             display-name = "NUMOU";
             bindings = <
@@ -1012,6 +988,30 @@
                                                   &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                 &trans    &trans           &trans
             >;
             sensor-bindings = <&volfine_enc>;
+        };
+
+// Layer 6 navipad (NAV) ─────────────────────────────────────────────────
+        navipad_layer {
+            display-name = "NAVPAD";
+            bindings = <
+&trans  &kp PG_UP  &kp HOME  &td_up             &kp END    &kp PRCNT                                &msc SCRL_UP                     &kp CARET     &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0               &m_dPAR
+&none   &kp PG_DN  &td_lf    &td_dn             &td_rt     &key_repeat              &msc SCRL_LEFT  &kp HOME        &msc SCRL_RIGHT  &kp KP_PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL KP_MULTIPLY  &kp KP_EQUAL
+&none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT  &kp DEL      &kp HOME                    &msc SCRL_DOWN                   &kp KP_MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp KP_SLASH            &kp COLON
+                             &mt LGUI K_CANCEL  &trans     &trans                                                                    &trans        &kp KP_DOT         &trans
+            >;
+            sensor-bindings = <&scrlh_enc>;
+        };
+
+// Layer 7 hotkeyfn ──────────────────────────────────────────────────────
+        hotkeyfn_layer {
+            display-name = "HOTFN";
+            bindings = <
+    &none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
+    &none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &sk LGUI        &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk LCTRL
+    &none  &kp LA(LG(H))  &none           &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_PP                      &mmv MOVE_DOWN                   &sk LSHFT       &kp F1          &kp F2        &kp F3        &kp F10         &sk LALT
+                                          &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
+            >;
+            sensor-bindings = <&play_enc>;
         };
 
 // Layer 8 media ─────────────────────────────────────────────────────────
@@ -1054,10 +1054,10 @@
         game2_layer {
             display-name = "GAME2";
             bindings = <
-    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                   &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
-    &kp EQUAL        &kp N6         &kp N7        &kp N8             &kp N9          &kp N0                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
-    &mt LSHFT MINUS  &kp RA(N1)     &kp RA(N2)    &kp RA(N3)         &kp RA(N4)      &m_4       &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
-                                                  &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                 &trans    &trans           &trans
+    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                    &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
+    &kp EQUAL        &kp N6         &kp N7        &kp N8             &kp N9          &kp N0                    &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
+    &mt LSHFT MINUS  &kp RA(F1)     &kp RA(F2)    &kp RA(F3)         &kp RA(F4)      &kp RA(F5)  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+                                                  &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                  &trans    &trans           &trans
             >;
             sensor-bindings = <&vol_enc>;
         };
