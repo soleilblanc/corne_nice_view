@@ -1056,7 +1056,7 @@
             bindings = <
     &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                    &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
     &kp EQUAL        &kp N6         &kp N7        &kp N8             &kp N9          &kp N0                    &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
-    &mt LSHFT MINUS  &kp RA(F1)     &kp RA(F2)    &kp RA(F3)         &kp RA(F4)      &kp RA(F5)  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+    &mt LSHFT MINUS  &kp RG(N1)     &kp RG(N2)    &kp RG(N3)         &kp RG(N4)      &kp RG(N5)  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
                                                   &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                  &trans    &trans           &trans
             >;
             sensor-bindings = <&vol_enc>;
