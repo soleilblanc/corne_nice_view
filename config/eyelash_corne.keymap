@@ -173,7 +173,7 @@
         // fn_bs_f3: fn_backspace_f3 {             // hold to FN, tap to backspace, shift to F3
         //     compatible = "zmk,behavior-mod-morph";
         //     #binding-cells = <0>;
-        //     bindings = <&mt GLOBE BSPC>, <&kp F3>;
+        //     bindings = <&mt INS BSPC>, <&kp F3>;
         //     mods = <(MOD_LSFT|MOD_RSFT)>;
         //     // keep-mods = <(MOD_LSFT|MOD_RSFT)>;
         // };
@@ -196,7 +196,7 @@
         aQWEX: auto_layer_qwertyEX {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
-            continue-list = <GLOBE TAB SPACE BSPC DOT COMMA FSLH SEMI>;
+            continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
             ignore-alphas;
             // ignore-numbers;
             ignore-modifiers;
@@ -214,7 +214,7 @@
         aAREX: auto_layer_colemakEX {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
-            continue-list = <GLOBE TAB SPACE BSPC DOT COMMA FSLH SEMI>;
+            continue-list = <INS TAB SPACE BSPC DOT COMMA FSLH SEMI>;
             ignore-alphas;
             // ignore-numbers;
             ignore-modifiers;
@@ -232,7 +232,7 @@
         aNUM: auto_layer_NUMBER {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
-            continue-list = <PLUS MINUS EQUAL TAB GLOBE>;
+            continue-list = <PLUS MINUS EQUAL TAB INS>;
             // ignore-alphas;
             ignore-numbers;
             ignore-modifiers;
@@ -858,6 +858,16 @@
             bindings = <&kp LT &kp GT &kp LEFT>;
         };
 
+        glo: glo {
+            compatible = "zmk,behavior-macro-one-param";
+            label = "globe pseudo mod func";
+            #binding-cells = <1>;
+            bindings = <&macro_press &kp INS>,
+            <&macro_param_1to1>,
+            <&macro_tap &kp MACRO_PLACEHOLDER>,
+            <&macro_release &kp INS>;
+    };
+
         // m_4: macro_1 {
         //     compatible = "zmk,behavior-macro";
         //     #binding-cells = <0>;
@@ -922,7 +932,7 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-    &mt GLOBE TAB              &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt GLOBE MINUS
+    &mt INS TAB                &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
     &smart_gr                  &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
     &mt LC(LA(LS(LGUI))) CAPS  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
                                                                   &ltb NUM ESC             &ltb NAV BSPC            &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
@@ -970,7 +980,7 @@
         game_layer {
             display-name = "GAME";
             bindings = <
-    &kp TAB    &kp T  &kp Q  &kp W          &kp E      &kp R                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &mt GLOBE BSPC
+    &kp TAB    &kp T  &kp Q  &kp W          &kp E      &kp R                        &trans          &kp Y   &kp U   &kp I      &kp O    &kp P     &mt INS BSPC
     &kp LCTRL  &kp G  &kp A  &kp S          &kp D      &kp F                &trans  &trans  &trans  &kp H   &kp J   &kp K      &kp L    &kp SEMI  &trans
     &kp LALT   &kp B  &kp Z  &kp X          &kp C      &kp V      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
                              &ltb GAM2 ESC  &kp LSHFT  &kp SPACE                                    &trans  &trans  &trans
@@ -982,7 +992,7 @@
         numbermouse_layer {
             display-name = "NUMOU";
             bindings = <
-    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                   &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt GLOBE BSPC
+    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                   &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
     &kp EQUAL        &hml LCTRL N6  &hml LALT N7  &hml LGUI N8       &hmlq LSHFT N9  &kp N0                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
     &mt LSHFT MINUS  &mkp MB4       &mkp LCLK     &mkp MCLK          &mkp RCLK       &mkp MB5   &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
                                                   &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                 &trans    &trans           &trans
@@ -1006,7 +1016,7 @@
         hotkeyfn_layer {
             display-name = "HOTFN";
             bindings = <
-    &none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk GLOBE GLOBE
+    &none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
     &none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &sk RGUI        &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk RCTRL
     &none  &kp LA(LG(H))  &kp LG(M)       &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_PP                      &mmv MOVE_DOWN                   &sk RALT        &kp F1          &kp F2        &kp F3        &kp F10         &sk RSHFT
                                           &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
@@ -1018,9 +1028,9 @@
         media_layer {
             display-name = "MEDIA";
             bindings = <
-    &mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV       &kp C_PP      &kp C_NEXT                              &kp C_VOL_UP  &none
-    &kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &kp C_AC_SEARCH  &none         &none                                   &kp C_VOL_DN  &none
-    &kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN     &kp C_BRI_UP  &kp C_AC_DESKTOP_SHOW_ALL_APPLICATIONS  &kp C_MUTE    &none
+    &mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV       &kp C_PP      &kp C_NEXT                         &kp C_VOL_UP  &none
+    &kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &kp C_AC_SEARCH  &glo F5       &glo F6                            &kp C_VOL_DN  &none
+    &kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN     &kp C_BRI_UP  &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &kp C_MUTE    &none
                                                &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans           &trans
             >;
             sensor-bindings = <&vol_enc>;
@@ -1054,7 +1064,7 @@
         game2_layer {
             display-name = "GAME2";
             bindings = <
-    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                    &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt GLOBE BSPC
+    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                    &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
     &kp EQUAL        &kp N6         &kp N7        &kp N8             &kp N9          &kp N0                    &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
     &mt LSHFT MINUS  &kp RG(N1)     &kp RG(N2)    &kp RG(N3)         &kp RG(N4)      &kp RG(N5)  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
                                                   &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                  &trans    &trans           &trans
