@@ -937,7 +937,7 @@
     &mt LC(LA(LS(LGUI))) CAPS  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
                                                                   &ltb NUM ESC             &ltb NAV BSPC            &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
-            sensor-bindings = <&vol_enc>;
+            sensor-bindings = <&volfine_enc>;
         };
 
 // Layer 1 colemakDH (COL) ───────────────────────────────────────────────
@@ -949,7 +949,7 @@
     &trans         &trans  &trans       &trans                   &kp D          &kp V   &kp C_MUTE            &trans          &kp K   &kp H          &trans                   &trans       &trans        &trans
                                         &trans                   &trans         &trans                                        &trans  &trans         &trans
             >;
-            sensor-bindings = <&vol_enc>;
+            sensor-bindings = <&volfine_enc>;
         };
 
 // Layer 2 qwertyEX (QWEX) ───────────────────────────────────────────────
@@ -961,7 +961,7 @@
 &kpsk LSHFT LALT  &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
                                              &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
             >;
-            sensor-bindings = <&vol_enc>;
+            sensor-bindings = <&volfine_enc>;
         };
 
 // Layer 3 arstgmEX (AREX) ───────────────────────────────────────────────
@@ -973,7 +973,7 @@
     &kpsk LSHFT LALT  &kp K         &kp H        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp D        &kp V         &trans
                                                  &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
             >;
-            sensor-bindings = <&vol_enc>;
+            sensor-bindings = <&volfine_enc>;
         };
 
 // Layer 4 gaming (GAM) ──────────────────────────────────────────────────
@@ -985,7 +985,7 @@
     &kp LALT   &kp B  &kp Z  &kp X          &kp C      &kp V      &trans            &trans          &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH  &trans
                              &ltb GAM2 ESC  &kp LSHFT  &kp SPACE                                    &trans  &trans  &trans
             >;
-            sensor-bindings = <&vol_enc>;
+            sensor-bindings = <&volfine_enc>;
         };
 
 // Layer 5 numbermouse (NUM) ─────────────────────────────────────────────
@@ -1028,12 +1028,12 @@
         media_layer {
             display-name = "MEDIA";
             bindings = <
-    &mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV       &kp C_PP      &kp C_NEXT                         &kp C_VOL_UP  &none
-    &kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &kp C_AC_SEARCH  &glo F5       &glo F6                            &kp C_VOL_DN  &none
-    &kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN     &kp C_BRI_UP  &kp C_AC_DESKTOP_SHOW_ALL_WINDOWS  &kp C_MUTE    &none
+    &mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV       &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
+    &kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &kp C_AC_SEARCH  &glo F5       &glo F6     &kp C_VOL_DN  &none
+    &kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN     &kp C_BRI_UP  &glo F3     &kp C_MUTE    &none
                                                &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans           &trans
             >;
-            sensor-bindings = <&vol_enc>;
+            sensor-bindings = <&volfine_enc>;
         };
 
 // Layer 9 adjust ────────────────────────────────────────────────────────
@@ -1069,7 +1069,7 @@
     &mt LSHFT MINUS  &kp RG(N1)     &kp RG(N2)    &kp RG(N3)         &kp RG(N4)      &kp RG(N5)  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
                                                   &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                  &trans    &trans           &trans
             >;
-            sensor-bindings = <&vol_enc>;
+            sensor-bindings = <&volfine_enc>;
         };
     };
 };
