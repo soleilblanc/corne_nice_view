@@ -162,7 +162,7 @@
             ignored-layers = <MED>;
         };
 
-        mo_tMED: mo_triMEDIA {                  // hold to momentary layer, tap to tri-state MEDIA
+        mo_tMED: mo_triMEDIA {                   // hold to momentary layer, tap to tri-state MEDIA
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&tMED>;
@@ -171,7 +171,7 @@
             // quick-tap-ms = <200>;
         };
 
-        // fn_bs_f3: fn_backspace_f3 {             // hold to FN, tap to backspace, shift to F3
+        // fn_bs_f3: fn_backspace_f3 {              // hold to FN, tap to backspace, shift to F3
         //     compatible = "zmk,behavior-mod-morph";
         //     #binding-cells = <0>;
         //     bindings = <&mt INS BSPC>, <&kp F3>;
@@ -262,6 +262,15 @@
             bindings = <&kp>, <&sk>;
             flavor = "balanced";
             tapping-term-ms = <220>;
+        };
+
+        mkpsk: mouse_sticky-key {                   // hold to mouse key, tap to sticky-key, double-tap and holding to repeat key
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mkp>, <&sk>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <220>;
         };
 // Hold-tap ──────────────────────────────────────────────────────────────
         ltb: layertap_balance {                 // layer-tap config, change flavor to balanced
@@ -775,11 +784,11 @@
             layers = <GAM>;                             //only in Gaming layer
         };
 
-        // cb_ZX_G {
-        //     bindings = <&kp CAPS>;
-        //     key-positions = <LB3 LB4>;
-        //     layers = <GAM>;                          //only in Gaming layer
-        // };
+        cb_CV_G {
+            bindings = <&aQWEX QWEX>;
+            key-positions = <LB1 LB2>;
+            layers = <GAM>;                          //only in Gaming layer
+        };
 // Layer switch ──────────────────────────────────────────────────────────
         cb_WA {
             bindings = <&tog COL>;
@@ -990,7 +999,7 @@
 &trans            &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
 &caps_word        &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
 &kpsk LSHFT LALT  &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
-                                             &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
+                                             &mt LALT K_CANCEL         &mt LGUI BSPC  &trans                                       &trans  &trans         &trans
             >;
             sensor-bindings = <&volfine_enc>;
         };
@@ -1002,7 +1011,7 @@
     &trans            &kp J         &kp L        &hml LC(LA(LS(LGUI))) U   &kp Y          &kp SEMI                     &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) F  &kp P        &kp B         &trans
     &caps_word        &hml LCTRL M  &hml LALT N  &hml LGUI E               &hmlq LSHFT I  &kp O                &trans  &trans  &trans  &kp A   &hmrq RSHFT R  &hmr RGUI S              &hmr RALT T  &hmr RCTRL G  &trans
     &kpsk LSHFT LALT  &kp K         &kp H        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp D        &kp V         &trans
-                                                 &mt LGUI K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
+                                                 &mt LALT K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
             >;
             sensor-bindings = <&volfine_enc>;
         };
@@ -1011,10 +1020,10 @@
         numbermouse_layer {
             display-name = "NUMOU";
             bindings = <
-    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                   &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
-    &kp EQUAL        &hml LCTRL N6  &hml LALT N7  &hml LGUI N8       &hmlq LSHFT N9  &kp N0                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB5  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
-    &mt LSHFT MINUS  &mkp MB4       &mkp LCLK     &mkp MCLK          &mkp RCLK       &mkp MB5   &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB4  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
-                                                  &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                 &trans    &trans           &trans
+    &trans     &kp N1            &kp N2            &kp N3             &kp N4             &kp N5                                        &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
+    &kp EQUAL  &kp N6            &kp N7            &kp N8             &kp N9             &kp N0                        &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB5  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
+    &kp MINUS  &mkpsk MB4 LCTRL  &mkpsk LCLK LALT  &mkpsk MCLK LGUI   &mkpsk RCLK LSHFT  &mkpsk MB5 INS  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB4  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+                                                   &mt LALT K_CANCEL  &mt LGUI BSPC      &trans                                                                      &trans    &trans           &trans
             >;
             sensor-bindings = <&volfine_enc>;
         };
@@ -1023,10 +1032,10 @@
         navipad_layer {
             display-name = "NAVPAD";
             bindings = <
-&trans  &kp PG_UP  &kp HOME  &td_up             &kp END    &kp PRCNT                                &msc SCRL_UP                     &kp CARET     &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0               &m_dPAR
-&none   &kp PG_DN  &td_lf    &td_dn             &td_rt     &key_repeat              &msc SCRL_LEFT  &kp HOME        &msc SCRL_RIGHT  &kp KP_PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL KP_MULTIPLY  &kp KP_EQUAL
-&none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT  &kp DEL      &kp HOME                    &msc SCRL_DOWN                   &kp KP_MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp KP_SLASH            &kp COLON
-                             &mt LGUI K_CANCEL  &trans     &trans                                                                    &trans        &kp KP_DOT         &trans
+&trans  &kp PG_UP  &kp HOME  &td_up             &kp END        &kp PRCNT                                &msc SCRL_UP                     &kp CARET     &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0               &m_dPAR
+&none   &kp PG_DN  &td_lf    &td_dn             &td_rt         &key_repeat              &msc SCRL_LEFT  &kp HOME        &msc SCRL_RIGHT  &kp KP_PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL KP_MULTIPLY  &kp KP_EQUAL
+&none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT      &kp DEL      &kp HOME                    &msc SCRL_DOWN                   &kp KP_MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp KP_SLASH            &kp COLON
+                             &mt LALT K_CANCEL  &mt LGUI BSPC  &trans                                                                    &trans        &kp KP_DOT         &trans
             >;
             sensor-bindings = <&scrlh_enc>;
         };
@@ -1038,7 +1047,7 @@
     &none  &kp LS(LG(T))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LS(LG(N4))     &kp LS(LG(N5))                                &mmv MOVE_UP                     &none           &kp F7          &kp F8        &kp F9        &kp F12         &kpsk INS INS
     &none  &kp LG(H)      &kp LG(J)       &kp LG(K)       &kp LA(LS(LG(V)))  &none                         &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &sk RGUI        &hmrq RSHFT F4  &hmr RGUI F5  &hmr RALT F6  &hmr RCTRL F11  &sk RCTRL
     &none  &kp LA(LG(H))  &kp LG(M)       &kp LA(LG(C))   &kp LA(LG(V))      &kp LG(FSLH)    &kp C_PP                      &mmv MOVE_DOWN                   &sk RALT        &kp F1          &kp F2        &kp F3        &kp F10         &sk RSHFT
-                                          &trans          &trans             &trans                                                                         &mo_tMED MED 0  &trans          &trans
+                                          &none           &none              &trans                                                                         &mo_tMED MED 0  &trans          &trans
             >;
             sensor-bindings = <&play_enc>;
         };
@@ -1050,7 +1059,7 @@
     &mt HOME LBKT  &mt END RBKT  &kp LA(LEFT)  &kp UP             &kp LA(RIGHT)  &kp LG(T)                                 &mmv MOVE_UP                     &none   &kp C_PREV       &kp C_PP      &kp C_NEXT  &kp C_VOL_UP  &none
     &kp LT         &kp GT        &kp LEFT      &kp DOWN           &kp RIGHT      &kp F                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &none   &kp C_AC_SEARCH  &glo F5       &glo F6     &kp C_VOL_DN  &none
     &kp COMMA      &kp DOT       &kp J         &kp C              &kp L          &kp Q      &kp C_MUTE                     &mmv MOVE_DOWN                   &none   &kp C_BRI_DN     &kp C_BRI_UP  &glo F3     &kp C_MUTE    &none
-                                               &mt LGUI K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans           &trans
+                                               &mt LALT K_CANCEL  &trans         &kp SPACE                                                                  &trans  &trans           &trans
             >;
             sensor-bindings = <&volfine_enc>;
         };
@@ -1083,10 +1092,10 @@
         game2_layer {
             display-name = "GAME2";
             bindings = <
-    &trans           &kp N1         &kp N2        &kp N3             &kp N4          &kp N5                                    &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
-    &kp EQUAL        &kp N6         &kp N7        &kp N8             &kp N9          &kp N0                    &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB4  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
-    &mt LSHFT MINUS  &kp RG(N1)     &kp RG(N2)    &kp RG(N3)         &kp RG(N4)      &kp RG(N5)  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB5  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
-                                                  &mt LGUI K_CANCEL  &kp LALT        &kp LCTRL                                                                  &trans    &trans           &trans
+    &none      &kp N1   &kp N2   &kp N3             &kp N4         &kp N5                                 &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
+    &kp EQUAL  &kp N6   &kp N7   &kp N8             &kp N9         &kp N0                 &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB5  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
+    &kp MINUS  &glo N1  &glo N2  &glo N3            &glo N4        &glo N5  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB4  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
+                                 &mt LALT K_CANCEL  &mt LGUI BSPC  &trans                                                                  &trans    &trans           &trans
             >;
             sensor-bindings = <&volfine_enc>;
         };
