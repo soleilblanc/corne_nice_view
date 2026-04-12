@@ -154,6 +154,15 @@
             ignore-modifiers;
         };
 
+        aNUM: auto_layer_NUMBER {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <PLUS MINUS EQUAL TAB INS>;
+            // ignore-alphas;
+            ignore-numbers;
+            ignore-modifiers;
+        };
+
         tMED: tri_state_MEDIA {
             compatible = "zmk,behavior-tri-state";
             #binding-cells = <0>;
@@ -194,6 +203,14 @@
         //     ignored-key-positions = <LT5 LM5 LT2 LT3 LM2 LM3>;
         // };
 
+        smart_gr: smart_grave {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mt LC(LA(LS(LGUI))) CAPS>, <&kp GRAVE>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+            keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        };
+
         aQWEX: auto_layer_qwertyEX {
             compatible = "zmk,behavior-auto-layer";
             #binding-cells = <1>;
@@ -204,13 +221,13 @@
         };
 
     // SMART-GRAVE for QWERTY setting 1: hold to qwertyEX, tap to sticky-qwertyEX, double-tap to auto-qwertyEX, command/shift morph into grave
-        smart_gr: smart_grave {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&td_QWEX>, <&kp GRAVE>;
-            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
-            keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
-        };
+        // smart_gr_QWEX: smart_grave_QWEX {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     #binding-cells = <0>;
+        //     bindings = <&td_QWEX>, <&kp GRAVE>;
+        //     mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        //     keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        // };
 
         aAREX: auto_layer_colemakEX {
             compatible = "zmk,behavior-auto-layer";
@@ -222,22 +239,13 @@
         };
 
     // SMART-GRAVE for ARSTGM setting 1: hold to arstgmEX, tap to sticky-arstgmEX, double-tap to auto-arstgmEX, command/shift morph into grave
-        smart_gr_AR: smart_grave_colemak {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&td_AREX>, <&kp GRAVE>;
-            mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
-            keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
-        };
-
-        aNUM: auto_layer_NUMBER {
-            compatible = "zmk,behavior-auto-layer";
-            #binding-cells = <1>;
-            continue-list = <PLUS MINUS EQUAL TAB INS>;
-            // ignore-alphas;
-            ignore-numbers;
-            ignore-modifiers;
-        };
+        // smart_gr_AREX: smart_grave_AREX {
+        //     compatible = "zmk,behavior-mod-morph";
+        //     #binding-cells = <0>;
+        //     bindings = <&td_AREX>, <&kp GRAVE>;
+        //     mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        //     keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
+        // };
 // Sticky ────────────────────────────────────────────────────────────────
         sls: sticky-layer-slow {                    // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
             compatible = "zmk,behavior-sticky-key";
@@ -252,6 +260,14 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&sls>;
+            flavor = "balanced";
+            tapping-term-ms = <220>;
+        };
+
+        kpsls: layer_stickylayer_slow {             //  hold to key, tap to sticky-layer slow
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&sls>;
             flavor = "balanced";
             tapping-term-ms = <220>;
         };
@@ -429,17 +445,29 @@
         };
 
     // layer switch
-        td_QWEX: tapdance_QWEX {
+        td_cap_QWEX: tapdance_caps_QWEX {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&mosls QWEX QWEX>, <&aQWEX QWEX>;
+            bindings = <&kpsls LC(LS(LALT)) QWEX>, <&aQWEX QWEX>;
         };
 
-        td_AREX: tapdance_AREX {
+        // td_3QWEX: tapdance_QWEX {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     bindings = <&mosls QWEX QWEX>, <&aQWEX QWEX>;
+        // };
+
+        td_cap_AREX: tapdance_caps_AREX {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            bindings = <&mosls AREX AREX>, <&aAREX AREX>;
+            bindings = <&kpsls LC(LS(LALT)) AREX>, <&aAREX AREX>;
         };
+
+        // td_3AREX: tapdance_AREX {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     bindings = <&mosls AREX AREX>, <&aAREX AREX>;
+        // };
 // ──────── END behaviors ────────────────────────────────────────────────
     };
 
@@ -579,7 +607,7 @@
             key-positions = <LT2 LT3>;
             // timeout-ms = <COMBO_TERM_FAST>;
             // require-prior-idle-ms = <COMBO_IDLE_FAST>;
-            layers = <DEF COL GAM>;                     //Only in Default & Colemak, Gaming layer
+            layers = <DEF COL>;                         //Only in Default & Colemak layer
         };
 
         cb_ER {
@@ -741,7 +769,7 @@
 // functional ────────────────────────────────────────────────────────────
         softoff {
             bindings = <&soft_off>;
-            key-positions = <1 15 29>;
+            key-positions = <LT4 LM3 LB2>;
         };
 
         cb_RT {
@@ -784,10 +812,18 @@
             layers = <GAM>;                             //only in Gaming layer
         };
 
+        cb_QW_G {
+            bindings = <&kp GRAVE>;
+            key-positions = <LT3 LT4>;
+            // timeout-ms = <COMBO_TERM_FAST>;
+            // require-prior-idle-ms = <COMBO_IDLE_FAST>;
+            layers = <GAM>;                             //only in Gaming layer
+        };
+
         cb_CV_G {
             bindings = <&aQWEX QWEX>;
             key-positions = <LB1 LB2>;
-            layers = <GAM>;                          //only in Gaming layer
+            layers = <GAM>;                             //only in Gaming layer
         };
 // Layer switch ──────────────────────────────────────────────────────────
         cb_WA {
@@ -960,10 +996,10 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-    &mt INS TAB                &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
-    &smart_gr                  &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
-    &mt LC(LA(LS(LGUI))) CAPS  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
-                                                                  &ltb NUM ESC             &ltb NAV BSPC            &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
+    &mt INS TAB   &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
+    &smart_gr     &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
+    &td_cap_AREX  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+                                                     &ltb NUM ESC             &ltb NAV BSPC            &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
             sensor-bindings = <&volfine_enc>;
         };
@@ -972,9 +1008,9 @@
         colemakDH_layer {
             display-name = "ARSTGM";
             bindings = <
-    &trans         &trans  &trans       &hml LC(LA(LS(LGUI))) F  &kp P          &kp B                         &trans          &kp J   &kp L          &hmr RC(RA(RS(RGUI))) U  &kp Y        &kp SEMI      &trans
-    &smart_gr_AR  &trans  &hml LALT R  &hml LGUI S              &hmlq LSHFT T  &trans                &trans  &trans  &trans  &kp M   &hmrq RSHFT N  &hmr RGUI E              &hmr RALT I  &hmr RCTRL O  &trans
-    &trans         &trans  &trans       &trans                   &kp D          &kp V   &kp C_MUTE            &trans          &kp K   &kp H          &trans                   &trans       &trans        &trans
+    &trans        &trans  &trans       &hml LC(LA(LS(LGUI))) F  &kp P          &kp B                         &trans          &kp J   &kp L          &hmr RC(RA(RS(RGUI))) U  &kp Y        &kp SEMI      &trans
+    &trans        &trans  &hml LALT R  &hml LGUI S              &hmlq LSHFT T  &trans                &trans  &trans  &trans  &kp M   &hmrq RSHFT N  &hmr RGUI E              &hmr RALT I  &hmr RCTRL O  &trans
+    &td_cap_QWEX  &trans  &trans       &trans                   &kp D          &kp V   &kp C_MUTE            &trans          &kp K   &kp H          &trans                   &trans       &trans        &trans
                                         &trans                   &trans         &trans                                        &trans  &trans         &trans
             >;
             sensor-bindings = <&volfine_enc>;
@@ -996,10 +1032,10 @@
         qwertyEX_layer {
             display-name = "qwEX";
             bindings = <
-&trans            &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
-&caps_word        &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
-&kpsk LSHFT LALT  &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
-                                             &mt LALT K_CANCEL         &mt LGUI BSPC  &trans                                       &trans  &trans         &trans
+    &trans             &kp Y         &kp U        &hml LC(LA(LS(LGUI))) I   &kp O          &kp P                        &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) E  &kp R        &kp T         &trans
+    &caps_word         &hml LCTRL H  &hml LALT J  &hml LGUI K               &hmlq LSHFT L  &kp SEMI             &trans  &trans  &trans  &kp A   &hmrq RSHFT S  &hmr RGUI D              &hmr RALT F  &hmr RCTRL G  &trans
+    &kpsk LSHFT LCTRL  &kp N         &kp M        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp V        &kp B         &trans
+                                                  &mt LALT K_CANCEL         &mt LGUI BSPC  &trans                                       &trans  &trans         &trans
             >;
             sensor-bindings = <&volfine_enc>;
         };
@@ -1008,10 +1044,10 @@
         arstgmEX_layer {
             display-name = "arEX";
             bindings = <
-    &trans            &kp J         &kp L        &hml LC(LA(LS(LGUI))) U   &kp Y          &kp SEMI                     &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) F  &kp P        &kp B         &trans
-    &caps_word        &hml LCTRL M  &hml LALT N  &hml LGUI E               &hmlq LSHFT I  &kp O                &trans  &trans  &trans  &kp A   &hmrq RSHFT R  &hmr RGUI S              &hmr RALT T  &hmr RCTRL G  &trans
-    &kpsk LSHFT LALT  &kp K         &kp H        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp D        &kp V         &trans
-                                                 &mt LALT K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
+    &trans             &kp J         &kp L        &hml LC(LA(LS(LGUI))) U   &kp Y          &kp SEMI                     &trans          &kp Q   &kp W          &hmr RC(RA(RS(RGUI))) F  &kp P        &kp B         &trans
+    &caps_word         &hml LCTRL M  &hml LALT N  &hml LGUI E               &hmlq LSHFT I  &kp O                &trans  &trans  &trans  &kp A   &hmrq RSHFT R  &hmr RGUI S              &hmr RALT T  &hmr RCTRL G  &trans
+    &kpsk LSHFT LCTRL  &kp K         &kp H        &hml LC(LA(LSHFT)) COMMA  &kp DOT        &kp FSLH   &trans            &trans          &kp Z   &kp X          &hmr LC(LA(LSHFT)) C     &kp D        &kp V         &trans
+                                                  &mt LALT K_CANCEL         &trans         &trans                                       &trans  &trans         &trans
             >;
             sensor-bindings = <&volfine_enc>;
         };
@@ -1020,7 +1056,7 @@
         numbermouse_layer {
             display-name = "NUMOU";
             bindings = <
-    &trans     &kp N1            &kp N2            &kp N3             &kp N4             &kp N5                                        &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &mt INS BSPC
+    &trans     &kp N1            &kp N2            &kp N3             &kp N4             &kp N5                                        &mmv MOVE_UP                     &none     &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT  &msc SCRL_UP    &none
     &kp EQUAL  &kp N6            &kp N7            &kp N8             &kp N9             &kp N0                        &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &mkp MB5  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_DOWN  &trans
     &kp MINUS  &mkpsk MB4 LCTRL  &mkpsk LCLK LALT  &mkpsk MCLK LGUI   &mkpsk RCLK LSHFT  &mkpsk MB5 INS  &kp C_MUTE                    &mmv MOVE_DOWN                   &mkp MB4  &mkp LCLK        &mkp MCLK       &mkp RCLK        &none           &trans
                                                    &mt LALT K_CANCEL  &mt LGUI BSPC      &trans                                                                      &trans    &trans           &trans
@@ -1032,9 +1068,9 @@
         navipad_layer {
             display-name = "NAVPAD";
             bindings = <
-&trans  &kp PG_UP  &kp HOME  &td_up             &kp END        &kp PRCNT                                &msc SCRL_UP                     &kp CARET     &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0               &m_dPAR
-&none   &kp PG_DN  &td_lf    &td_dn             &td_rt         &key_repeat              &msc SCRL_LEFT  &kp HOME        &msc SCRL_RIGHT  &kp KP_PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL KP_MULTIPLY  &kp KP_EQUAL
-&none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT      &kp DEL      &kp HOME                    &msc SCRL_DOWN                   &kp KP_MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp KP_SLASH            &kp COLON
+    &trans  &kp PG_UP  &kp HOME  &td_up             &kp END        &kp PRCNT                                &msc SCRL_UP                     &kp CARET     &kp KP_N7          &kp KP_N8        &kp KP_N9        &kp KP_N0               &m_dPAR
+    &none   &kp PG_DN  &td_lf    &td_dn             &td_rt         &key_repeat              &msc SCRL_LEFT  &kp HOME        &msc SCRL_RIGHT  &kp KP_PLUS   &hmrq RSHFT KP_N4  &hmr RGUI KP_N5  &hmr RALT KP_N6  &hmr RCTRL KP_MULTIPLY  &kp KP_EQUAL
+    &none   &sk LCTRL  &sk LALT  &sk LGUI           &sk LSHFT      &kp DEL      &kp HOME                    &msc SCRL_DOWN                   &kp KP_MINUS  &kp KP_N1          &kp KP_N2        &kp KP_N3        &kp KP_SLASH            &kp COLON
                              &mt LALT K_CANCEL  &mt LGUI BSPC  &trans                                                                    &trans        &kp KP_DOT         &trans
             >;
             sensor-bindings = <&scrlh_enc>;
