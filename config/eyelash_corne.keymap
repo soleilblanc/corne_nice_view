@@ -247,7 +247,7 @@
         //     keep-mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         // };
 // Sticky ────────────────────────────────────────────────────────────────
-        sls: sticky-layer-slow {                    // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
+        sls: sticky-layer_slow {                    // new sticky-layer config, delay duration, no quick-release, ignore-modifiers
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
             bindings = <&mo>;
@@ -256,7 +256,7 @@
             ignore-modifiers;                       // allow chording sticky mods & layers
         };
 
-        mosls: layer_stickylayer_slow {             //  hold to momentary layer, tap to sticky-layer slow
+        mosls: layer_sticky-layer_slow {             //  hold to momentary layer, tap to sticky-layer slow
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mo>, <&sls>;
@@ -264,7 +264,7 @@
             tapping-term-ms = <220>;
         };
 
-        kpsls: layer_stickylayer_slow {             //  hold to key, tap to sticky-layer slow
+        kpsls: keypress_sticky-layer_slow {             //  hold to key, tap to sticky-layer slow
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&sls>;
@@ -280,7 +280,7 @@
             tapping-term-ms = <220>;
         };
 
-        mkpsk: mouse_sticky-key {                   // hold to mouse key, tap to sticky-key, double-tap and holding to repeat key
+        mkpsk: mouse-key_sticky-key {                   // hold to mouse key, tap to sticky-key, double-tap and holding to repeat key
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&mkp>, <&sk>;
