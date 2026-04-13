@@ -998,7 +998,7 @@
             bindings = <
     &mt INS TAB   &kp Q         &hml LC(LS(LALT)) W  &hml LC(LA(LS(LGUI))) E  &hml LC(LA(LS(LGUI))) R  &kp T                                   &kp UP               &kp Y           &kp U          &hmr RC(RA(RS(RGUI))) I   &kp O        &kp P            &mt INS MINUS
     &smart_gr     &hml LCTRL A  &hml LALT S          &hml LGUI D              &hmlq LSHFT F            &kp G                         &kp LEFT  &kp RET   &kp RIGHT  &kp H           &hmrq RSHFT J  &hmr RGUI K               &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
-    &td_cap_AREX  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
+    &td_cap_QWEX  &kp Z         &hml LC(LS(LALT)) X  &hml LC(LS(LALT)) C      &hml LC(LA(LS(LGUI))) V  &kp B           &kp C_MUTE              &kp DOWN             &kp N           &kp M          &hmr LC(LA(LSHFT)) COMMA  &kp DOT      &kp FSLH         &kp BSLH
                                                      &ltb NUM ESC             &ltb NAV BSPC            &ltq HOT SPACE                                               &mosls HOT HOT  &ltb NUM RET   &smart_shft
             >;
             sensor-bindings = <&volfine_enc>;
@@ -1010,7 +1010,7 @@
             bindings = <
     &trans        &trans  &trans       &hml LC(LA(LS(LGUI))) F  &kp P          &kp B                         &trans          &kp J   &kp L          &hmr RC(RA(RS(RGUI))) U  &kp Y        &kp SEMI      &trans
     &trans        &trans  &hml LALT R  &hml LGUI S              &hmlq LSHFT T  &trans                &trans  &trans  &trans  &kp M   &hmrq RSHFT N  &hmr RGUI E              &hmr RALT I  &hmr RCTRL O  &trans
-    &td_cap_QWEX  &trans  &trans       &trans                   &kp D          &kp V   &kp C_MUTE            &trans          &kp K   &kp H          &trans                   &trans       &trans        &trans
+    &td_cap_AREX  &trans  &trans       &trans                   &kp D          &kp V   &kp C_MUTE            &trans          &kp K   &kp H          &trans                   &trans       &trans        &trans
                                        &trans                   &trans         &trans                                        &trans  &trans         &trans
             >;
             sensor-bindings = <&volfine_enc>;
