@@ -318,18 +318,6 @@
             hold-trigger-on-release;                    // delay positional check until key-release
         };
 
-        hmr: homerow_mod_right {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-            flavor = "balanced";
-            tapping-term-ms = <280>;
-            quick-tap-ms = <QUICK_TAP_MS>;
-            require-prior-idle-ms = <150>;
-            hold-trigger-key-positions = <SIDE_L KEYS_L THUMBS>;
-            hold-trigger-on-release;
-        };
-
         hmlq: homerow_mode_left_quick {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -340,6 +328,30 @@
             require-prior-idle-ms = <150>;
             hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS>;
             // hold-trigger-on-release;
+        };
+
+        hmls: homerow_mod_left_sticky {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&sk>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_R KEYS_R THUMBS LT5 LM5>;
+            hold-trigger-on-release;
+        };
+
+        hmr: homerow_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <SIDE_L KEYS_L THUMBS>;
+            hold-trigger-on-release;
         };
 
         hmrq: homerow_mode_right_quick {
@@ -475,15 +487,15 @@
         compatible = "zmk,combos";
 // HRMs ──────────────────────────────────────────────────────────────────
         cb_hml_AS {
-            bindings = <&hml LC(LALT) MINUS>;
+            bindings = <&hml LC(LALT) UNDER>;
             key-positions = <LM3 LM4>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
             layers = <DEF COL>;                         //Only in Default & Colemak layer
         };
 
-        cb_hml_SD {
-            bindings = <&hml LA(LGUI) EQUAL>;
+        cb_hmls_SD {
+            bindings = <&hmls LA(LGUI) LGUI>;
             key-positions = <LM2 LM3>;
             timeout-ms = <COMBO_TERM_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;
@@ -571,7 +583,7 @@
         // };
 
         cb_DC {
-            bindings = <&mt SEMICOLON COMMA>;
+            bindings = <&mt COLON SEMICOLON>;
             key-positions = <LM2 LB2>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
@@ -579,20 +591,20 @@
         };
 
         cb_FV {
-            bindings = <&mt COLON DOT>;
+            bindings = <&mt SQT DQT>;
             key-positions = <LM1 LB1>;
             timeout-ms = <COMBO_TERM_SLOW>;
             require-prior-idle-ms = <COMBO_IDLE_SLOW>;
             layers = <DEF COL>;                         //Only in Default & Colemak layer
         };
 
-        cb_GB {
-            bindings = <&mt DQT SQT>;
-            key-positions = <LM0 LB0>;
-            timeout-ms = <COMBO_TERM_SLOW>;
-            require-prior-idle-ms = <COMBO_IDLE_SLOW>;
-            layers = <DEF COL>;                         //Only in Default & Colemak layer
-        };
+        // cb_GB {
+        //     bindings = <&mt DQT SQT>;
+        //     key-positions = <LM0 LB0>;
+        //     timeout-ms = <COMBO_TERM_SLOW>;
+        //     require-prior-idle-ms = <COMBO_IDLE_SLOW>;
+        //     layers = <DEF COL>;                         //Only in Default & Colemak layer
+        // };
 // left hand: horizontal ─────────────────────────────────────────────────
         cb_QW {
             bindings = <&kp TAB>;
